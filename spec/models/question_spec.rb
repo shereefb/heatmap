@@ -1,107 +1,75 @@
-# == Schema Information
-#
-# Table name: questions
-#
-#  id            :integer         not null, primary key
-#  quiz_id       :integer
-#  body          :text
-#  answers_count :integer         default(0)
-#  position      :integer
-#  created_at    :datetime
-#  updated_at    :datetime
-#  number        :integer
-#  suggester_id  :integer
-#  approved      :boolean
-#
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-require 'spec_helper'
+describe Question, "when creating a new question" do
+  before(:each) do
+    @ss = mock_model(SurveySection)
+    @question = Question.new(:text => "What is your favorite color?", :survey_section => @ss, :is_mandatory => true, :display_order => 1)
+  end
 
-describe Question do
-  should_not_allow_mass_assignment_of :quiz_id
-  
-  should_belong_to :quiz,
-                   :suggester
-  
-  should_have_many :answers,
-                   :user_answers
-  
-  should_validate_presence_of :quiz_id,
-                              :body,
-                              :number
-                              
-  should_validate_uniqueness_of :body,
-                                :number, :scope => :quiz_id
-  
-  should_validate_numericality_of :number, :only_integer => true
-  
-  should_have_scope :approved, :conditions => { :approved => true }
-  should_have_scope :awaiting_approval, :conditions => { :approved => false }
-  
-  describe 'custom validations' do    
-    it 'should set number if not set by user' do
-      Question.delete_all
-      
-      q = Question.new
-      q.quiz = quizzes(:ruby)
-      q.body = 'blah'
-      q.save!
-      
-      q.number.should eql(1)
-    end
+  it "should be valid" do
+    @question.should be_valid
+  end
+
+  it "should be invalid without text" do
+    @question.text = nil
+    @question.should have(1).error_on(:text)
+  end
     
-    it 'should not set number if set by user' do      
-      q = questions(:rails)
-      q.number = 55555
-      q.save!
-      
-      q.number.should eql(55555)
-    end
+  it "should have a parent survey section" do
+    @question.survey_section = nil
+    @question.should have(1).error_on(:survey_section_id)
+  end
     
-    it 'should not allow suggester to be quiz owner' do
-      q = questions(:rails)
-      q.suggester = quizzes(:rails).user
-      q.save
-      
-      q.errors.on(:suggester_id).should eql('cannot be the quiz owner')
-    end
+  it "should be mandatory by default" do
+    @question.mandatory?.should be_true
   end
   
-  describe '#suggester?' do
-    it { questions(:rails).should_not be_suggester }
-    
-    it {
-      questions(:rails).update_attribute(:suggester_id, 55555)
-      questions(:rails).should be_suggester
-    }
+end
+
+describe Question, "that has answers" do
+  before(:each) do
+    @question = Factory(:question, :text => "What is your favorite color?")
+    Factory(:answer, :question => @question, :display_order => 3, :text => "blue")
+    Factory(:answer, :question => @question, :display_order => 1, :text => "red")
+    Factory(:answer, :question => @question, :display_order => 2, :text => "green")
   end
   
-  describe '#has_correct_answer?' do
-    it { questions(:rails).has_correct_answer?.should be_true }
-    
-    describe 'with all answers deleted' do
-      before { Answer.delete_all }
-      it { questions(:rails).has_correct_answer?.should be_false }
-    end
+  it "should have answers" do
+    @question.answers.should have(3).answers
   end
   
-  describe '#correct_answer' do
-    it { questions(:rails).answers.first == questions(:rails).correct_answer }
+  it "should retrieve those answers in display_order" do
+    @question.answers.map(&:display_order).should == [1,2,3]
   end
   
-  describe '#next and #prev' do    
-    before do
-      3.times do |i|
-        
-        q      = Question.new
-        q.quiz = quizzes(:rails)
-        q.body = 'blah' + i.to_s
-        q.save!
-      end
-      
-      @question = Question.all.at(3)
-    end
-    
-    it { @question.next.id.should == @question.id + 1 }
-    it { @question.prev.id.should == @question.id - 1 }
+end
+
+describe Question, "when interacting with an instance" do
+  
+  before(:each) do
+    @ss = mock_model(SurveySection)
+    @question = Question.new(:text => "What is your favorite color?", :survey_section => @ss)
   end
+
+  it "should return 'default' for nil display type" do
+    @question.display_type = nil
+    @question.renderer.should == :default
+  end
+  
+end
+
+describe Question, "with dependencies" do
+  before(:each) do
+    @ss = mock_model(SurveySection)
+    @rs = mock_model(ResponseSet)
+    @question = Question.new(:text => "Which island?", :survey_section => @ss)
+  end
+
+  it "should check its dependency" do
+    @dependency = mock_model(Dependency)
+    @dependency.stub!(:is_met?).with(@rs).and_return(true)
+    @question.stub!(:dependency).and_return(@dependency)
+    @question.triggered?(@rs).should == true
+  end
+  
 end

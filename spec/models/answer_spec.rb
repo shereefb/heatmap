@@ -1,27 +1,29 @@
-# == Schema Information
-#
-# Table name: answers
-#
-#  id          :integer         not null, primary key
-#  question_id :integer
-#  body        :text
-#  correct     :boolean
-#  position    :integer
-#  created_at  :datetime
-#  updated_at  :datetime
-#
+require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
 
-require 'spec_helper'
+describe Answer, "when creating a new answer" do
+  before(:each) do
+    @answer = Factory(:answer, :text => "Red")
+  end
+  
+  it "should be valid" do
+    @answer.should be_valid
+  end
 
-describe Answer do  
-  should_not_allow_mass_assignment_of :question_id
+  it "should be invalid without a question_id" do
+    @answer.question_id = nil
+    @answer.should_not be_valid
+  end
   
-  should_belong_to :question
+  it "should have 'default' renderer with nil question.pick and response_class" do      
+    @answer.question = Factory(:question, :pick => nil)
+    @answer.response_class = nil
+    @answer.renderer.should == :default
+  end
   
-  should_have_many :user_answers
-  
-  should_validate_presence_of :question_id,
-                              :body
-                              
-  should_validate_uniqueness_of :body, :scope => :question_id
+  it "should have a_b renderer for a question.pick and B response_class" do
+    @answer.question = Factory(:question, :pick => "a")
+    @answer.response_class = "B"
+    @answer.renderer.should == :a_b
+  end
+    
 end
