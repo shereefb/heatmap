@@ -65,14 +65,6 @@ class Quiz < ActiveRecord::Base
     0
   end
   
-  def tags
-    Tag.all :select => 'DISTINCT ON (tags.id) tags.id, tags.name',
-            :conditions => { :taggings => { :taggable_id => question_ids,
-                                            :taggable_type => 'Question' }},
-            :joins => :taggings,
-            :order => 'tags.id, LOWER(tags.name) ASC'
-  end
-    
   def next_number
     questions.maximum(:number).try(:next) || 1
   end

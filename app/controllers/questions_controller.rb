@@ -27,7 +27,6 @@ class QuestionsController < ApplicationController
   def show
     @answer = Answer.new
     @answers = @question.answers
-    @tags = @question.tags
     
     if participant?
       @user_answer = current_user.answers.find_or_initialize_by_question_id(@question)

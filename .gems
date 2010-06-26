@@ -1,9 +1,7 @@
-rails
 bcrypt-ruby
 authlogic
 delayed_job
 haml 
 acts_as_markup
-will_paginate
+will_paginatesu
 recaptcha 
-acts-as-taggable-on

@@ -1,9 +1,4 @@
 .field
   = f.text_area :body
   = f.error_message_on :body, :prepend_text => 'Question '
-.field
-  = f.label :tag_list, 'Tags'
-  = f.text_field :tag_list, :class => 'text'
-  = f.error_message_on :tag_list
-  .hint Separate tags by commas.
 = markdown

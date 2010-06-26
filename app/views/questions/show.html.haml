@@ -7,7 +7,6 @@
     = correct_or_incorrect
 
 = quiz_link
-= meta_question_tags
 
 %h2= @page_title
 
@@ -86,12 +85,10 @@
           %thead
             %tr
               %th Number
-              %th Tags
           %tbody
             - @suggested_questions.each do |question|
               %tr{:class => cycle('even', ['even', 'odd'])}
                 %td= show_number(question)
-                %td.light= linked_tags(question.tags)
     - else
       = no_items('No suggested questions found')
   - else

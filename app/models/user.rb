@@ -87,8 +87,7 @@ class User < ActiveRecord::Base
   end
   
   def suggested_questions_for_quiz(quiz)
-    suggested_questions.all :conditions => { :quiz_id => quiz },
-                            :include => :tags
+    suggested_questions.all :conditions => { :quiz_id => quiz }
   end
   
   def participate!(quiz)

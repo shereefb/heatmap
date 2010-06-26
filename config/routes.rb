@@ -40,7 +40,6 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :dashboard, :only => :show
   
   map.resources :quizzes, :member => { :participate => :post } do |quiz|
-    quiz.resources :tags, :only => [:index, :show]
     quiz.resources :questions, :new => { :suggest => :get } do |question|
       question.resources :answers
       question.resources :user_answers, :only => :create

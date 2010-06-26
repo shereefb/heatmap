@@ -17,11 +17,6 @@
 - unless @quiz.description.blank?
   %p= auto_link h(@quiz.description)
 
-- if @tags.any?
-  %p.light
-    Question tags:
-    = linked_tags
-
 .heading
   %h3= 'Questions (' + @quiz.questions_count.to_s + ')'
   - if owner?

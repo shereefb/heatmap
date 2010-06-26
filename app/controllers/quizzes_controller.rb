@@ -38,7 +38,6 @@ class QuizzesController < ApplicationController
   def show
     @participating_users = @quiz.participants
     @questions = @quiz.questions
-    @tags = @quiz.tags
   end
   
   def participate

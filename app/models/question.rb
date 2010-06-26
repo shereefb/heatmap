@@ -18,9 +18,8 @@ class Question < ActiveRecord::Base
   
   attr_accessible :body,
                   :number,
-                  :suggester_id,
-                  :tag_list
-  
+                  :suggester_id
+                    
   belongs_to :quiz, :counter_cache => true,
                     :touch => :questions_updated_at
   
@@ -50,7 +49,6 @@ class Question < ActiveRecord::Base
   
   acts_as_markdown :body
   
-  acts_as_taggable
   
   def suggester?
     not suggester_id.blank?
