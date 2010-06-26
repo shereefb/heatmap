@@ -3,5 +3,5 @@ authlogic
 delayed_job
 haml 
 acts_as_markup
-will_paginatesu
-recaptcha 
+will_paginate
+recaptcha
