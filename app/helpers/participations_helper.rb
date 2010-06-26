@@ -1,2 +1,2 @@
-module ParticipationsHelper
-end
+# module ParticipationsHelper
+# end

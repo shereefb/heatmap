@@ -1,45 +1,45 @@
-20100625201217_dependency_condition_1:
-  answer: 20100625201217_answer_6
-  dependency: 20100625201217_dependency_1
+20100625204930_dependency_condition_1:
+  answer: 20100625204930_answer_6
+  dependency: 20100625204930_dependency_1
   operator: "=="
-  question: 20100625201217_question_3
+  question: 20100625204930_question_3
   rule_key: "A"
-20100625201217_dependency_condition_2:
-  answer: 20100625201217_answer_7
-  dependency: 20100625201217_dependency_1
+20100625204930_dependency_condition_2:
+  answer: 20100625204930_answer_7
+  dependency: 20100625204930_dependency_1
   operator: "=="
-  question: 20100625201217_question_3
+  question: 20100625204930_question_3
   rule_key: "B"
-20100625201217_dependency_condition_3:
-  answer: 20100625201217_answer_8
-  dependency: 20100625201217_dependency_1
+20100625204930_dependency_condition_3:
+  answer: 20100625204930_answer_8
+  dependency: 20100625204930_dependency_1
   operator: "=="
-  question: 20100625201217_question_3
+  question: 20100625204930_question_3
   rule_key: "C"
-20100625201217_dependency_condition_4:
-  answer: 20100625201217_answer_9
-  dependency: 20100625201217_dependency_1
+20100625204930_dependency_condition_4:
+  answer: 20100625204930_answer_9
+  dependency: 20100625204930_dependency_1
   operator: "=="
-  question: 20100625201217_question_3
+  question: 20100625204930_question_3
   rule_key: "D"
-20100625201217_dependency_condition_5:
-  answer: 20100625201217_answer_12
-  dependency: 20100625201217_dependency_2
+20100625204930_dependency_condition_5:
+  answer: 20100625204930_answer_12
+  dependency: 20100625204930_dependency_2
   operator: "=="
-  question: 20100625201217_question_5
+  question: 20100625204930_question_5
   rule_key: "A"
   string_value: "It is 'Arthur', King of the Britons"
-20100625201217_dependency_condition_6:
-  answer: 20100625201217_answer_13
-  dependency: 20100625201217_dependency_3
+20100625204930_dependency_condition_6:
+  answer: 20100625204930_answer_13
+  dependency: 20100625204930_dependency_3
   operator: "=="
-  question: 20100625201217_question_6
+  question: 20100625204930_question_6
   rule_key: "A"
   string_value: "To seek the Holy Grail"
-20100625201217_dependency_condition_7:
-  answer: 20100625201217_answer_14
-  dependency: 20100625201217_dependency_4
+20100625204930_dependency_condition_7:
+  answer: 20100625204930_answer_14
+  dependency: 20100625204930_dependency_4
   operator: "=="
-  question: 20100625201217_question_7
+  question: 20100625204930_question_7
   rule_key: "A"
   string_value: "What do you mean? An African or European swallow?"
