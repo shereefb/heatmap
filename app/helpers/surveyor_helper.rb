@@ -1,8 +1,5 @@
 module SurveyorHelper
 
-  # Extending surveyor
-  include SurveyorHelperExtensions if Surveyor::Config['extend'].include?("surveyor_helper")
-    
   # Configuration
   def surveyor_config
     Surveyor::Config
