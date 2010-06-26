@@ -39,8 +39,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :dashboard, :only => :show
   
-  map.resources :quizzes, :member => { :participate => :post } do |quiz|
-    quiz.resources :questions, :new => { :suggest => :get } do |question|
+  map.resources :surveys, :member => { :participate => :post } do |survey|
+    survey.resources :questions, :new => { :suggest => :get } do |question|
       question.resources :answers
       question.resources :user_answers, :only => :create
     end
@@ -64,8 +64,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resource :user_session
   
-  map.resource :survey
-    
   map.account 'account', :controller => 'users', :action => 'edit'
   map.login 'login', :controller => 'user_sessions', :action => 'new'
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'

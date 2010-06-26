@@ -1,4 +1,4 @@
-module QuizzesHelper
+module SurveysHelper
   # def quiz_link(bottom = false)
   #   css_class = 'meta'
   #   css_class << ' bottom' if bottom

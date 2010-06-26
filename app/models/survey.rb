@@ -2,6 +2,7 @@ class Survey < ActiveRecord::Base
 
 
   # Associations
+  belongs_to :user
   has_many :sections, :class_name => "SurveySection", :order => 'display_order'
   has_many :sections_with_questions, :include => :questions, :class_name => "SurveySection", :order => 'display_order'
   has_many :response_sets

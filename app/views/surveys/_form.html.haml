@@ -1,7 +1,4 @@
 .field
-  = f.label :category_id
-  = f.collection_select :category_id, Category.for_select, :id, :name
-.field
   = f.label :title
   = f.text_field :title, :class => 'text big'
   = f.error_message_on :title, :prepend_text => 'Title '
