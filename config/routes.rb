@@ -48,11 +48,11 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :questions, :only => :none, :member => {:approve => :put}
   
-  map.resources :participations, :only => :destroy
+  # map.resources :participations, :only => :destroy
   
   map.resources :answers, :except => [:index, :new, :create]
   
-  map.resources :user_answers, :only => :destroy
+  # map.resources :user_answers, :only => :destroy
   
   map.resources :categories, :only => :show
   
@@ -63,6 +63,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :password_resets, :except => :destroy
   
   map.resource :user_session
+  
+  map.resource :survey
     
   map.account 'account', :controller => 'users', :action => 'edit'
   map.login 'login', :controller => 'user_sessions', :action => 'new'

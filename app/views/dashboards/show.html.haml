@@ -2,55 +2,9 @@
 
 %h2= @page_title
 
-- if @questions_awaiting_approval.any?
+%h3 Your Surveys
 
-  %h3 Questions Awaiting Approval
-  
-  .show_table
-    %table
-      %thead
-        %tr
-          %th Number
-          %th Quiz
-          %th User
-          %th Created
-      %tbody
-        - @questions_awaiting_approval.each do |question|
-          %tr{:class => cycle('even', ['even', 'odd'])}
-            %td= show_number(question)
-            %td= link_to h(question.quiz.title), quiz_path(question.quiz)
-            %td= user_link(question.suggester)
-            %td= time_ago_in_words(question.created_at) + ' ago'
-            
-
-%h3 Quizzes you are participating in
-
-- if @participating_quizzes.any?
-  .show_table
-    %table
-      %thead
-        %tr
-          %th Title
-          %th.center Correct/Incorrect
-          %th.center Answered/Questions
-          %th.center Participants
-      %tbody
-        - @participating_quizzes.each do |quiz|
-          %tr{:class => cycle('even', 'odd')}
-            %td= link_to h(quiz.title), quiz_path(quiz)
-            %td.center= quiz.correct_count.to_s + '/' + quiz.incorrect_count.to_s
-            %td.center= quiz.user_answer_count.to_s + '/' + quiz.questions_count.to_s
-            %td.center= quiz.participations_count || 0
-- else
-  = no_items do
-    You are not participating in any quizzes.
-    = link_to 'View all quizzes', quizzes_path
-
-
-
-%h3 Your Quizzes
-
-- if @your_quizzes.any?
+- if @your_surveys.any?
   .show_table
     %table
       %thead
@@ -60,15 +14,15 @@
           %th.center Questions
           %th.center Participants
       %tbody
-        - @your_quizzes.each do |quiz|
+        - @your_surveys.each do |survey|
           %tr{:class => cycle('even', ['even', 'odd'])}
-            %td= link_to h(quiz.title), quiz_path(quiz)
-            %td.center= quiz.percentage_answered_correctly.to_s + '%'
-            %td.center= quiz.questions_count || 0
-            %td.center= quiz.participations_count || 0
+            %td= link_to h(survey.title), survey_path(survey)
+            / %td.center= survey.percentage_answered_correctly.to_s + '%'
+            / %td.center= survey.questions_count || 0
+            / %td.center= survey.participations_count || 0
 - else
   = no_items do
-    You have not created any quizzes.
+    You have not created any surveys.
     %br
-    = link_to 'Create one now', new_quiz_path
+    = link_to 'Create one now', new_survey_path
   

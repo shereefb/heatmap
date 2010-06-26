@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100626030324) do
+ActiveRecord::Schema.define(:version => 20100626040515) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(:version => 20100626030324) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "display_order"
+    t.integer  "user_id"
   end
 
   add_index "surveys", ["access_code"], :name => "surveys_ac_idx", :unique => true

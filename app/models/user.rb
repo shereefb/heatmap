@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     config.perishable_token_valid_for = 1.hour
   end
     
-  has_many :quizzes, :order => 'LOWER(title) ASC',
+  has_many :surveys, :order => 'LOWER(title) ASC',
                      :dependent => :destroy
   
   has_many :questions, :through => :quizzes
