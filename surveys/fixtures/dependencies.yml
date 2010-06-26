@@ -1,0 +1,12 @@
+20100625201217_dependency_1:
+  question: 20100625201217_question_4
+  rule: "A or B or C or D"
+20100625201217_dependency_2:
+  question: 20100625201217_question_6
+  rule: "A"
+20100625201217_dependency_3:
+  question: 20100625201217_question_7
+  rule: "A"
+20100625201217_dependency_4:
+  question: 20100625201217_question_8
+  rule: "A"

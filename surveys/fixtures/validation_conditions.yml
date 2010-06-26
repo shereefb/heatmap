@@ -1,0 +1,10 @@
+20100625201217_validation_condition_1:
+  integer_value: 0
+  operator: ">="
+  rule_key: "A"
+  validation: 20100625201217_validation_1
+20100625201217_validation_condition_2:
+  operator: "=~"
+  regexp: (?-mix:[0-9a-zA-z\. #])
+  rule_key: "A"
+  validation: 20100625201217_validation_2

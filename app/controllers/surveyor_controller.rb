@@ -4,17 +4,13 @@
 class SurveyorController < ApplicationController
 
   # Layout
-  layout Surveyor::Config['default.layout'] || 'surveyor_default'
+  # layout Surveyor::Config['default.layout'] || 'surveyor_default'
 
-  # Extending surveyor
-  include SurveyorControllerExtensions if Surveyor::Config['extend'].include?("surveyor_controller")
-  before_filter :extend_actions
-
-  # RESTful authentication
-  if Surveyor::Config['use_restful_authentication']
-    include AuthenticatedSystem
-    before_filter :login_required
-  end
+  # # RESTful authentication
+  # if Surveyor::Config['use_restful_authentication']
+  #   include AuthenticatedSystem
+  #   before_filter :login_required
+  # end
 
   # Get the response set or current_user
   # before_filter :get_response_set, :except => [:new, :create]

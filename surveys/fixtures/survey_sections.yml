@@ -1,0 +1,12 @@
+20100625201217_survey_section_1:
+  data_export_identifier: "basic_questions"
+  display_order: 1
+  reference_identifier: 
+  survey: 20100625201217_survey_1
+  title: "Basic questions"
+20100625201217_survey_section_2:
+  data_export_identifier: "complicated_questions"
+  display_order: 2
+  reference_identifier: 
+  survey: 20100625201217_survey_1
+  title: "Complicated questions"
