@@ -66,10 +66,10 @@ body#users.edit #nav a.account,
 body#users.update #nav a.account,
 body#users #nav a.signup,
 body#user_sessions #nav a.login,
-body#quizzes #nav a.quizzes,
-body#questions #nav a.quizzes,
-body#categories #nav a.quizzes,
-body#tags #nav a.quizzes,
+body#surveys #nav a.surveys,
+body#questions #nav a.surveys,
+body#categories #nav a.surveys,
+body#tags #nav a.surveys,
 body#dashboards #nav a.dashboard {
   font-weight: bold; }
 
@@ -240,34 +240,34 @@ hr#split {
   display: inline;
   font-weight: normal; }
 
-#quizzes_box {
+#surveys_box {
   background: #00609d;
   float: left;
   width: 100%; }
-  #quizzes_box .box {
+  #surveys_box .box {
     width: 310px;
     float: left; }
-    #quizzes_box .box.end ul, #quizzes_box .box.end h3 {
+    #surveys_box .box.end ul, #surveys_box .box.end h3 {
       margin-left: 9px; }
-    #quizzes_box .box h3 {
+    #surveys_box .box h3 {
       margin-left: 15px;
       color: white;
       text-shadow: 1px 1px 0 #002841; }
-    #quizzes_box .box ul {
+    #surveys_box .box ul {
       margin: 0 0 15px 15px;
       width: 285px;
       padding: 0;
       border-top: 1px solid #0080d2;
       background: #0071b9; }
-      #quizzes_box .box ul li {
+      #surveys_box .box ul li {
         list-style-type: none;
         margin: 0;
         padding: 3px 0;
         border-bottom: 1px solid #0080d2; }
-        #quizzes_box .box ul li a {
+        #surveys_box .box ul li a {
           color: #cfecff;
           margin: 0 8px; }
-          #quizzes_box .box ul li a:hover {
+          #surveys_box .box ul li a:hover {
             text-decoration: none;
             color: white; }
 

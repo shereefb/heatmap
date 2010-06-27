@@ -1,3 +1,9 @@
+rails:
+  user: justin
+  question: rails
+  answer: rails_correct
+  correct: true
+
 # == Schema Information
 #
 # Table name: user_answers
@@ -6,13 +12,8 @@
 #  user_id     :integer
 #  question_id :integer
 #  answer_id   :integer
-#  correct     :boolean
+#  correct     :boolean         default(FALSE)
 #  created_at  :datetime
 #  updated_at  :datetime
 #
 
-rails:
-  user: justin
-  question: rails
-  answer: rails_correct
-  correct: true

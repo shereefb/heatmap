@@ -29,3 +29,22 @@ class QuestionGroup < ActiveRecord::Base
   end
   
 end
+
+# == Schema Information
+#
+# Table name: question_groups
+#
+#  id                     :integer         not null, primary key
+#  text                   :text
+#  help_text              :text
+#  reference_identifier   :string(255)
+#  data_export_identifier :string(255)
+#  common_namespace       :string(255)
+#  common_identifier      :string(255)
+#  display_type           :string(255)
+#  custom_class           :string(255)
+#  custom_renderer        :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+

@@ -43,3 +43,25 @@ class DependencyCondition < ActiveRecord::Base
   end
 
 end
+
+# == Schema Information
+#
+# Table name: dependency_conditions
+#
+#  id             :integer         not null, primary key
+#  dependency_id  :integer
+#  rule_key       :string(255)
+#  question_id    :integer
+#  operator       :string(255)
+#  answer_id      :integer
+#  datetime_value :datetime
+#  integer_value  :integer
+#  float_value    :float
+#  unit           :string(255)
+#  text_value     :text
+#  string_value   :string(255)
+#  response_other :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+

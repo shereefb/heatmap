@@ -54,7 +54,7 @@ ALTER SEQUENCE answers_id_seq OWNED BY answers.id;
 CREATE TABLE categories (
     id integer NOT NULL,
     name character varying(255),
-    quizzes_count integer DEFAULT 0,
+    surveys_count integer DEFAULT 0,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
@@ -85,7 +85,7 @@ ALTER SEQUENCE categories_id_seq OWNED BY categories.id;
 CREATE TABLE participations (
     id integer NOT NULL,
     user_id integer,
-    quiz_id integer,
+    survey_id integer,
     correct_count integer DEFAULT 0,
     incorrect_count integer DEFAULT 0,
     created_at timestamp without time zone,
@@ -117,7 +117,7 @@ ALTER SEQUENCE participations_id_seq OWNED BY participations.id;
 
 CREATE TABLE questions (
     id integer NOT NULL,
-    quiz_id integer,
+    survey_id integer,
     body text,
     answers_count integer DEFAULT 0,
     "position" integer,
@@ -148,10 +148,10 @@ ALTER SEQUENCE questions_id_seq OWNED BY questions.id;
 
 
 --
--- Name: quizzes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: surveys; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE TABLE quizzes (
+CREATE TABLE surveys (
     id integer NOT NULL,
     category_id integer,
     user_id integer,
@@ -168,10 +168,10 @@ CREATE TABLE quizzes (
 
 
 --
--- Name: quizzes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+-- Name: surveys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE quizzes_id_seq
+CREATE SEQUENCE surveys_id_seq
     INCREMENT BY 1
     NO MAXVALUE
     NO MINVALUE
@@ -179,10 +179,10 @@ CREATE SEQUENCE quizzes_id_seq
 
 
 --
--- Name: quizzes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+-- Name: surveys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE quizzes_id_seq OWNED BY quizzes.id;
+ALTER SEQUENCE surveys_id_seq OWNED BY surveys.id;
 
 
 --
@@ -365,7 +365,7 @@ ALTER TABLE questions ALTER COLUMN id SET DEFAULT nextval('questions_id_seq'::re
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE quizzes ALTER COLUMN id SET DEFAULT nextval('quizzes_id_seq'::regclass);
+ALTER TABLE surveys ALTER COLUMN id SET DEFAULT nextval('surveys_id_seq'::regclass);
 
 
 --
@@ -429,11 +429,11 @@ ALTER TABLE ONLY questions
 
 
 --
--- Name: quizzes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: surveys_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
-ALTER TABLE ONLY quizzes
-    ADD CONSTRAINT quizzes_pkey PRIMARY KEY (id);
+ALTER TABLE ONLY surveys
+    ADD CONSTRAINT surveys_pkey PRIMARY KEY (id);
 
 
 --
@@ -483,10 +483,10 @@ CREATE INDEX index_categories_on_name ON categories USING btree (name);
 
 
 --
--- Name: index_participations_on_user_id_and_quiz_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_participations_on_user_id_and_survey_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_participations_on_user_id_and_quiz_id ON participations USING btree (user_id, quiz_id);
+CREATE INDEX index_participations_on_user_id_and_survey_id ON participations USING btree (user_id, survey_id);
 
 
 --
@@ -497,10 +497,10 @@ CREATE INDEX index_questions_on_approved ON questions USING btree (approved);
 
 
 --
--- Name: index_questions_on_quiz_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_questions_on_survey_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_questions_on_quiz_id ON questions USING btree (quiz_id);
+CREATE INDEX index_questions_on_survey_id ON questions USING btree (survey_id);
 
 
 --
@@ -511,38 +511,38 @@ CREATE INDEX index_questions_on_suggester_id ON questions USING btree (suggester
 
 
 --
--- Name: index_quizzes_on_category_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_surveys_on_category_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_quizzes_on_category_id ON quizzes USING btree (category_id);
-
-
---
--- Name: index_quizzes_on_last_viewed; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_quizzes_on_last_viewed ON quizzes USING btree (last_viewed);
+CREATE INDEX index_surveys_on_category_id ON surveys USING btree (category_id);
 
 
 --
--- Name: index_quizzes_on_permalink; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_surveys_on_last_viewed; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_quizzes_on_permalink ON quizzes USING btree (permalink);
-
-
---
--- Name: index_quizzes_on_questions_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_quizzes_on_questions_updated_at ON quizzes USING btree (questions_updated_at);
+CREATE INDEX index_surveys_on_last_viewed ON surveys USING btree (last_viewed);
 
 
 --
--- Name: index_quizzes_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_surveys_on_permalink; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_quizzes_on_user_id ON quizzes USING btree (user_id);
+CREATE INDEX index_surveys_on_permalink ON surveys USING btree (permalink);
+
+
+--
+-- Name: index_surveys_on_questions_updated_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_surveys_on_questions_updated_at ON surveys USING btree (questions_updated_at);
+
+
+--
+-- Name: index_surveys_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_surveys_on_user_id ON surveys USING btree (user_id);
 
 
 --

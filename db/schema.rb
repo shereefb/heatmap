@@ -9,111 +9,56 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100626040515) do
+ActiveRecord::Schema.define(:version => 20100317044924) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
-    t.text     "text"
-    t.text     "short_text"
-    t.text     "help_text"
-    t.integer  "weight"
-    t.string   "response_class"
-    t.string   "reference_identifier"
-    t.string   "data_export_identifier"
-    t.string   "common_namespace"
-    t.string   "common_identifier"
-    t.integer  "display_order"
-    t.boolean  "is_exclusive"
-    t.boolean  "hide_label"
-    t.integer  "display_length"
-    t.string   "custom_class"
-    t.string   "custom_renderer"
+    t.text     "body"
+    t.boolean  "correct",     :default => false
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
+
   create_table "categories", :force => true do |t|
     t.string   "name"
-    t.integer  "quizzes_count", :default => 0
+    t.integer  "surveys_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "categories", ["name"], :name => "index_categories_on_name"
 
-  create_table "dependencies", :force => true do |t|
-    t.integer  "question_id"
-    t.integer  "question_group_id"
-    t.string   "rule"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "dependency_conditions", :force => true do |t|
-    t.integer  "dependency_id"
-    t.string   "rule_key"
-    t.integer  "question_id"
-    t.string   "operator"
-    t.integer  "answer_id"
-    t.datetime "datetime_value"
-    t.integer  "integer_value"
-    t.float    "float_value"
-    t.string   "unit"
-    t.text     "text_value"
-    t.string   "string_value"
-    t.string   "response_other"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "participations", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "quiz_id"
+    t.integer  "survey_id"
     t.integer  "correct_count",   :default => 0
     t.integer  "incorrect_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "participations", ["user_id", "quiz_id"], :name => "index_participations_on_user_id_and_quiz_id"
-
-  create_table "question_groups", :force => true do |t|
-    t.text     "text"
-    t.text     "help_text"
-    t.string   "reference_identifier"
-    t.string   "data_export_identifier"
-    t.string   "common_namespace"
-    t.string   "common_identifier"
-    t.string   "display_type"
-    t.string   "custom_class"
-    t.string   "custom_renderer"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+  add_index "participations", ["user_id", "survey_id"], :name => "index_participations_on_user_id_and_survey_id"
 
   create_table "questions", :force => true do |t|
-    t.integer  "survey_section_id"
-    t.integer  "question_group_id"
-    t.text     "text"
-    t.text     "short_text"
-    t.text     "help_text"
-    t.string   "pick"
-    t.string   "reference_identifier"
-    t.string   "data_export_identifier"
-    t.string   "common_namespace"
-    t.string   "common_identifier"
-    t.integer  "display_order"
-    t.string   "display_type"
-    t.boolean  "is_mandatory"
-    t.integer  "display_width"
-    t.string   "custom_class"
-    t.string   "custom_renderer"
+    t.integer  "survey_id"
+    t.text     "body"
+    t.integer  "answers_count", :default => 0
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "correct_answer_id"
+    t.integer  "number"
+    t.integer  "suggester_id"
+    t.boolean  "approved",      :default => false
   end
 
-  create_table "quizzes", :force => true do |t|
+  add_index "questions", ["approved"], :name => "index_questions_on_approved"
+  add_index "questions", ["survey_id"], :name => "index_questions_on_survey_id"
+  add_index "questions", ["suggester_id"], :name => "index_questions_on_suggester_id"
+
+  create_table "surveys", :force => true do |t|
     t.integer  "category_id"
     t.integer  "user_id"
     t.string   "title"
@@ -127,73 +72,11 @@ ActiveRecord::Schema.define(:version => 20100626040515) do
     t.datetime "last_viewed"
   end
 
-  add_index "quizzes", ["category_id"], :name => "index_quizzes_on_category_id"
-  add_index "quizzes", ["last_viewed"], :name => "index_quizzes_on_last_viewed"
-  add_index "quizzes", ["permalink"], :name => "index_quizzes_on_permalink"
-  add_index "quizzes", ["questions_updated_at"], :name => "index_quizzes_on_questions_updated_at"
-  add_index "quizzes", ["user_id"], :name => "index_quizzes_on_user_id"
-
-  create_table "response_sets", :force => true do |t|
-    t.integer  "user_id"
-    t.integer  "survey_id"
-    t.string   "access_code"
-    t.datetime "started_at"
-    t.datetime "completed_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "response_sets", ["access_code"], :name => "response_sets_ac_idx", :unique => true
-
-  create_table "responses", :force => true do |t|
-    t.integer  "response_set_id"
-    t.integer  "question_id"
-    t.integer  "answer_id"
-    t.datetime "datetime_value"
-    t.integer  "integer_value"
-    t.float    "float_value"
-    t.string   "unit"
-    t.text     "text_value"
-    t.string   "string_value"
-    t.string   "response_other"
-    t.string   "response_group"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "survey_sections", :force => true do |t|
-    t.integer  "survey_id"
-    t.string   "title"
-    t.text     "description"
-    t.string   "reference_identifier"
-    t.string   "data_export_identifier"
-    t.string   "common_namespace"
-    t.string   "common_identifier"
-    t.integer  "display_order"
-    t.string   "custom_class"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "surveys", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
-    t.string   "access_code"
-    t.string   "reference_identifier"
-    t.string   "data_export_identifier"
-    t.string   "common_namespace"
-    t.string   "common_identifier"
-    t.datetime "active_at"
-    t.datetime "inactive_at"
-    t.string   "css_url"
-    t.string   "custom_class"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "display_order"
-    t.integer  "user_id"
-  end
-
-  add_index "surveys", ["access_code"], :name => "surveys_ac_idx", :unique => true
+  add_index "surveys", ["category_id"], :name => "index_surveys_on_category_id"
+  add_index "surveys", ["last_viewed"], :name => "index_surveys_on_last_viewed"
+  add_index "surveys", ["permalink"], :name => "index_surveys_on_permalink"
+  add_index "surveys", ["questions_updated_at"], :name => "index_surveys_on_questions_updated_at"
+  add_index "surveys", ["user_id"], :name => "index_surveys_on_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"
@@ -249,31 +132,5 @@ ActiveRecord::Schema.define(:version => 20100626040515) do
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
   add_index "users", ["username"], :name => "index_users_on_username"
-
-  create_table "validation_conditions", :force => true do |t|
-    t.integer  "validation_id"
-    t.string   "rule_key"
-    t.string   "operator"
-    t.integer  "question_id"
-    t.integer  "answer_id"
-    t.datetime "datetime_value"
-    t.integer  "integer_value"
-    t.float    "float_value"
-    t.string   "unit"
-    t.text     "text_value"
-    t.string   "string_value"
-    t.string   "response_other"
-    t.string   "regexp"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "validations", :force => true do |t|
-    t.integer  "answer_id"
-    t.string   "rule"
-    t.string   "message"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
 end

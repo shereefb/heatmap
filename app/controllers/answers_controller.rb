@@ -1,8 +1,8 @@
 class AnswersController < ApplicationController
   before_filter :require_user
-  before_filter :find_quiz, :only => :create
+  before_filter :find_survey, :only => :create
   before_filter :find_question, :only => :create
-  before_filter :authorize_quiz, :only => :create
+  before_filter :authorize_survey, :only => :create
   before_filter :authorize_question, :only => :create
   before_filter :find_answer, :except => :create
   
@@ -15,7 +15,7 @@ class AnswersController < ApplicationController
       flash[:failure] = @answer.error_sentence
     end
     
-    redirect_to quiz_question_path(@quiz, @question)
+    redirect_to survey_question_path(@survey, @question)
   end
   
   def edit

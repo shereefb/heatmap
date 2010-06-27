@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: quizzes
+# Table name: surveys
 #
 #  id                   :integer         not null, primary key
 #  category_id          :integer
@@ -16,7 +16,7 @@
 #  last_viewed          :datetime
 #
 
-class Quiz < ActiveRecord::Base
+class Survey < ActiveRecord::Base
   
   # attr_accessible :category_id,
   #                 :title,

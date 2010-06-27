@@ -1,16 +1,5 @@
-# == Schema Information
-#
-# Table name: categories
-#
-#  id            :integer         not null, primary key
-#  name          :string(255)
-#  quizzes_count :integer         default(0)
-#  created_at    :datetime
-#  updated_at    :datetime
-#
-
 class Category < ActiveRecord::Base
-  has_many :quizzes, :order => 'title ASC'
+  has_many :surveys, :order => 'title ASC'
   
   validates_presence_of :name
   
@@ -22,3 +11,15 @@ class Category < ActiveRecord::Base
     all(:order => 'name ASC')
   end
 end
+
+# == Schema Information
+#
+# Table name: categories
+#
+#  id            :integer         not null, primary key
+#  name          :string(255)
+#  quizzes_count :integer         default(0)
+#  created_at    :datetime
+#  updated_at    :datetime
+#
+

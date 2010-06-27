@@ -2,13 +2,13 @@
 module ApplicationHelper
   def page_title
     ary = []
-    ary << 'Quizdoo'
+    ary << 'Surveydoo'
     
-    if @quiz and not
-       @quiz.new_record? and not
-       @quiz.title == @page_title
+    if @survey and not
+       @survey.new_record? and not
+       @survey.title == @page_title
       
-      ary << @quiz.title
+      ary << @survey.title
     end
     
     ary << @page_title

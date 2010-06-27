@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: user_answers
-#
-#  id          :integer         not null, primary key
-#  user_id     :integer
-#  question_id :integer
-#  answer_id   :integer
-#  correct     :boolean
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
 class UserAnswer < ActiveRecord::Base
   
   # attr_accessible
@@ -26,8 +13,8 @@ class UserAnswer < ActiveRecord::Base
   # validates_uniqueness_of :user_id, :scope => :question_id,
   #                                   :message => 'has already answered this question'
   # 
-  # validate :user_cannot_be_quiz_owner
-  # validate :user_must_be_participating_in_quiz
+  # validate :user_cannot_be_survey_owner
+  # validate :user_must_be_participating_in_survey
   # validate :question_approved
   # 
   # before_create :set_correct                             
@@ -42,21 +29,21 @@ class UserAnswer < ActiveRecord::Base
   # end
   # 
   # def update_correct_or_incorrect_count
-  #   if participation = user.find_participation(question.quiz)
+  #   if participation = user.find_participation(question.survey)
   #     count_field = correct? ? :correct_count : :incorrect_count
   #     participation.increment!(count_field)
   #   end
   # end
   #     
-  # def user_cannot_be_quiz_owner
-  #   if question and user and question.quiz.owner == user
-  #     errors.add_to_base('You cannot answer a question in your own quiz')
+  # def user_cannot_be_survey_owner
+  #   if question and user and question.survey.owner == user
+  #     errors.add_to_base('You cannot answer a question in your own survey')
   #   end
   # end
   # 
-  # def user_must_be_participating_in_quiz
-  #   if question and user and not user.participating?(question.quiz)
-  #     errors.add_to_base('You must be participating in this quiz to answer questions')
+  # def user_must_be_participating_in_survey
+  #   if question and user and not user.participating?(question.survey)
+  #     errors.add_to_base('You must be participating in this survey to answer questions')
   #   end
   # end
   # 
@@ -66,3 +53,17 @@ class UserAnswer < ActiveRecord::Base
   #   end
   # end
 end
+
+# == Schema Information
+#
+# Table name: user_answers
+#
+#  id          :integer         not null, primary key
+#  user_id     :integer
+#  question_id :integer
+#  answer_id   :integer
+#  correct     :boolean         default(FALSE)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

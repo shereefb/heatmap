@@ -57,3 +57,16 @@ describe Validation, "reporting its status" do
     
   end
 end
+
+# == Schema Information
+#
+# Table name: validations
+#
+#  id         :integer         not null, primary key
+#  answer_id  :integer
+#  rule       :string(255)
+#  message    :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+

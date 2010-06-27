@@ -7,19 +7,19 @@ describe ParticipationsController do
   before { login }
   
   describe '#destroy' do
-    it 'should delete a record and redirect to quiz' do
+    it 'should delete a record and redirect to survey' do
       participation = participations(:rails)
       
       lambda {
         delete :destroy, :id => participation.id
       }.should change(Participation, :count).by(-1)
       
-      flash[:success].should eql('You are no longer participating in this quiz')
+      flash[:success].should eql('You are no longer participating in this survey')
       response.should be_redirect
-      response.should redirect_to(quiz_url(participation.quiz))
+      response.should redirect_to(survey_url(participation.survey))
     end
     
-    it 'should rescue RecordNotFound and redirect to quiz' do
+    it 'should rescue RecordNotFound and redirect to survey' do
       lambda {
         delete :destroy, :id => 12345
       }.should_not change(Participation, :count)

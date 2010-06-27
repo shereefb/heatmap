@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: quizzes
+# Table name: surveys
 #
 #  id                   :integer         not null, primary key
 #  category_id          :integer
@@ -18,7 +18,7 @@
 
 require 'spec_helper'
 
-describe Quiz do  
+describe Survey do  
   should_not_allow_mass_assignment_of :user_id
   
   should_belong_to :category,
@@ -49,7 +49,7 @@ describe Quiz do
                                      
   describe 'custom validations' do    
     it 'should make the permalink' do
-      q = quizzes(:rails)
+      q = surveys(:rails)
       q.title = 'This IS a TEST'
       q.save
       q.reload.permalink.should eql('this-is-a-test')
@@ -57,24 +57,24 @@ describe Quiz do
   end
   
   describe '#percentage_answered_correctly' do
-    it { quizzes(:ruby).percentage_answered_correctly.should be_zero }
-    it { quizzes(:rails).percentage_answered_correctly.should eql(100) }
+    it { surveys(:ruby).percentage_answered_correctly.should be_zero }
+    it { surveys(:rails).percentage_answered_correctly.should eql(100) }
   end
   
   describe '#tags' do    
-    it { quizzes(:rails).tags.should include(tags(:rails)) }
-    it { quizzes(:rails).tags.should_not include(tags(:ruby)) }
+    it { surveys(:rails).tags.should include(tags(:rails)) }
+    it { surveys(:rails).tags.should_not include(tags(:ruby)) }
     
-    it { quizzes(:ruby).tags.should include(tags(:ruby)) }
-    it { quizzes(:ruby).tags.should_not include(tags(:rails)) }
+    it { surveys(:ruby).tags.should include(tags(:ruby)) }
+    it { surveys(:ruby).tags.should_not include(tags(:rails)) }
   end
   
   describe '#next_number' do
-    before { @quiz = quizzes(:rails) }
+    before { @survey = surveys(:rails) }
     
     describe 'with existing questions' do
       it 'should return 12346' do
-        @quiz.next_number.should eql(12346)
+        @survey.next_number.should eql(12346)
       end
     end
     
@@ -82,20 +82,20 @@ describe Quiz do
       before { Question.delete_all }
       
       it 'should return 1' do
-        @quiz.next_number.should eql(1)
+        @survey.next_number.should eql(1)
       end
     end
   end
   
   describe '#to_param' do    
     it 'should return the id and permalink' do
-      quiz = Quiz.new
-      mock(quiz) do
+      survey = Survey.new
+      mock(survey) do
         id { 1 }
         permalink { 'test' }
       end
       
-      quiz.to_param.should eql('1-test')
+      survey.to_param.should eql('1-test')
     end
   end
 end

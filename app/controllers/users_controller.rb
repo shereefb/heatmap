@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if recaptcha(:model => @user) && @user.save
-      flash[:success] = 'Welcome to Quizdoo!'
+      flash[:success] = 'Welcome to Surveydoo!'
       redirect_back_or_default root_url
     else
       render :new

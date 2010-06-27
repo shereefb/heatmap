@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   has_many :surveys, :order => 'LOWER(title) ASC',
                      :dependent => :destroy
   
-  has_many :questions, :through => :quizzes
+  has_many :questions, :through => :surveys
   
   has_many :suggested_questions, :class_name => 'Question',
                                  :foreign_key => 'suggester_id',
@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
     
   has_many :participations, :dependent => :destroy
   
-  has_many :participating_quizzes, :through => :participations,
-                                   :source => :quiz
+  has_many :participating_surveys, :through => :participations,
+                                   :source => :survey
   
   has_many :answers, :class_name => 'UserAnswer',
                      :dependent => :destroy
@@ -65,39 +65,39 @@ class User < ActiveRecord::Base
     find_by_username(login) || find_by_email(login)
   end
   
-  def participating_quizzes_for_dashboard
-    quizzes_columns = 'quizzes.permalink, quizzes.id, quizzes.title, ' +
-                      'quizzes.questions_count, quizzes.participations_count'
+  def participating_surveys_for_dashboard
+    surveys_columns = 'surveys.permalink, surveys.id, surveys.title, ' +
+                      'surveys.questions_count, surveys.participations_count'
     
-    select_sql = quizzes_columns + ', ' +
+    select_sql = surveys_columns + ', ' +
                  'participations.correct_count AS correct_count, ' +
                  'participations.incorrect_count AS incorrect_count, ' +
                  'COUNT(user_answers.question_id) AS user_answer_count'
     
-    joins_sql = 'LEFT OUTER JOIN questions ON (quizzes.id = questions.quiz_id) ' +
+    joins_sql = 'LEFT OUTER JOIN questions ON (surveys.id = questions.survey_id) ' +
                 'LEFT OUTER JOIN user_answers ON (user_answers.question_id = questions.id)'
                 
-    group_sql = quizzes_columns + ', ' + 
+    group_sql = surveys_columns + ', ' + 
                 'participations.correct_count, participations.incorrect_count'
     
-    participating_quizzes.all :select => select_sql,
+    participating_surveys.all :select => select_sql,
                               :joins => joins_sql,
                               :group => group_sql,
-                              :order => 'LOWER(quizzes.title) ASC'
+                              :order => 'LOWER(surveys.title) ASC'
   end
   
-  def suggested_questions_for_quiz(quiz)
-    suggested_questions.all :conditions => { :quiz_id => quiz }
+  def suggested_questions_for_survey(survey)
+    suggested_questions.all :conditions => { :survey_id => survey }
   end
   
-  def participate!(quiz)
+  def participate!(survey)
     participation = participations.build
-    participation.quiz = quiz
+    participation.survey = survey
     participation.save!
   end
   
-  def participating?(quiz)
-    participations.exists?(:quiz_id => quiz)
+  def participating?(survey)
+    participations.exists?(:survey_id => survey)
   end
   
   def answer_question!(question, params)
@@ -110,12 +110,12 @@ class User < ActiveRecord::Base
     user_answer.save!
   end
   
-  def all_answered?(quiz)
-    total_answered(quiz) == quiz.questions.count
+  def all_answered?(survey)
+    total_answered(survey) == survey.questions.count
   end
   
-  def total_answered(quiz)
-    answers.count(:conditions => { :question_id => quiz.question_ids })
+  def total_answered(survey)
+    answers.count(:conditions => { :question_id => survey.question_ids })
   end
   
   def can_edit_answer?(answer)
@@ -127,8 +127,8 @@ class User < ActiveRecord::Base
     question.suggester == self || questions.include?(question)
   end
   
-  def can_edit_quiz?(quiz)
-    quiz.user_id == id || quiz.suggesters.include?(self)
+  def can_edit_survey?(survey)
+    survey.user_id == id
   end
   
   def deliver_password_reset_instructions!
@@ -136,7 +136,7 @@ class User < ActiveRecord::Base
     Emailer.deliver_password_reset_instructions(self)
   end
     
-  def find_participation(quiz)
-    participations.find_by_quiz_id(quiz)
+  def find_participation(survey)
+    participations.find_by_survey_id(survey)
   end
 end

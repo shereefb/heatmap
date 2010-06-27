@@ -1,6 +1,6 @@
 class AddParticipationCount < ActiveRecord::Migration
   def self.up
-    add_column :quizzes, :participations_count, :integer, :default => 0
+    add_column :surveys, :participations_count, :integer, :default => 0
     add_column :questions, :number, :integer
     add_column :questions, :suggester_id, :integer
     add_index :questions, :suggester_id
@@ -9,7 +9,7 @@ class AddParticipationCount < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :quizzes, :participations_count
+    remove_column :surveys, :participations_count
     remove_column :questions, :number
     remove_index :questions, :suggester_id
     remove_column :questions, :suggester_id

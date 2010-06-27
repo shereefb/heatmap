@@ -1,35 +1,35 @@
-- @page_title = 'Participate And Create Online Quizzes'
+- @page_title = 'Participate And Create Online Surveys'
 
-%h2 Create and Participate in Online Quizzes
+%h2 Create and Participate in Online Surveys
 
-#quizzes_box
-  .box
-    %h3 Recently Added
-    %ul
-      - Quiz.recently_added.each do |quiz|
-        %li= link_to truncate(h(quiz.title), :length => 45), quiz_path(quiz)
-  
-  .box.end
-    %h3 Recently Updated
-    %ul
-      - Quiz.recently_updated.each do |quiz|
-        %li= link_to truncate(h(quiz.title), :length => 45), quiz_path(quiz)
-  
-
-= render :partial => 'categories/list'
-              
-- content_for :right do
-  
-  %h3 Recently Viewed
-  
-  .show_table
-    %table
-      %thead
-        %tr
-          %th Title
-          %th Last Viewed
-      %tbody
-        - Quiz.recently_viewed.each do |quiz|
-          %tr{:class => cycle('even', ['even', 'odd'])}
-            %td= link_to truncate(h(quiz.title), :length => 35), quiz_path(quiz)
-            %td= time_ago_in_words(quiz.last_viewed) + ' ago'
+/ #surveys_box
+/   .box
+/     %h3 Recently Added
+/     %ul
+/       - Survey.recently_added.each do |survey|
+/         %li= link_to truncate(h(survey.title), :length => 45), survey_path(survey)
+/   
+/   .box.end
+/     %h3 Recently Updated
+/     %ul
+/       - Survey.recently_updated.each do |survey|
+/         %li= link_to truncate(h(survey.title), :length => 45), survey_path(survey)
+/   
+/ 
+/ = render :partial => 'categories/list'
+/               
+/ - content_for :right do
+/   
+/   %h3 Recently Viewed
+/   
+/   .show_table
+/     %table
+/       %thead
+/         %tr
+/           %th Title
+/           %th Last Viewed
+/       %tbody
+/         - Survey.recently_viewed.each do |survey|
+/           %tr{:class => cycle('even', ['even', 'odd'])}
+/             %td= link_to truncate(h(survey.title), :length => 35), survey_path(survey)
+/             %td= time_ago_in_words(survey.last_viewed) + ' ago'

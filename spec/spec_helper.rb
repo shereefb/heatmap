@@ -29,7 +29,7 @@ Spec::Runner.configure do |config|
                            :categories,
                            :participations,
                            :questions,
-                           :quizzes,
+                           :surveys,
                            :taggings,
                            :tags,
                            :user_answers,
@@ -68,7 +68,7 @@ Spec::Runner.configure do |config|
 end
 
 def login(user = :justin)
-  @request.host = 'quizdoo.dev'
+  @request.host = 'surveydoo.dev'
   activate_authlogic
   UserSession.create(users(user))
 end

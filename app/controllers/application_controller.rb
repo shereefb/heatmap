@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   
-  THE_DOMAIN = 'http://quizdoo.com'
+  THE_DOMAIN = 'http://surveydoo.com'
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
   
   def owner?
     return false unless current_user
-    @quiz.owner == current_user
+    @survey.user == current_user
   end
   
   def suggester?
@@ -80,24 +80,18 @@ class ApplicationController < ActionController::Base
     not owner? and not suggester?
   end
   
-  def find_quiz
-    @quiz = Quiz.find(params[:quiz_id] || params[:id])
+  def find_survey
+    @survey = Survey.find(params[:survey_id] || params[:id])
   end
   
   def find_question
     question_id = params[:question_id] || params[:id]
-    question_scope = @quiz.try(:questions) || Question
+    question_scope = @survey.try(:questions) || Question
     @question = question_scope.find(question_id)
   end
   
-  def authorize_quiz
-    if params[:question] and user_id = params[:question][:suggester_id]
-      unless User.find(user_id).participating?(@quiz)
-        access_denied!('You must participate in the quiz to suggest questions')
-      end
-    else
-      access_denied! unless current_user.can_edit_quiz?(@quiz)
-    end
+  def authorize_survey
+      access_denied! unless current_user && current_user.can_edit_survey?(@survey)
   end
   
   def authorize_question

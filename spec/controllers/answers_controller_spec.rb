@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe AnswersController, 'User logged in' do
   integrate_views
-  fixtures :quizzes, :questions, :answers
+  fixtures :surveys, :questions, :answers
   
   before do
     login
@@ -18,7 +18,7 @@ describe AnswersController, 'User logged in' do
   it 'should redirect to question' do
     post :create, answer_params
     response.should be_redirect
-    path = quiz_question_path(quizzes(:ruby), questions(:ruby))
+    path = survey_question_path(surveys(:ruby), questions(:ruby))
     response.should redirect_to(path)
   end
   
@@ -48,7 +48,7 @@ describe AnswersController, 'User logged in' do
   end
   
   def answer_params
-    { :id => quizzes(:ruby),
+    { :id => surveys(:ruby),
       :question_id => questions(:ruby),
       :answer => {:body => 'blah'}
     }

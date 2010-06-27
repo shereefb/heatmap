@@ -24,7 +24,7 @@ class CreateModels < ActiveRecord::Migration
     add_index :users, :persistence_token
     add_index :users, :last_request_at
     
-    create_table :quizzes do |t|
+    create_table :surveys do |t|
       t.integer :category_id, :user_id
       t.string :title
       t.text :description
@@ -32,18 +32,18 @@ class CreateModels < ActiveRecord::Migration
       t.timestamps
     end
     
-    add_index :quizzes, :category_id
-    add_index :quizzes, :user_id
+    add_index :surveys, :category_id
+    add_index :surveys, :user_id
     
     create_table :questions do |t|
-      t.integer :quiz_id
+      t.integer :survey_id
       t.text :body
       t.integer :answers_count, :default => 0
       t.integer :position
       t.timestamps
     end
     
-    add_index :questions, :quiz_id
+    add_index :questions, :survey_id
     
     create_table :answers do |t|
       t.integer :question_id
@@ -57,19 +57,19 @@ class CreateModels < ActiveRecord::Migration
     
     create_table :categories do |t|
       t.string :name
-      t.integer :quizzes_count, :default => 0
+      t.integer :surveys_count, :default => 0
       t.timestamps
     end
     
     add_index :categories, :name
     
     create_table :participations do |t|
-      t.integer :user_id, :quiz_id
+      t.integer :user_id, :survey_id
       t.integer :correct_count, :incorrect_count, :default => 0
       t.timestamps
     end
     
-    add_index :participations, [:user_id, :quiz_id]
+    add_index :participations, [:user_id, :survey_id]
     
     create_table :user_answers do |t|
       t.integer :user_id, :question_id, :answer_id
@@ -84,7 +84,7 @@ class CreateModels < ActiveRecord::Migration
 
   def self.down
     drop_table :users
-    drop_table :quizzes
+    drop_table :surveys
     drop_table :questions
     drop_table :answers
     drop_table :categories

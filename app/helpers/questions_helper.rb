@@ -20,7 +20,7 @@ module QuestionsHelper
   # def prev_question
   #   str = '&larr; Prev Question'
   #   if prev_question_record = @question.prev
-  #     link_to str, quiz_question_path(@quiz, prev_question_record)
+  #     link_to str, survey_question_path(@survey, prev_question_record)
   #   else
   #     str
   #   end
@@ -29,7 +29,7 @@ module QuestionsHelper
   # def next_question
   #   str = 'Next Question &rarr;'
   #   if next_question_record = @question.next
-  #     link_to str, quiz_question_path(@quiz, next_question_record)
+  #     link_to str, survey_question_path(@survey, next_question_record)
   #   else
   #     str
   #   end
@@ -46,7 +46,7 @@ module QuestionsHelper
   # end
   # 
   # def show_number(question)
-  #   quiz = @quiz || question.quiz
-  #   link_to '#' + question.number.to_s, quiz_question_path(quiz, question)
+  #   survey = @survey || question.survey
+  #   link_to '#' + question.number.to_s, survey_question_path(survey, question)
   # end
 end

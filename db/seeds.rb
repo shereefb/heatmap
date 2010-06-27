@@ -22,26 +22,26 @@ dhh = User.create :name => 'David Hanson',
   Category.create :name => name
 end
 
-q = Quiz.new :title => 'Ruby on Rails',
+q = Survey.new :title => 'Ruby on Rails',
              :category => Category.find_by_name('Programming')
 q.user = me
 q.save
             
-q = Quiz.new :title => 'Checking and Savings',
+q = Survey.new :title => 'Checking and Savings',
              :category => Category.find_by_name('Finance')
 q.user = dhh
 q.save
 
-quiz1 = Quiz.find_by_title('Ruby on Rails')
+survey1 = Survey.find_by_title('Ruby on Rails')
 
 q = Question.new :body => 'What is a polymorphic relationship?'
-q.quiz = quiz1
+q.survey = survey1
 q.save
 
-quiz2 = Quiz.find_by_title('Checking and Savings')
+survey2 = Survey.find_by_title('Checking and Savings')
 
 question1 = Question.new :body => 'Should you ever pay over draft fees?'
-question1.quiz = quiz2
+question1.survey = survey2
 question1.save
 
 a = Answer.new :body => 'Yes'

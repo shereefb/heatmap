@@ -1,39 +1,35 @@
-- @page_title = @quiz.title
+- @page_title = @survey.title
 
 
 - if current_user
   #mid_nav
     - if owner?
-      = link_to 'Edit Quiz', edit_quiz_path(@quiz), :class => 'edit'
-    - else
-      - if @participation
-        = link_to 'Un-participate', participation_path(@participation), :method => :delete, :confirm => 'Are you sure you want to un-participate from this quiz?'
-      - else
-        = link_to 'Participate', participate_quiz_path(@quiz), :method => :post
-  
+      = link_to 'Edit Survey', edit_survey_path(@survey), :class => 'edit'
 
 %h2= @page_title
 
-- unless @quiz.description.blank?
-  %p= auto_link h(@quiz.description)
+- unless @survey.description.blank?
+  %p= auto_link h(@survey.description)
 
 .heading
-  %h3= 'Questions (' + @quiz.questions_count.to_s + ')'
-  - if owner?
-    = link_to 'Add Question', new_quiz_question_path(@quiz), :class => 'add'
-  - elsif current_user
-    = link_to 'Suggest Question', suggest_new_quiz_question_path(@quiz), :class => 'add'
+  %h3= 'Sections (' + @survey.sections.count.to_s + ')'
+  = link_to 'Add Section', new_survey_section_path(@survey), :class => 'add'
 
-= render :partial => 'questions/list', :locals => {:questions => @questions}
+  = render :partial => 'survey_sections/list', :locals => {:sections => @survey.sections}
+
+  / %h3= 'Questions (' + @survey.questions.count.to_s + ')'
+  / = link_to 'Add Question', new_survey_question_path(@survey), :class => 'add'
+/ 
+/ = render :partial => 'questions/list', :locals => {:questions => @questions}
               
-- content_for :right do
-  %h3 Participating Users
-  - if @participating_users.any?
-    .users_list
-      %table
-        - @participating_users.each do |user|
-          %tr
-            %td= user_link(user)
-  - else
-    = no_items('No users are participating in this quiz.')
+/ - content_for :right do
+/   %h3 Participating Users
+/   - if @participating_users.any?
+/     .users_list
+/       %table
+/         - @participating_users.each do |user|
+/           %tr
+/             %td= user_link(user)
+/   - else
+/     = no_items('No users are participating in this survey.')
     

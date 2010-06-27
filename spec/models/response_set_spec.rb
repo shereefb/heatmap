@@ -114,34 +114,34 @@ describe ResponseSet, "with dependencies" do
   end
   
 end
-describe ResponseSet, "as a quiz" do
+describe ResponseSet, "as a survey" do
   before(:each) do
     @survey = Factory(:survey)
     @section = Factory(:survey_section, :survey => @survey)
     @response_set = Factory(:response_set, :survey => @survey)
   end
-  def generate_responses(count, quiz = nil, correct = nil)
+  def generate_responses(count, survey = nil, correct = nil)
     count.times do |i|
       q = Factory(:question, :survey_section => @section)
       a = Factory(:answer, :question => q, :response_class => "answer")
       x = Factory(:answer, :question => q, :response_class => "answer")
-      q.correct_answer_id = (quiz == "quiz" ? a.id : nil)
+      q.correct_answer_id = (survey == "survey" ? a.id : nil)
       @response_set.responses << Factory(:response, :question => q, :answer => (correct == "correct" ? a : x))
     end
   end
   
-  it "should report correctness if it is a quiz" do
-    generate_responses(3, "quiz", "correct")
+  it "should report correctness if it is a survey" do
+    generate_responses(3, "survey", "correct")
     @response_set.correct?.should be_true
     @response_set.correctness_hash.should == {:questions => 3, :responses => 3, :correct => 3}
   end
-  it "should report incorrectness if it is a quiz" do
-    generate_responses(3, "quiz", "incorrect")
+  it "should report incorrectness if it is a survey" do
+    generate_responses(3, "survey", "incorrect")
     @response_set.correct?.should be_false
     @response_set.correctness_hash.should == {:questions => 3, :responses => 3, :correct => 0}
   end
-  it "should report correct if it isn't a quiz" do
-    generate_responses(3, "non-quiz")
+  it "should report correct if it isn't a survey" do
+    generate_responses(3, "non-survey")
     @response_set.correct?.should be_true
     @response_set.correctness_hash.should == {:questions => 3, :responses => 3, :correct => 3}
   end
@@ -243,3 +243,17 @@ describe ResponseSet, "exporting csv" do
     csv.should match /pecan pie/    
   end
 end
+# == Schema Information
+#
+# Table name: response_sets
+#
+#  id           :integer         not null, primary key
+#  user_id      :integer
+#  survey_id    :integer
+#  access_code  :string(255)
+#  started_at   :datetime
+#  completed_at :datetime
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

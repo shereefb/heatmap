@@ -1,3 +1,6 @@
+programming:
+  name: Programming
+
 # == Schema Information
 #
 # Table name: categories
@@ -9,5 +12,3 @@
 #  updated_at    :datetime
 #
 
-programming:
-  name: Programming

@@ -3,8 +3,8 @@
 %h2= @page_title
 
 %ul
-  - @category.quizzes.each do |quiz|
-    %li= link_to h(quiz.title), quiz_path(quiz)
+  - @category.surveys.each do |survey|
+    %li= link_to h(survey.title), survey_path(survey)
     
 - content_for :right do
   %h3 Categories
@@ -13,4 +13,4 @@
     - @categories.each do |category|
       %li
         = link_to category.name, category_path(category)
-        = '(' + category.quizzes_count.to_s + ')'
+        = '(' + category.surveys_count.to_s + ')'

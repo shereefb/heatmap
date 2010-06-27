@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-describe QuizzesController do
+describe SurveysController do
   integrate_views
-  fixtures :quizzes
+  fixtures :surveys
   
   before { login }
   
@@ -11,7 +11,7 @@ describe QuizzesController do
       get :index
       response.should be_success
       response.should render_template('index')
-      assigns[:quizzes].should_not be_nil
+      assigns[:surveys].should_not be_nil
     }
   end
   
@@ -24,19 +24,19 @@ describe QuizzesController do
   end
   
   describe '#create' do
-    it 'should create a quiz successfully and redirect' do
+    it 'should create a survey successfully and redirect' do
       lambda {
-        post :create, :quiz => {:title => 'blah'}
-      }.should change(Quiz, :count).by(1)
+        post :create, :survey => {:title => 'blah'}
+      }.should change(Survey, :count).by(1)
       
       response.should be_redirect
-      response.should redirect_to(quiz_url(assigns[:quiz]))
+      response.should redirect_to(survey_url(assigns[:survey]))
     end
     
-    it 'should not create a quiz and render the new action' do
+    it 'should not create a survey and render the new action' do
       lambda {
-        post :create, :quiz => {:title => ''}
-      }.should_not change(Quiz, :count)
+        post :create, :survey => {:title => ''}
+      }.should_not change(Survey, :count)
       
       response.should be_success
       response.should render_template('new')
@@ -44,39 +44,39 @@ describe QuizzesController do
   end
   
   describe '#edit' do
-    it 'should authorize the quiz' do
-      get :edit, :id => quizzes(:ruby).id
+    it 'should authorize the survey' do
+      get :edit, :id => surveys(:ruby).id
       response.should be_success
       response.should render_template('edit')
     end
     
-    it 'should not authorize the quiz and redirect to root' do
-      get :edit, :id => quizzes(:rails).id
+    it 'should not authorize the survey and redirect to root' do
+      get :edit, :id => surveys(:rails).id
       response.should be_redirect
       response.should redirect_to(root_url)
     end
   end
   
   describe '#update' do 
-    before { @quiz = quizzes(:ruby) }
+    before { @survey = surveys(:ruby) }
     
-    it 'should update a quiz successfully' do
-      put :update, :id => @quiz.id, :quiz => {:title => 'new title'}
+    it 'should update a survey successfully' do
+      put :update, :id => @survey.id, :survey => {:title => 'new title'}
       
-      assigns[:quiz].title.should eql('new title')
+      assigns[:survey].title.should eql('new title')
       
       response.should be_redirect
-      response.should redirect_to(quiz_url(assigns[:quiz]))
+      response.should redirect_to(survey_url(assigns[:survey]))
     end
     
-    it 'should not update a quiz and render the edit action' do
-      put :update, :id => @quiz.id, :quiz => {:title => ''}
+    it 'should not update a survey and render the edit action' do
+      put :update, :id => @survey.id, :survey => {:title => ''}
       response.should be_success
       response.should render_template('edit')
     end
     
-    it 'should not authorize the quiz and redirect to root' do
-      put :update, :id => quizzes(:rails).id, :quiz => {:title => 'new title'}
+    it 'should not authorize the survey and redirect to root' do
+      put :update, :id => surveys(:rails).id, :survey => {:title => 'new title'}
       response.should be_redirect
       response.should redirect_to(root_url)
     end
@@ -85,8 +85,8 @@ describe QuizzesController do
   describe '#show' do
     it 'should render successfully and touch last_viewed' do
       lambda {
-        get :show, :id => quizzes(:rails).id
-      }.should change { quizzes(:rails).reload.last_viewed }
+        get :show, :id => surveys(:rails).id
+      }.should change { surveys(:rails).reload.last_viewed }
       
       response.should be_success
       response.should render_template('show')
@@ -94,8 +94,8 @@ describe QuizzesController do
     
     it 'should render successfully and not touch last_viewed' do
       lambda {
-        get :show, :id => quizzes(:ruby).id
-      }.should_not change { quizzes(:ruby).reload.last_viewed }
+        get :show, :id => surveys(:ruby).id
+      }.should_not change { surveys(:ruby).reload.last_viewed }
       
       response.should be_success
       response.should render_template('show')
@@ -105,44 +105,44 @@ describe QuizzesController do
   describe '#participate' do
     fixtures :participations
        
-    it 'should not be succcessful if quiz owner is current_user' do
+    it 'should not be succcessful if survey owner is current_user' do
       lambda {
-        post :participate, :id => quizzes(:ruby).id
+        post :participate, :id => surveys(:ruby).id
       }.should_not change(Participation, :count)
       
-      flash[:failure].should eql('You cannot participate in your own quiz')
+      flash[:failure].should eql('You cannot participate in your own survey')
       response.should be_redirect
-      response.should redirect_to(quiz_url(assigns[:quiz]))
+      response.should redirect_to(survey_url(assigns[:survey]))
     end
     
-    it 'should not be successful if current_user is already participating in the quiz' do
+    it 'should not be successful if current_user is already participating in the survey' do
       lambda {
-        post :participate, :id => quizzes(:rails).id
+        post :participate, :id => surveys(:rails).id
       }.should_not change(Participation, :count)
 
-      flash[:failure].should eql('Quiz is already part of your participation list')
+      flash[:failure].should eql('Survey is already part of your participation list')
       response.should be_redirect
-      response.should redirect_to(quiz_url(assigns[:quiz]))
+      response.should redirect_to(survey_url(assigns[:survey]))
     end
     
-    it 'should create a new participation record and redirect to quiz' do
+    it 'should create a new participation record and redirect to survey' do
       participations(:rails).destroy
-      quiz = quizzes(:rails)
+      survey = surveys(:rails)
       
       lambda {
-        post :participate, :id => quiz.id
+        post :participate, :id => survey.id
       }.should change(Participation, :count).by(1)
       
-      flash[:success].should eql('You are now participating in this quiz')
+      flash[:success].should eql('You are now participating in this survey')
       response.should be_redirect
-      response.should redirect_to(quiz_url(quiz))
+      response.should redirect_to(survey_url(survey))
     end
   end
 end
 
-describe QuizzesController, 'User not logged in' do
+describe SurveysController, 'User not logged in' do
   integrate_views
-  fixtures :quizzes
+  fixtures :surveys
   
   it 'should render the index action' do
     get :index
@@ -151,7 +151,7 @@ describe QuizzesController, 'User not logged in' do
   end
   
   it 'should render the show action' do
-    get :show, :id => quizzes(:rails).id
+    get :show, :id => surveys(:rails).id
     response.should be_success
     response.should render_template('show')
   end

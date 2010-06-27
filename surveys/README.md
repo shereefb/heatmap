@@ -4,7 +4,7 @@ Surveyor is a rails (gem) plugin, that brings surveys to your rails app. Before 
 
 ## Why you might want to use Surveyor
 
-If you have to have a part of your Rails app that asks users questions as part of a survey, quiz, or questionnaire then you should consider using Surveyor. This plugin was designed out of the need to deliver clinical research surveys to large populations of people but it can be used for any type of survey. It has an easy to use DSL to define the questions, response dependencies (if user answers 'A' to question 1 then show question 1a, etc...), and structure (different sections of longer questionnaires).
+If you have to have a part of your Rails app that asks users questions as part of a survey, survey, or questionnaire then you should consider using Surveyor. This plugin was designed out of the need to deliver clinical research surveys to large populations of people but it can be used for any type of survey. It has an easy to use DSL to define the questions, response dependencies (if user answers 'A' to question 1 then show question 1a, etc...), and structure (different sections of longer questionnaires).
 
 To build your questionnaire you define it using a custom DSL. Having a DSL instead of a GUI makes it significantly easier to import long surveys (no more endless clicking and typing into tiny text boxes). It also means that you can let your customer write out the survey, edit, re-edit, tweak, throw out and start over, any number of surveys without having to change a single line of code in your app. 
 

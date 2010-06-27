@@ -1,0 +1,10 @@
+#sections_list
+  %table
+    %tbody
+      - sections.each do |section|
+        %tr
+          %td.id
+            .show_id= show_number(section)
+          %td.body
+            .box
+              .show_body= truncate_html(section.title.to_html, 120)

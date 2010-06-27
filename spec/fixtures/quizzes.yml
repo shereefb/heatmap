@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: quizzes
+# Table name: surveys
 #
 #  id                   :integer         not null, primary key
 #  category_id          :integer

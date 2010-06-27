@@ -45,3 +45,16 @@ class Dependency < ActiveRecord::Base
   end
   
 end
+
+# == Schema Information
+#
+# Table name: dependencies
+#
+#  id                :integer         not null, primary key
+#  question_id       :integer
+#  question_group_id :integer
+#  rule              :string(255)
+#  created_at        :datetime
+#  updated_at        :datetime
+#
+

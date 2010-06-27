@@ -30,3 +30,22 @@ describe SurveySection, "with questions" do
     @survey_section.questions.should == [@q2,@q3,@q1]
   end
 end
+
+# == Schema Information
+#
+# Table name: survey_sections
+#
+#  id                     :integer         not null, primary key
+#  survey_id              :integer
+#  title                  :string(255)
+#  description            :text
+#  reference_identifier   :string(255)
+#  data_export_identifier :string(255)
+#  common_namespace       :string(255)
+#  common_identifier      :string(255)
+#  display_order          :integer
+#  custom_class           :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#
+

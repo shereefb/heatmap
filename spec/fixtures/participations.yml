@@ -1,3 +1,9 @@
+rails:
+  user: justin
+  survey: rails
+  correct_count: 1
+  incorrect_count: 0
+
 # == Schema Information
 #
 # Table name: participations
@@ -11,8 +17,3 @@
 #  updated_at      :datetime
 #
 
-rails:
-  user: justin
-  quiz: rails
-  correct_count: 1
-  incorrect_count: 0

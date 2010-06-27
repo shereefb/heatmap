@@ -5,6 +5,7 @@ class Survey < ActiveRecord::Base
   belongs_to :user
   has_many :sections, :class_name => "SurveySection", :order => 'display_order'
   has_many :sections_with_questions, :include => :questions, :class_name => "SurveySection", :order => 'display_order'
+  has_many :questions, :through => :sections_with_questions
   has_many :response_sets
   
   # Scopes
@@ -57,3 +58,26 @@ class Survey < ActiveRecord::Base
   end
   
 end
+
+# == Schema Information
+#
+# Table name: surveys
+#
+#  id                     :integer         not null, primary key
+#  title                  :string(255)
+#  description            :text
+#  access_code            :string(255)
+#  reference_identifier   :string(255)
+#  data_export_identifier :string(255)
+#  common_namespace       :string(255)
+#  common_identifier      :string(255)
+#  active_at              :datetime
+#  inactive_at            :datetime
+#  css_url                :string(255)
+#  custom_class           :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  display_order          :integer
+#  user_id                :integer
+#
+

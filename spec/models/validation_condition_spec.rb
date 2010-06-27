@@ -103,3 +103,25 @@ describe ValidationCondition, "validating responses by other responses" do
     test_var({:operator => "=~"}, {:response_class => "string"}, {:string_value => "donuts"}, {:response_class => "string"}, {:string_value => "donuts"}).should be_false
   end
 end
+# == Schema Information
+#
+# Table name: validation_conditions
+#
+#  id             :integer         not null, primary key
+#  validation_id  :integer
+#  rule_key       :string(255)
+#  operator       :string(255)
+#  question_id    :integer
+#  answer_id      :integer
+#  datetime_value :datetime
+#  integer_value  :integer
+#  float_value    :float
+#  unit           :string(255)
+#  text_value     :text
+#  string_value   :string(255)
+#  response_other :string(255)
+#  regexp         :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+

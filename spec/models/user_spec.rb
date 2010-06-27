@@ -25,12 +25,12 @@
 require 'spec_helper'
 
 describe User do
-  should_have_many :quizzes,
+  should_have_many :surveys,
                    :questions,
                    :suggested_questions,
                    :suggested_answers,
                    :participations,
-                   :participating_quizzes,
+                   :participating_surveys,
                    :answers
   
   should_validate_presence_of :name,
@@ -58,33 +58,33 @@ describe User do
     it { User.find_by_username_or_email('blah').should be_nil }
   end
   
-  describe '#participating_quizzes_for_dashboard' do
+  describe '#participating_surveys_for_dashboard' do
     before do
-      @records = @user.participating_quizzes_for_dashboard
+      @records = @user.participating_surveys_for_dashboard
     end
     
     it { @records.should have(1).item }
     it { @records.first.user_answer_count.to_i.should eql(1) }
-    it { @records.first.id.should eql(quizzes(:rails).id) }
-    it { @records.first.title.to_s.should eql(quizzes(:rails).title.to_s) }
+    it { @records.first.id.should eql(surveys(:rails).id) }
+    it { @records.first.title.to_s.should eql(surveys(:rails).title.to_s) }
     it { @records.first.correct_count.to_i.should eql(1) }
     it { @records.first.incorrect_count.to_i.should eql(0) }
   end
   
-  describe '#suggested_questions_for_quiz' do
+  describe '#suggested_questions_for_survey' do
     before do
-      @quiz = quizzes(:rails)
+      @survey = surveys(:rails)
       @user = @user
       
       @q = Question.new
-      @q.quiz = @quiz
+      @q.survey = @survey
       @q.suggester = @user
       @q.body = 'blah test'
       @q.save!
     end
     
     it 'should include the newly created question' do
-      @user.suggested_questions_for_quiz(@quiz).should include(@q)
+      @user.suggested_questions_for_survey(@survey).should include(@q)
     end
   end
   
@@ -96,13 +96,13 @@ describe User do
     
     it 'should create a participation record' do
       lambda {
-        @user.participate!(quizzes(:rails))
+        @user.participate!(surveys(:rails))
       }.should change(Participation, :count).by(1)
     end
     
-    it 'should not create a participation record if user is quiz owner' do
+    it 'should not create a participation record if user is survey owner' do
       lambda {
-        @user.participate!(quizzes(:ruby))
+        @user.participate!(surveys(:ruby))
       }.should raise_exception(ActiveRecord::RecordInvalid)
     end
   end
@@ -110,8 +110,8 @@ describe User do
   describe '#participating?' do
     before { @user = @user }
     
-    it { @user.participating?(quizzes(:rails)).should be_true }
-    it { @user.participating?(quizzes(:ruby)).should be_false }
+    it { @user.participating?(surveys(:rails)).should be_true }
+    it { @user.participating?(surveys(:ruby)).should be_false }
   end
   
   describe '#answer_question!' do    
@@ -151,31 +151,31 @@ describe User do
   describe '#all_answered?' do
     before do
       @user = @user
-      @quiz = quizzes(:rails)
+      @survey = surveys(:rails)
     end
     
-    it { @user.all_answered?(@quiz).should be_true }
+    it { @user.all_answered?(@survey).should be_true }
     
     describe 'with second question created' do
       before do
-        @quiz.questions.create :body => 'testing'
+        @survey.questions.create :body => 'testing'
       end
       
-      it { @user.all_answered?(@quiz).should be_false }
+      it { @user.all_answered?(@survey).should be_false }
     end
   end
   
   describe '#total_answered' do
-    it { @user.total_answered(quizzes(:rails)).should eql(1) }
+    it { @user.total_answered(surveys(:rails)).should eql(1) }
   end
   
   describe '#can_edit_answer?' do        
-    it "should be true if user owns the answer's quiz" do
+    it "should be true if user owns the answer's survey" do
       answer = answers(:ruby_correct)
       @user.can_edit_answer?(answer).should be_true
     end
     
-    it "should be false if user does not own the answer's quiz" do
+    it "should be false if user does not own the answer's survey" do
       answer = answers(:rails_correct)
       @user.can_edit_answer?(answer).should be_false
     end
@@ -209,12 +209,12 @@ describe User do
         mock.instance_of(Question).suggester { nil }
       end
       
-      it "should be true if user owns the question's quiz" do
+      it "should be true if user owns the question's survey" do
         question = questions(:ruby)
         @user.can_edit_question?(question).should be_true
       end
     
-      it "should be false if user does not own the question's quiz" do
+      it "should be false if user does not own the question's survey" do
         question = questions(:rails)
         @user.can_edit_question?(question).should be_false
       end
@@ -229,27 +229,27 @@ describe User do
     end
   end
   
-  describe '#can_edit_quiz?' do
-    before { @quiz = quizzes(:ruby) }
+  describe '#can_edit_survey?' do
+    before { @survey = surveys(:ruby) }
     
-    it { @user.can_edit_quiz?(@quiz).should be_true }
+    it { @user.can_edit_survey?(@survey).should be_true }
     
-    describe 'with quiz suggesters set to empty array' do
+    describe 'with survey suggesters set to empty array' do
       before do
-        mock(@quiz).user_id { nil }
-        mock(@quiz).suggesters { [] }
+        mock(@survey).user_id { nil }
+        mock(@survey).suggesters { [] }
       end
       
-      it { @user.can_edit_quiz?(@quiz).should be_false }
+      it { @user.can_edit_survey?(@survey).should be_false }
     end
     
-    describe 'with quiz suggesters set to array with user' do
+    describe 'with survey suggesters set to array with user' do
       before do
-        mock(@quiz).user_id { nil }
-        mock(@quiz).suggesters { [@user] }
+        mock(@survey).user_id { nil }
+        mock(@survey).suggesters { [@user] }
       end
       
-      it { @user.can_edit_quiz?(@quiz).should be_true }
+      it { @user.can_edit_survey?(@survey).should be_true }
     end
   end
   
@@ -264,8 +264,8 @@ describe User do
   describe '#find_participation' do    
     it 'should find the correct participation record' do
       participation = participations(:rails)
-      quiz = quizzes(:rails)
-      @user.find_participation(quiz).should eql(participation)
+      survey = surveys(:rails)
+      @user.find_participation(survey).should eql(participation)
     end
   end
 end

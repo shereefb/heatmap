@@ -1,13 +1,13 @@
-class AddQuizPermalink < ActiveRecord::Migration
+class AddSurveyPermalink < ActiveRecord::Migration
   def self.up
-    add_column :quizzes, :permalink, :string
-    add_index :quizzes, :permalink
+    add_column :surveys, :permalink, :string
+    add_index :surveys, :permalink
     
-    Quiz.all.each(&:save)
+    Survey.all.each(&:save)
   end
 
   def self.down
-    remove_index :quizzes, :permalink
-    remove_column :quizzes, :permalink
+    remove_index :surveys, :permalink
+    remove_column :surveys, :permalink
   end
 end

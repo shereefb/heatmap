@@ -1,6 +1,6 @@
-- @page_title = 'Quizzes'
+- @page_title = 'Surveys'
 
-#mid_nav= link_to 'Create Quiz', new_quiz_path
+#mid_nav= link_to 'Create Survey', new_survey_path
 
 %h2= @page_title
 
@@ -10,13 +10,9 @@
       %tr
         %th Title
         %th.center Questions
-        %th Last Viewed
     %tbody
-      - @quizzes.each do |quiz|
+      - @surveys.each do |survey|
         %tr{:class => cycle('even', ['even', 'odd'])}
-          %td= link_to truncate(h(quiz.title), :length => 50), quiz_path(quiz)
-          %td.center= quiz.questions.count
-          %td= time_ago_in_words(quiz.last_viewed) + ' ago' unless quiz.last_viewed.blank?
+          %td= link_to truncate(h(survey.title), :length => 50), survey_path(survey)
+          %td.center= survey.questions.count
           
-          
-= render :partial => 'categories/list'

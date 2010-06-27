@@ -2,27 +2,27 @@ require 'spec_helper'
 
 describe QuestionsController do
   integrate_views
-  fixtures :quizzes, :questions
+  fixtures :surveys, :questions
   
   before { login }
   
   describe '#suggest' do
-    it 'should find the quiz and render the suggest action' do
-      get :suggest, :quiz_id => quizzes(:rails).id
+    it 'should find the survey and render the suggest action' do
+      get :suggest, :survey_id => surveys(:rails).id
       response.should be_success
       response.should render_template('suggest')
     end
   end
   
   describe '#new' do
-    it 'should find the quiz and render the new action' do
-      get :new, :quiz_id => quizzes(:ruby).id
+    it 'should find the survey and render the new action' do
+      get :new, :survey_id => surveys(:ruby).id
       response.should be_success
       response.should render_template('new')
     end
     
-    it 'should not authorize the quiz and redirect to root' do
-      get :new, :quiz_id => quizzes(:rails).id
+    it 'should not authorize the survey and redirect to root' do
+      get :new, :survey_id => surveys(:rails).id
       response.should be_redirect
       response.should redirect_to(root_url)
     end
@@ -30,23 +30,23 @@ describe QuestionsController do
   
   describe '#create' do
     before do
-      @quiz = quizzes(:ruby)
+      @survey = surveys(:ruby)
     end
     
     it 'should create a new question and redirect' do
       lambda {
-        post :create, :quiz_id => @quiz.id,
+        post :create, :survey_id => @survey.id,
                       :question => {:body => 'blah'}
       }.should change(Question, :count).by(1)
       
       response.should be_redirect
-      url = quiz_question_url(@quiz, assigns[:question])
+      url = survey_question_url(@survey, assigns[:question])
       response.should redirect_to(url)
     end
     
     it 'should not create a new question and render the new action' do
       lambda {
-        post :create, :quiz_id => @quiz.id,
+        post :create, :survey_id => @survey.id,
                       :question => {:body => ''}
       }.should_not change(Question, :count)
       
@@ -54,8 +54,8 @@ describe QuestionsController do
       response.should render_template('new')
     end
     
-    it 'should not authorize quiz and redirect to root' do
-      post :create, :quiz_id => quizzes(:rails).id,
+    it 'should not authorize survey and redirect to root' do
+      post :create, :survey_id => surveys(:rails).id,
                     :question => {:body => 'blah'}
                     
       response.should be_redirect
@@ -66,7 +66,7 @@ describe QuestionsController do
   describe '#show' do
     describe 'with current_user as owner' do   
       it {
-        get :show, :quiz_id => quizzes(:ruby).id,
+        get :show, :survey_id => surveys(:ruby).id,
                     :id => questions(:ruby).id
                     
         response.should be_success
@@ -76,7 +76,7 @@ describe QuestionsController do
     
     describe 'with current_user as participant' do      
       it {
-        get :show, :quiz_id => quizzes(:rails).id,
+        get :show, :survey_id => surveys(:rails).id,
                    :id => questions(:rails).id
                    
         response.should be_success
@@ -92,14 +92,14 @@ describe QuestionsController do
     describe 'with current_user as suggester' do
       before do
         @q = Question.new
-        @q.quiz = quizzes(:rails)
+        @q.survey = surveys(:rails)
         @q.suggester = users(:justin)
         @q.body = 'blah test'
         @q.save!
       end
       
       it {
-        get :show, :quiz_id => quizzes(:rails).id,
+        get :show, :survey_id => surveys(:rails).id,
                    :id => @q.id
                    
         response.should be_success
@@ -117,15 +117,15 @@ describe QuestionsController do
   
   describe '#edit' do    
     it 'should render the edit action if authorized' do
-      get :edit, :quiz_id => quizzes(:ruby).id,
+      get :edit, :survey_id => surveys(:ruby).id,
                  :id => questions(:ruby).id
                  
       response.should be_success
       response.should render_template('edit')
     end
     
-    it 'should redirect if quiz is unauthorized' do
-      get :edit, :quiz_id => quizzes(:rails).id,
+    it 'should redirect if survey is unauthorized' do
+      get :edit, :survey_id => surveys(:rails).id,
                  :id => questions(:rails).id
                  
       response.should be_redirect
@@ -135,22 +135,22 @@ describe QuestionsController do
   
   describe '#update' do
     before do
-      @quiz = quizzes(:ruby)
+      @survey = surveys(:ruby)
       @question = questions(:ruby)
     end
     
     it 'should update a question and redirect' do
-      put :update, :quiz_id => @quiz.id,
+      put :update, :survey_id => @survey.id,
                    :id => @question.id,
                    :question => {:body => 'test body'}
       
       @question.reload.body.to_s.should eql('test body')
       response.should be_redirect
-      response.should redirect_to(quiz_question_url(@quiz, @question))
+      response.should redirect_to(survey_question_url(@survey, @question))
     end
     
     it 'should not update a question and render edit action' do
-      put :update, :quiz_id => @quiz.id,
+      put :update, :survey_id => @survey.id,
                    :id => @question.id,
                    :question => {:body => ''}
       
@@ -171,7 +171,7 @@ describe QuestionsController do
       
       response.should be_redirect
       
-      url = quiz_question_url(question.quiz, question)
+      url = survey_question_url(question.survey, question)
       response.should redirect_to(url)
     end
     
@@ -191,7 +191,7 @@ end
 
 describe QuestionsController, 'User not logged in' do
   integrate_views
-  fixtures :quizzes, :questions
+  fixtures :surveys, :questions
   
   it 'should redirect to login for new action' do
     get :new
@@ -199,7 +199,7 @@ describe QuestionsController, 'User not logged in' do
   end
   
   it 'should render the show action successfully' do
-    get :show, :quiz_id => quizzes(:rails).id,
+    get :show, :survey_id => surveys(:rails).id,
                :id => questions(:rails).id
                
     response.should be_success

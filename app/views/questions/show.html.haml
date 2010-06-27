@@ -2,11 +2,11 @@
 
 - if current_user
   - if owner? or suggester?
-    #mid_nav= link_to 'Edit Question', edit_quiz_question_path(@quiz, @question), :class => 'edit'
+    #mid_nav= link_to 'Edit Question', edit_survey_question_path(@survey, @question), :class => 'edit'
   - else
     = correct_or_incorrect
 
-= quiz_link
+= survey_link
 
 %h2= @page_title
 
@@ -25,7 +25,7 @@
   - if owner? or suggester?
     .new_ajax_form
       %h4 Add Answer
-      - form_for @answer, :url => quiz_question_answers_path(@quiz, @question) do |f|
+      - form_for @answer, :url => survey_question_answers_path(@survey, @question) do |f|
         = f.text_area :body
         .checkbox
           = f.check_box :correct
@@ -42,9 +42,9 @@
       
   - else
   
-    - if current_user.participating?(@quiz)
+    - if current_user.participating?(@survey)
       - if @answers.any? and @answers.any?(&:correct?)
-        - form_for @user_answer, :url => quiz_question_user_answers_path(@quiz, @question) do |f|
+        - form_for @user_answer, :url => survey_question_user_answers_path(@survey, @question) do |f|
           %ul#answers_list.participating
             - @answers.each do |answer|
               %li{:class => user_answer_li_class(answer)}
@@ -64,13 +64,13 @@
               - else
                 You must
                 %strong answer all
-                the questions in this quiz before you can try again.
+                the questions in this survey before you can try again.
           
       - else
         = no_items('No answers have been added yet.')
         
     - else
-      = no_items("You must #{link_to 'participate', participate_quiz_path(@quiz), :method => :post} in this quiz to answer questions.")
+      = no_items("You must #{link_to 'participate', participate_survey_path(@survey), :method => :post} in this survey to answer questions.")
     
 - else
   = no_items("You must #{link_to 'login', login_path} or #{link_to 'signup', signup_path} to view answers.")
@@ -115,4 +115,4 @@
       %strong.correct= number_with_delimiter(@participation.try(:correct_count) || 0)
       correct,
       %strong.incorrect= number_with_delimiter(@participation.try(:incorrect_count) || 0)
-      incorrect for this quiz
+      incorrect for this survey

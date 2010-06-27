@@ -1,16 +1,3 @@
-# == Schema Information
-#
-# Table name: user_answers
-#
-#  id          :integer         not null, primary key
-#  user_id     :integer
-#  question_id :integer
-#  answer_id   :integer
-#  correct     :boolean
-#  created_at  :datetime
-#  updated_at  :datetime
-#
-
 require 'spec_helper'
 
 describe UserAnswer do
@@ -34,16 +21,16 @@ describe UserAnswer do
   
   describe 'custom validations' do    
     describe 'record' do
-      it 'should be invalid if user is quiz owner' do
+      it 'should be invalid if user is survey owner' do
         make_record
-        error_str = 'You cannot answer a question in your own quiz'
+        error_str = 'You cannot answer a question in your own survey'
         @record.errors.full_messages.should include(error_str)
       end
       
-      it 'should be invalid if user is not participating in quiz' do
+      it 'should be invalid if user is not participating in survey' do
         UserAnswer.delete_all
         make_record
-        error_str = 'You must be participating in this quiz to answer questions'
+        error_str = 'You must be participating in this survey to answer questions'
         @record.errors.full_messages.should include(error_str)
       end
       
@@ -97,3 +84,17 @@ describe UserAnswer do
     end
   end
 end
+
+# == Schema Information
+#
+# Table name: user_answers
+#
+#  id          :integer         not null, primary key
+#  user_id     :integer
+#  question_id :integer
+#  answer_id   :integer
+#  correct     :boolean         default(FALSE)
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

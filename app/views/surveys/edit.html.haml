@@ -1,13 +1,13 @@
-- @page_title = 'Edit Quiz'
+- @page_title = 'Edit Survey'
 
 %h2= @page_title
 
 .form
-  - form_for @quiz do |f|
+  - form_for @survey do |f|
   
     = render :partial => 'form', :locals => {:f => f}
       
     .submit
-      = submit_tag 'Update Quiz', :disable_with => 'Updating Quiz...'
+      = submit_tag 'Update Survey', :disable_with => 'Updating Survey...'
       %span or
-      = link_to 'Cancel', quiz_path(@quiz), :class => 'cancel'
+      = link_to 'Cancel', survey_path(@survey), :class => 'cancel'

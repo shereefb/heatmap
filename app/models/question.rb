@@ -55,7 +55,7 @@ end
 # # Table name: questions
 # #
 # #  id            :integer         not null, primary key
-# #  quiz_id       :integer
+# #  survey_id       :integer
 # #  body          :text
 # #  answers_count :integer         default(0)
 # #  position      :integer
@@ -72,7 +72,7 @@ end
 #                   :number,
 #                   :suggester_id
 #                     
-#   belongs_to :quiz, :counter_cache => true,
+#   belongs_to :survey, :counter_cache => true,
 #                     :touch => :questions_updated_at
 #   
 #   belongs_to :suggester, :class_name => 'User'
@@ -82,22 +82,22 @@ end
 #   
 #   has_many :user_answers, :dependent => :destroy
 #   
-#   validates_presence_of :quiz_id,
+#   validates_presence_of :survey_id,
 #                         :body,
 #                         :number
 #                         
 #   validates_uniqueness_of :body,
-#                           :number, :scope => :quiz_id
+#                           :number, :scope => :survey_id
 #   
 #   validates_numericality_of :number, :only_integer => true
 #   
 #   before_validation :set_number
-#   validate :suggester_is_not_quiz_owner
+#   validate :suggester_is_not_survey_owner
 #   
 #   named_scope :approved, :conditions => { :approved => true }
 #   named_scope :awaiting_approval, :conditions => { :approved => false }
 #                         
-#   acts_as_list :scope => :quiz_id
+#   acts_as_list :scope => :survey_id
 #   
 #   acts_as_markdown :body
 #   
@@ -115,26 +115,53 @@ end
 #   end
 #     
 #   def next
-#     self.class.first :conditions => ['quiz_id = ? AND id > ?', quiz_id, id],
+#     self.class.first :conditions => ['survey_id = ? AND id > ?', survey_id, id],
 #                      :order => 'id ASC'
 #   end
 #   
 #   def prev
-#     self.class.first :conditions => ['quiz_id = ? AND id < ?', quiz_id, id],
+#     self.class.first :conditions => ['survey_id = ? AND id < ?', survey_id, id],
 #                      :order => 'id DESC'
 #   end
 #   
 #   private
 #   
 #   def set_number
-#     if quiz and not attribute_present?(:number)
-#       self.number = quiz.next_number
+#     if survey and not attribute_present?(:number)
+#       self.number = survey.next_number
 #     end
 #   end
 #   
-#   def suggester_is_not_quiz_owner
-#     if quiz and suggester and quiz.owner == suggester
-#       errors.add(:suggester_id, 'cannot be the quiz owner')
+#   def suggester_is_not_survey_owner
+#     if survey and suggester and survey.owner == suggester
+#       errors.add(:suggester_id, 'cannot be the survey owner')
 #     end
 #   end
 # end
+
+# == Schema Information
+#
+# Table name: questions
+#
+#  id                     :integer         not null, primary key
+#  survey_section_id      :integer
+#  question_group_id      :integer
+#  text                   :text
+#  short_text             :text
+#  help_text              :text
+#  pick                   :string(255)
+#  reference_identifier   :string(255)
+#  data_export_identifier :string(255)
+#  common_namespace       :string(255)
+#  common_identifier      :string(255)
+#  display_order          :integer
+#  display_type           :string(255)
+#  is_mandatory           :boolean
+#  display_width          :integer
+#  custom_class           :string(255)
+#  custom_renderer        :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  correct_answer_id      :integer
+#
+

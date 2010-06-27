@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe UserAnswersController do
   integrate_views
-  fixtures :quizzes, :questions, :answers
+  fixtures :surveys, :questions, :answers
   
   before { login }
   
   describe '#create' do
     before do
-      @quiz = quizzes(:rails)
+      @survey = surveys(:rails)
       @question = questions(:rails)
       @answer = answers(:rails_correct)
     end
@@ -17,37 +17,37 @@ describe UserAnswersController do
       UserAnswer.delete_all
       
       lambda {
-        post :create, :quiz_id => @quiz.id,
+        post :create, :survey_id => @survey.id,
                       :id => @question.id,
                       :user_answer => {:answer_id => @answer.id}
       }.should change(UserAnswer, :count).by(1)
       
       response.should be_redirect
-      response.should redirect_to(quiz_question_url(@quiz, @question))
+      response.should redirect_to(survey_question_url(@survey, @question))
     end
     
     it 'should not create a UserAnswer record if one already exists for question' do     
       lambda {
-        post :create, :quiz_id => @quiz.id,
+        post :create, :survey_id => @survey.id,
                       :id => @question.id,
                       :user_answer => {:answer_id => @answer.id}
       }.should_not change(UserAnswer, :count)
       
       flash[:failure].should eql('User has already answered this question')
       response.should be_redirect
-      response.should redirect_to(quiz_question_url(@quiz, @question))
+      response.should redirect_to(survey_question_url(@survey, @question))
     end
     
     it 'should not find an Answer record' do
       lambda {
-        post :create, :quiz_id => @quiz.id,
+        post :create, :survey_id => @survey.id,
                       :id => @question.id,
                       :user_answer => {:answer_id => 12345}
       }.should_not change(UserAnswer, :count)
       
-      flash[:failure].should eql('Quiz, Question or Answer could not be found')
+      flash[:failure].should eql('Survey, Question or Answer could not be found')
       response.should be_redirect
-      response.should redirect_to(quiz_question_url(@quiz, @question))
+      response.should redirect_to(survey_question_url(@survey, @question))
     end
   end
   
@@ -63,7 +63,7 @@ describe UserAnswersController do
       
       response.should be_redirect
       
-      url = quiz_question_url user_answer.question.quiz,
+      url = survey_question_url user_answer.question.survey,
                               user_answer.question
                               
       response.should redirect_to(url)
