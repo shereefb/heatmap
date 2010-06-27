@@ -9,7 +9,7 @@ class SurveySection < ActiveRecord::Base
   named_scope :with_includes, { :include => {:questions => [:answers, :question_group, {:dependency => :dependency_conditions}]}}
   
   # Validations
-  validates_presence_of :title, :survey, :display_order
+  validates_presence_of :title, :survey #, :display_order
   
 end
 

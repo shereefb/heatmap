@@ -40,7 +40,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :dashboard, :only => :show
   
   map.resources :surveys, :member => { :participate => :post } do |survey|
-    survey.resources :sections
+    survey.resources :survey_sections
     survey.resources :questions, :new => { :suggest => :get } do |question|
       question.resources :answers
       question.resources :user_answers, :only => :create

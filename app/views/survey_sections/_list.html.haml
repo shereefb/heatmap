@@ -1,4 +1,4 @@
-#sections_list
+#questions_list
   %table
     %tbody
       - sections.each do |section|
@@ -7,4 +7,12 @@
             .show_id= show_number(section)
           %td.body
             .box
-              .show_body= truncate_html(section.title.to_html, 120)
+              - if section.description.nil?
+                .show_body= section.title 
+              - else
+                .show_body
+                  %strong= section.title
+                  \:
+                  = section.description
+                
+                  
