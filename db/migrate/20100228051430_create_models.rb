@@ -24,43 +24,6 @@ class CreateModels < ActiveRecord::Migration
     add_index :users, :persistence_token
     add_index :users, :last_request_at
     
-    create_table :surveys do |t|
-      t.integer :category_id, :user_id
-      t.string :title
-      t.text :description
-      t.integer :questions_count, :default => 0
-      t.timestamps
-    end
-    
-    add_index :surveys, :category_id
-    add_index :surveys, :user_id
-    
-    create_table :questions do |t|
-      t.integer :survey_id
-      t.text :body
-      t.integer :answers_count, :default => 0
-      t.integer :position
-      t.timestamps
-    end
-    
-    add_index :questions, :survey_id
-    
-    create_table :answers do |t|
-      t.integer :question_id
-      t.text :body
-      t.boolean :correct, :default => false
-      t.integer :position
-      t.timestamps
-    end
-    
-    add_index :answers, :question_id
-    
-    create_table :categories do |t|
-      t.string :name
-      t.integer :surveys_count, :default => 0
-      t.timestamps
-    end
-    
     add_index :categories, :name
     
     create_table :participations do |t|
