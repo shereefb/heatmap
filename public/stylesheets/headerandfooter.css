@@ -16,7 +16,7 @@
 	display:block;
 	background-image: url(/images/static/logo.png);
 	height:48px;
-	width:141px;
+	width:194px;
 	text-indent:-9999px;
 	margin-top:4px
 }
@@ -158,7 +158,7 @@ Footer
 }
 #top-footer .footer-logo {
 	position:absolute;
-	width:166px;
+	width:252px;
 	top:-13px;
 	overflow:hidden;
 	left:0
