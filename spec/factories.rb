@@ -13,13 +13,13 @@ Factory.define :survey do |s|
   s.css_url       {}
 end
 
-Factory.sequence(:survey_section_display_order){|n| n }
+Factory.sequence(:section_display_order){|n| n }
 
-Factory.define :survey_section do |s|
+Factory.define :section do |s|
   s.association               :survey # s.survey_id                 {}
   s.title                     {"Demographics"}
   s.description               {"Asking you about your personal data"}
-  s.display_order             {Factory.next :survey_section_display_order}
+  s.display_order             {Factory.next :section_display_order}
   s.reference_identifier      {"demographics"}
   s.data_export_identifier    {"demographics"}
 end
@@ -27,7 +27,7 @@ end
 Factory.sequence(:question_display_order){|n| n }
 
 Factory.define :question do |q|
-  q.association             :survey_section  # s.survey_section_id       {}
+  q.association             :section  # s.section_id       {}
   q.question_group_id       {}
   q.text                    {"What is your favorite color?"}
   q.short_text              {"favorite_color"}

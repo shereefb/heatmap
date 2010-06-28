@@ -55,7 +55,7 @@ class ResponseSet < ActiveRecord::Base
   end
   
   def clear_responses
-    question_ids = Question.find_all_by_survey_section_id(current_section_id).map(&:id)
+    question_ids = Question.find_all_by_section_id(current_section_id).map(&:id)
     responses.select{|r| question_ids.include? r.question_id}.map(&:destroy)
     responses.reload
   end
@@ -157,7 +157,7 @@ class ResponseSet < ActiveRecord::Base
   protected
   
   def dependencies(question_ids = nil)
-    question_ids ||= Question.find_all_by_survey_section_id(current_section_id).map(&:id)
+    question_ids ||= Question.find_all_by_section_id(current_section_id).map(&:id)
     depdendecy_ids = DependencyCondition.all(:conditions => {:question_id => question_ids}).map(&:dependency_id)
     Dependency.find(depdendecy_ids, :include => :dependency_conditions)
   end
@@ -216,17 +216,3 @@ end
 
 # 0,1,2,3,4 are the response group numbers
 # and anything else in the response group hash is handled normally
-# == Schema Information
-#
-# Table name: response_sets
-#
-#  id           :integer         not null, primary key
-#  user_id      :integer
-#  survey_id    :integer
-#  access_code  :string(255)
-#  started_at   :datetime
-#  completed_at :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
-#
-

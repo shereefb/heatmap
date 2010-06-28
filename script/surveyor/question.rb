@@ -1,7 +1,7 @@
 module SurveyParser
   class Question < SurveyParser::Base
     # Context, Content, Reference, Display, Children
-    attr_accessor :id, :parser, :survey_section_id, :question_group_id
+    attr_accessor :id, :parser, :section_id, :question_group_id
     attr_accessor :text, :short_text, :help_text, :pick
     attr_accessor :reference_identifier, :data_export_identifier, :common_namespace, :common_identifier
     attr_accessor :display_order, :display_type, :is_mandatory, :display_width, :custom_class, :custom_renderer

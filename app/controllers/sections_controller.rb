@@ -1,20 +1,20 @@
-class SurveySectionsController < ApplicationController
+class SectionsController < ApplicationController
   before_filter :require_user, :except => :show
   before_filter :find_survey
-  before_filter :find_survey_section, :except => [:new, :create]
+  before_filter :find_section, :except => [:new, :create]
   before_filter :authorize_survey, :except => [:show]
-  before_filter :authorize_survey_section, :except => [:new, :create]
+  before_filter :authorize_section, :except => [:new, :create]
   
   
   def new
-    @survey_section = SurveySection.new
+    @section = Section.new
   end
   
   def create
-    @survey_section = @survey.survey_sections.build(params[:survey_section])
+    @section = @survey.sections.build(params[:section])
     
     logger.info("what what")
-    if @survey_section.save
+    if @section.save
       redirect_to survey_url(@survey)
     else
       logger.info("failed")

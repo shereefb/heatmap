@@ -7,7 +7,7 @@
   question_group: 
   reference_identifier: 
   short_text: "These questions are examples of the basic supported input types"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "These questions are examples of the basic supported input types"
 20100625204930_question_2:
   data_export_identifier: "what_your_favorite_color"
@@ -18,7 +18,7 @@
   question_group: 
   reference_identifier: "1"
   short_text: "What is your favorite color?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "What is your favorite color?"
 20100625204930_question_3:
   data_export_identifier: "choose_colors_you_dont_like"
@@ -29,7 +29,7 @@
   question_group: 
   reference_identifier: "2"
   short_text: "Choose the colors you don't like"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Choose the colors you don't like"
 20100625204930_question_4:
   data_export_identifier: "you_dont_like_this_color"
@@ -40,7 +40,7 @@
   question_group: 
   reference_identifier: "2a"
   short_text: "Please explain why you don't like this color?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Please explain why you don't like this color?"
 20100625204930_question_5:
   data_export_identifier: "what_your_name"
@@ -51,7 +51,7 @@
   question_group: 
   reference_identifier: "montypython3"
   short_text: "What... is your name? (e.g. It is 'Arthur', King of the Britons)"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "What... is your name? (e.g. It is 'Arthur', King of the Britons)"
 20100625204930_question_6:
   data_export_identifier: "what_your_quest"
@@ -62,7 +62,7 @@
   question_group: 
   reference_identifier: "montypython4"
   short_text: "What... is your quest? (e.g. To seek the Holy Grail)"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "What... is your quest? (e.g. To seek the Holy Grail)"
 20100625204930_question_7:
   data_export_identifier: "speed_velocity_an_unladen_swallow"
@@ -73,7 +73,7 @@
   question_group: 
   reference_identifier: "montypython5"
   short_text: "What... is the air-speed velocity of an unladen swallow? (e.g. What do you mean? An African or European swallow?)"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "What... is the air-speed velocity of an unladen swallow? (e.g. What do you mean? An African or European swallow?)"
 20100625204930_question_8:
   data_export_identifier: "i_dont_know_that_auuuuuuuugh"
@@ -84,7 +84,7 @@
   question_group: 
   reference_identifier: 
   short_text: "Huh? I-- I don't know that! Auuuuuuuugh!"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Huh? I-- I don't know that! Auuuuuuuugh!"
 20100625204930_question_9:
   common_identifier: "get me started"
@@ -97,7 +97,7 @@
   question_group: 
   reference_identifier: "improv_start"
   short_text: "Get me started on an improv sketch"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Get me started on an improv sketch"
 20100625204930_question_10:
   data_export_identifier: "many_pets_do_you_own"
@@ -108,7 +108,7 @@
   question_group: 
   reference_identifier: 
   short_text: "How many pets do you own?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "How many pets do you own?"
 20100625204930_question_11:
   custom_class: "address"
@@ -120,7 +120,7 @@
   question_group: 
   reference_identifier: 
   short_text: "What is your address?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "What is your address?"
 20100625204930_question_12:
   data_export_identifier: "your_favorite_date_and_time"
@@ -131,7 +131,7 @@
   question_group: 
   reference_identifier: 
   short_text: "Pick your favorite date AND time"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Pick your favorite date AND time"
 20100625204930_question_13:
   data_export_identifier: "you_usually_take_lunch_break"
@@ -142,7 +142,7 @@
   question_group: 
   reference_identifier: "time_lunch"
   short_text: "What time do you usually take a lunch break?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "What time do you usually take a lunch break?"
 20100625204930_question_14:
   data_export_identifier: "you_like_meet_for_dinner"
@@ -153,7 +153,7 @@
   question_group: 
   reference_identifier: 
   short_text: "When would you like to meet for dinner?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "When would you like to meet for dinner?"
 20100625204930_question_15:
   data_export_identifier: "slider_reflect_your_level_awesomeness"
@@ -164,7 +164,7 @@
   question_group: 
   reference_identifier: 
   short_text: "Adjust the slider to reflect your level of awesomeness"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Adjust the slider to reflect your level of awesomeness"
 20100625204930_question_16:
   data_export_identifier: "much_do_you_like_ruby"
@@ -175,7 +175,7 @@
   question_group: 
   reference_identifier: 
   short_text: "How much do you like Ruby?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "How much do you like Ruby?"
 20100625204930_question_17:
   data_export_identifier: "much_money_do_you_want"
@@ -186,7 +186,7 @@
   question_group: 
   reference_identifier: 
   short_text: "How much money do you want?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "How much money do you want?"
 20100625204930_question_18:
   data_export_identifier: "quantity"
@@ -197,7 +197,7 @@
   question_group: 20100625204930_question_group_1
   reference_identifier: 
   short_text: "Quantity"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Quantity"
 20100625204930_question_19:
   data_export_identifier: "unit"
@@ -208,7 +208,7 @@
   question_group: 20100625204930_question_group_1
   reference_identifier: 
   short_text: "Unit"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Unit"
 20100625204930_question_20:
   data_export_identifier: "choose_your_illinois_county"
@@ -219,7 +219,7 @@
   question_group: 
   reference_identifier: 
   short_text: "Choose your Illinois county"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Choose your Illinois county"
 20100625204930_question_21:
   data_export_identifier: "choose_your_favorite_meats"
@@ -230,7 +230,7 @@
   question_group: 
   reference_identifier: 
   short_text: "Choose your favorite meats"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "Choose your favorite meats"
 20100625204930_question_22:
   data_export_identifier: "all_out_ideas_for_questions"
@@ -241,7 +241,7 @@
   question_group: 
   reference_identifier: 
   short_text: "All out of ideas for questions?"
-  survey_section: 20100625204930_survey_section_1
+  section: 20100625204930_section_1
   text: "All out of ideas for questions?"
 20100625204930_question_23:
   data_export_identifier: "head"
@@ -252,7 +252,7 @@
   question_group: 20100625204930_question_group_2
   reference_identifier: 
   short_text: "Head"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Head"
 20100625204930_question_24:
   data_export_identifier: "knees"
@@ -263,7 +263,7 @@
   question_group: 20100625204930_question_group_2
   reference_identifier: 
   short_text: "Knees"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Knees"
 20100625204930_question_25:
   data_export_identifier: "toes"
@@ -274,7 +274,7 @@
   question_group: 20100625204930_question_group_2
   reference_identifier: 
   short_text: "Toes"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Toes"
 20100625204930_question_26:
   data_export_identifier: "down_up"
@@ -285,7 +285,7 @@
   question_group: 20100625204930_question_group_3
   reference_identifier: 
   short_text: "down|up"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "down|up"
 20100625204930_question_27:
   data_export_identifier: "sad_happy"
@@ -296,7 +296,7 @@
   question_group: 20100625204930_question_group_3
   reference_identifier: 
   short_text: "sad|happy"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "sad|happy"
 20100625204930_question_28:
   data_export_identifier: "limp_perky"
@@ -307,7 +307,7 @@
   question_group: 20100625204930_question_group_3
   reference_identifier: 
   short_text: "limp|perky"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "limp|perky"
 20100625204930_question_29:
   data_export_identifier: "how_much_you_like_them"
@@ -318,7 +318,7 @@
   question_group: 
   reference_identifier: 
   short_text: "Please rank the following foods based on how much you like them"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Please rank the following foods based on how much you like them"
 20100625204930_question_30:
   data_export_identifier: "utensils_and_enter_frequency_use"
@@ -329,7 +329,7 @@
   question_group: 
   reference_identifier: 
   short_text: "Choose your favorite utensils and enter frequency of use (daily, weekly, monthly, etc...)"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Choose your favorite utensils and enter frequency of use (daily, weekly, monthly, etc...)"
 20100625204930_question_31:
   data_export_identifier: "make"
@@ -340,7 +340,7 @@
   question_group: 20100625204930_question_group_4
   reference_identifier: 
   short_text: "Make"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Make"
 20100625204930_question_32:
   data_export_identifier: "model"
@@ -351,7 +351,7 @@
   question_group: 20100625204930_question_group_4
   reference_identifier: 
   short_text: "Model"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Model"
 20100625204930_question_33:
   data_export_identifier: "year"
@@ -362,7 +362,7 @@
   question_group: 20100625204930_question_group_4
   reference_identifier: 
   short_text: "Year"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Year"
 20100625204930_question_34:
   data_export_identifier: "sibling"
@@ -373,5 +373,5 @@
   question_group: 20100625204930_question_group_5
   reference_identifier: 
   short_text: "Sibling"
-  survey_section: 20100625204930_survey_section_2
+  section: 20100625204930_section_2
   text: "Sibling"

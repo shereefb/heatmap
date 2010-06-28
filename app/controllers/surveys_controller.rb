@@ -1,7 +1,7 @@
 class SurveysController < ApplicationController
   before_filter :require_user, :except => [:index, :show]
   before_filter :find_survey, :except => [:index, :new, :create]
-  before_filter :authorize_survey
+  before_filter :authorize_survey, :except => [:new, :create, :index]
   
   def index
     @surveys = Survey.all

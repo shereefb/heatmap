@@ -84,11 +84,11 @@ end
 
 describe ResponseSet, "with dependencies" do
   before(:each) do
-    @section = Factory(:survey_section)
+    @section = Factory(:section)
     # Questions
-    @do_you_like_pie = Factory(:question, :text => "Do you like pie?", :survey_section => @section)
-    @what_flavor = Factory(:question, :text => "What flavor?", :survey_section => @section)
-    @what_bakery = Factory(:question, :text => "What bakery?", :survey_section => @section)
+    @do_you_like_pie = Factory(:question, :text => "Do you like pie?", :section => @section)
+    @what_flavor = Factory(:question, :text => "What flavor?", :section => @section)
+    @what_bakery = Factory(:question, :text => "What bakery?", :section => @section)
     # Answers
     @do_you_like_pie.answers << Factory(:answer, :text => "yes", :question_id => @do_you_like_pie.id)
     @do_you_like_pie.answers << Factory(:answer, :text => "no", :question_id => @do_you_like_pie.id)
@@ -117,12 +117,12 @@ end
 describe ResponseSet, "as a survey" do
   before(:each) do
     @survey = Factory(:survey)
-    @section = Factory(:survey_section, :survey => @survey)
+    @section = Factory(:section, :survey => @survey)
     @response_set = Factory(:response_set, :survey => @survey)
   end
   def generate_responses(count, survey = nil, correct = nil)
     count.times do |i|
-      q = Factory(:question, :survey_section => @section)
+      q = Factory(:question, :section => @section)
       a = Factory(:answer, :question => q, :response_class => "answer")
       x = Factory(:answer, :question => q, :response_class => "answer")
       q.correct_answer_id = (survey == "survey" ? a.id : nil)
@@ -149,12 +149,12 @@ end
 describe ResponseSet, "with mandatory questions" do
   before(:each) do
     @survey = Factory(:survey)
-    @section = Factory(:survey_section, :survey => @survey)
+    @section = Factory(:section, :survey => @survey)
     @response_set = Factory(:response_set, :survey => @survey)
   end
   def generate_responses(count, mandatory = nil, responded = nil)
     count.times do |i|
-      q = Factory(:question, :survey_section => @section, :is_mandatory => (mandatory == "mandatory"))
+      q = Factory(:question, :section => @section, :is_mandatory => (mandatory == "mandatory"))
       a = Factory(:answer, :question => q, :response_class => "answer")
       if responded == "responded"
         @response_set.responses << Factory(:response, :question => q, :answer => a)
@@ -178,8 +178,8 @@ describe ResponseSet, "with mandatory questions" do
   end
   it "should ignore labels and images" do
     generate_responses(3, "mandatory", "responded")
-    Factory(:question, :survey_section => @section, :display_type => "label", :is_mandatory => true)
-    Factory(:question, :survey_section => @section, :display_type => "image", :is_mandatory => true)
+    Factory(:question, :section => @section, :display_type => "label", :is_mandatory => true)
+    Factory(:question, :section => @section, :display_type => "image", :is_mandatory => true)
     @response_set.mandatory_questions_complete?.should be_true
     @response_set.progress_hash.should == {:questions => 5, :triggered => 5, :triggered_mandatory => 5, :triggered_mandatory_completed => 5}
   end
@@ -187,15 +187,15 @@ end
 describe ResponseSet, "with mandatory, dependent questions" do
   before(:each) do
     @survey = Factory(:survey)
-    @section = Factory(:survey_section, :survey => @survey)
+    @section = Factory(:section, :survey => @survey)
     @response_set = Factory(:response_set, :survey => @survey)
   end
   def generate_responses(count, mandatory = nil, dependent = nil, triggered = nil)
-    dq = Factory(:question, :survey_section => @section, :is_mandatory => (mandatory == "mandatory"))
+    dq = Factory(:question, :section => @section, :is_mandatory => (mandatory == "mandatory"))
     da = Factory(:answer, :question => dq, :response_class => "answer")
     dx = Factory(:answer, :question => dq, :response_class => "answer")
     count.times do |i|
-      q = Factory(:question, :survey_section => @section, :is_mandatory => (mandatory == "mandatory"))
+      q = Factory(:question, :section => @section, :is_mandatory => (mandatory == "mandatory"))
       a = Factory(:answer, :question => q, :response_class => "answer")
       if dependent == "dependent"
         d = Factory(:dependency, :question => q)
@@ -218,11 +218,11 @@ describe ResponseSet, "with mandatory, dependent questions" do
 end
 describe ResponseSet, "exporting csv" do
   before(:each) do
-    @section = Factory(:survey_section)
+    @section = Factory(:section)
     # Questions
-    @do_you_like_pie = Factory(:question, :text => "Do you like pie?", :survey_section => @section)
-    @what_flavor = Factory(:question, :text => "What flavor?", :survey_section => @section)
-    @what_bakery = Factory(:question, :text => "What bakery?", :survey_section => @section)
+    @do_you_like_pie = Factory(:question, :text => "Do you like pie?", :section => @section)
+    @what_flavor = Factory(:question, :text => "What flavor?", :section => @section)
+    @what_bakery = Factory(:question, :text => "What bakery?", :section => @section)
     # Answers
     @do_you_like_pie.answers << Factory(:answer, :text => "yes", :question_id => @do_you_like_pie.id)
     @do_you_like_pie.answers << Factory(:answer, :text => "no", :question_id => @do_you_like_pie.id)
@@ -243,17 +243,3 @@ describe ResponseSet, "exporting csv" do
     csv.should match /pecan pie/    
   end
 end
-# == Schema Information
-#
-# Table name: response_sets
-#
-#  id           :integer         not null, primary key
-#  user_id      :integer
-#  survey_id    :integer
-#  access_code  :string(255)
-#  started_at   :datetime
-#  completed_at :datetime
-#  created_at   :datetime
-#  updated_at   :datetime
-#
-

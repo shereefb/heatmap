@@ -6,7 +6,7 @@ module SurveyParser
     attr_accessor :access_code, :reference_identifier, :data_export_identifier, :common_namespace, :common_identitier
     attr_accessor :active_at, :inactive_at
     attr_accessor :css_url, :custom_class
-    has_children :survey_sections
+    has_children :sections
   
     def parse_args(args)
       title = args[0]
@@ -15,12 +15,12 @@ module SurveyParser
 
     def find_question_by_reference(ref_id)
       found = nil
-      survey_sections.detect{|s| found = s.find_question_by_reference(ref_id)}
+      sections.detect{|s| found = s.find_question_by_reference(ref_id)}
       return found
     end
   
     def reconcile_dependencies
-      survey_sections.each do |section|
+      sections.each do |section|
         section.questions.each do |question| 
           question.dependency.dependency_conditions.each { |con| con.reconcile_dependencies} unless question.dependency.nil?
         end

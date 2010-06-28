@@ -13,10 +13,10 @@
 
 .heading
   %h3= 'Sections (' + @survey.sections.count.to_s + ')'
-  = link_to 'Add Section', new_survey_survey_section_path(@survey), :class => 'add'
+  = link_to 'Add Section', new_survey_section_path(@survey), :class => 'add'
 
 .content
-  = render :partial => 'survey_sections/list', :locals => {:sections => @survey.sections}
+  = render :partial => 'sections/list', :locals => {:sections => @survey.sections}
 
 
   / %h3= 'Questions (' + @survey.questions.count.to_s + ')'

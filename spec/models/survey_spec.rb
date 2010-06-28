@@ -16,21 +16,21 @@ end
 describe Survey, "that has sections" do
   before(:each) do
     @survey = Factory(:survey, :title => "Foo")
-    @s1 = Factory(:survey_section, :survey => @survey, :title => "wise", :display_order => 2)
-    @s2 = Factory(:survey_section, :survey => @survey, :title => "er", :display_order => 3)
-    @s3 = Factory(:survey_section, :survey => @survey, :title => "bud", :display_order => 1)
-    @q1 = Factory(:question, :survey_section => @s1, :text => "what is wise?", :display_order => 2)
-    @q2 = Factory(:question, :survey_section => @s2, :text => "what is er?", :display_order => 4)
-    @q3 = Factory(:question, :survey_section => @s2, :text => "what is mill?", :display_order => 3)
-    @q4 = Factory(:question, :survey_section => @s3, :text => "what is bud?", :display_order => 1)
+    @s1 = Factory(:section, :survey => @survey, :title => "wise", :display_order => 2)
+    @s2 = Factory(:section, :survey => @survey, :title => "er", :display_order => 3)
+    @s3 = Factory(:section, :survey => @survey, :title => "bud", :display_order => 1)
+    @q1 = Factory(:question, :section => @s1, :text => "what is wise?", :display_order => 2)
+    @q2 = Factory(:question, :section => @s2, :text => "what is er?", :display_order => 4)
+    @q3 = Factory(:question, :section => @s2, :text => "what is mill?", :display_order => 3)
+    @q4 = Factory(:question, :section => @s3, :text => "what is bud?", :display_order => 1)
   end
 
-  it "should return survey_sections in display order" do
+  it "should return sections in display order" do
     @survey.sections.should have(3).sections
     @survey.sections.should == [@s3, @s1, @s2]
   end
   
-  it "should return survey_sections_with_questions in display order" do
+  it "should return sections_with_questions in display order" do
     @survey.sections_with_questions.map(&:questions).flatten.should have(4).questions
     @survey.sections_with_questions.map(&:questions).flatten.should == [@q4,@q1,@q3,@q2]
   end
@@ -69,25 +69,3 @@ describe Survey do
   end
   
 end
-# == Schema Information
-#
-# Table name: surveys
-#
-#  id                     :integer         not null, primary key
-#  title                  :string(255)
-#  description            :text
-#  access_code            :string(255)
-#  reference_identifier   :string(255)
-#  data_export_identifier :string(255)
-#  common_namespace       :string(255)
-#  common_identifier      :string(255)
-#  active_at              :datetime
-#  inactive_at            :datetime
-#  css_url                :string(255)
-#  custom_class           :string(255)
-#  created_at             :datetime
-#  updated_at             :datetime
-#  display_order          :integer
-#  user_id                :integer
-#
-

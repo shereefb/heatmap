@@ -63,10 +63,10 @@ body {
   #surveyor .next_section {
     float: right;
     margin: -2em 1em 0 0; }
-  #surveyor .survey_section {
+  #surveyor .section {
     margin: 0.5em 0.5em 0.5em -1em;
     padding: 0.5em 0 0 0; }
-    #surveyor .survey_section .title {
+    #surveyor .section .title {
       font-weight: bold;
       font-size: 1.2em;
       margin: 0;

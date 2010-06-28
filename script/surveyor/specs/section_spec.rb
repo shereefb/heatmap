@@ -1,10 +1,10 @@
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
-require 'survey_section'
+require 'section'
 
-describe SurveyParser::SurveySection, "when first created" do
+describe SurveyParser::Section, "when first created" do
 
   before(:each) do
-    @section = SurveyParser::SurveySection.new(mock("SurveyParser::Survey", :id => 2, :parser => mock("SurveyParser::Parser", :new_survey_section_id => 1)), ["Demographics"], {})
+    @section = SurveyParser::Section.new(mock("SurveyParser::Survey", :id => 2, :parser => mock("SurveyParser::Parser", :new_section_id => 1)), ["Demographics"], {})
   end
   
   it "should generate a data export identifier" do

@@ -32,7 +32,7 @@
       %li.repeater
         - group_questions.each do |question|
           = render(:partial => question.custom_renderer || "/partials/question", :locals => locals.merge({:question => question, :response_group => 9999, :disabled => true}))
-        = submit_tag("&lt;= add row", :name => "section[#{group_questions.first.survey_section_id}]question_group_#{question_group.id}", :class => "add_row")
+        = submit_tag("&lt;= add row", :name => "section[#{group_questions.first.section_id}]question_group_#{question_group.id}", :class => "add_row")
   - else # :inline
     %ul
       - group_questions.each do |question|

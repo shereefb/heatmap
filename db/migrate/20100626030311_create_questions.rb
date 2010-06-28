@@ -3,7 +3,7 @@ class CreateQuestions < ActiveRecord::Migration
     drop_table :questions
     create_table :questions do |t|
       # Context
-      t.integer :survey_section_id
+      t.integer :section_id
       t.integer :question_group_id
 
       # Content

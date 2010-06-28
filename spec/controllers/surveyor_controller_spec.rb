@@ -80,7 +80,7 @@ describe SurveyorController do
   describe "view my survey: GET /surveys/XYZ/PDQ" do
 
     before(:each) do
-      @survey = Factory(:survey, :title => "XYZ", :access_code => "XYZ", :sections => [Factory(:survey_section)])  
+      @survey = Factory(:survey, :title => "XYZ", :access_code => "XYZ", :sections => [Factory(:section)])  
       @response_set = Factory(:response_set, :access_code => "PDQ", :survey => @survey)
     end
   
@@ -124,7 +124,7 @@ describe SurveyorController do
 
     before(:each) do
       @survey = Factory(:survey, :title => "XYZ", :access_code => "XYZ")
-      @section = Factory(:survey_section, :survey => @survey)      
+      @section = Factory(:section, :survey => @survey)      
       @response_set = Factory(:response_set, :access_code => "PDQ", :survey => @survey)
     end
 
@@ -147,7 +147,7 @@ describe SurveyorController do
 
     before(:each) do
       @survey = Factory(:survey, :title => "XYZ", :access_code => "XYZ")
-      @section = Factory(:survey_section, :survey => @survey)      
+      @section = Factory(:section, :survey => @survey)      
       @response_set = Factory(:response_set, :access_code => "PDQ", :survey => @survey)
       # @response_set.stub!(:update_attributes).and_return(true)
       # @response_set.stub!(:complete!).and_return(Time.now)

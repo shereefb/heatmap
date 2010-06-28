@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
 
   # Associations
-  belongs_to :survey_section
+  belongs_to :section
   belongs_to :question_group
   has_many :answers, :order => "display_order ASC" # it might not always have answers
   has_one :dependency
@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
   default_scope :order => "display_order ASC"
   
   # Validations
-  validates_presence_of :text, :survey_section_id, :display_order
+  validates_presence_of :text, :section_id, :display_order
   validates_inclusion_of :is_mandatory, :in => [true, false]
   
   # Instance Methods
@@ -144,7 +144,7 @@ end
 # Table name: questions
 #
 #  id                     :integer         not null, primary key
-#  survey_section_id      :integer
+#  section_id      :integer
 #  question_group_id      :integer
 #  text                   :text
 #  short_text             :text

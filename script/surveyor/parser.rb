@@ -1,7 +1,7 @@
 require 'activesupport' # for pluralize, humanize in ActiveSupport::CoreExtensions::String::Inflections
 module SurveyParser
   class Parser
-    @@models = %w(survey survey_section question_group question answer dependency dependency_condition validation validation_condition)
+    @@models = %w(survey section question_group question answer dependency dependency_condition validation validation_condition)
   
     # Require base and all models
     (%w(base) + @@models).each{|m| require File.dirname(__FILE__) + "/#{m}"}
@@ -21,7 +21,7 @@ module SurveyParser
       puts "--- End of parsing ---\n\n"
     end
 
-    # new_survey_id, new_survey_section_id, etc.
+    # new_survey_id, new_section_id, etc.
     def self.define_counter_methods(names)
       names.each do |name|
         define_method("new_#{name}_id") do
@@ -39,12 +39,12 @@ module SurveyParser
       initialize_fixtures(@@models.map(&:pluralize), File.join(RAILS_ROOT, "surveys", "fixtures"))
     end
     
-    # @last_survey_id, @last_survey_section_id, etc.
+    # @last_survey_id, @last_section_id, etc.
     def initialize_counters(names)
       names.each{|name| instance_variable_set("@last_#{name}_id", 0)}
     end
 
-    # @surveys_yml, @survey_sections_yml, etc.
+    # @surveys_yml, @sections_yml, etc.
     def initialize_fixtures(names, path)
       names.each {|name| file = instance_variable_set("@#{name}_yml", "#{path}/#{name}.yml"); File.truncate(file, 0) if File.exist?(file) }
     end
@@ -59,16 +59,16 @@ module SurveyParser
         evaluate_the "survey", &block
     
       when "section"
-        self.current_survey_section = SurveySection.new(self.current_survey, args, opts.merge({:display_order => current_survey.survey_sections.size + 1}))
-        evaluate_the "survey_section", &block
+        self.current_section = Section.new(self.current_survey, args, opts.merge({:display_order => current_survey.sections.size + 1}))
+        evaluate_the "section", &block
       
       when "group", "g", "grid", "repeater"
-        self.current_question_group = QuestionGroup.new(self.current_survey_section, args, opts)
+        self.current_question_group = QuestionGroup.new(self.current_section, args, opts)
         evaluate_the "question_group", &block
       
       when "question", "q", "label", "image"
         drop_the &block
-        self.current_question = Question.new(self.current_survey_section, args, opts.merge(:question_group_id => current_question_group ? current_question_group.id : nil))
+        self.current_question = Question.new(self.current_section, args, opts.merge(:question_group_id => current_question_group ? current_question_group.id : nil))
         add_grid_answers if in_a_grid?
       
       when "dependency", "d"
@@ -135,19 +135,19 @@ module SurveyParser
       self.surveys << s
       @current_survey = s
     end
-    def current_survey_section=(s)
-      clear_current "survey_section"
-      self.current_survey.survey_sections << s
-      @current_survey_section = s 
+    def current_section=(s)
+      clear_current "section"
+      self.current_survey.sections << s
+      @current_section = s 
     end
     def current_question_group=(g)
       clear_current "question_group"
-      self.current_survey_section.question_groups << g
+      self.current_section.question_groups << g
       @current_question_group = g
     end  
     def current_question=(q)
       clear_current "question"
-      self.current_survey_section.questions << q
+      self.current_section.questions << q
       @current_question = q
     end
     def current_dependency=(d)

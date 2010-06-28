@@ -1,5 +1,5 @@
 module SurveyParser
-  class SurveySection < SurveyParser::Base
+  class Section < SurveyParser::Base
     # Context, Content, Display, Reference, Children, Placeholders
     attr_accessor :id, :parser, :survey_id
     attr_accessor :title, :description

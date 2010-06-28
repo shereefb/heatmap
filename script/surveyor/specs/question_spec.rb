@@ -3,8 +3,8 @@ require 'question'
 
 describe SurveyParser::Question, " when first created" do
   before do    
-    section = mock("SurveyParser::SurveySection", :id => 2, :parser => mock("SurveyParser::Parser", :new_question_id => 1))
-    section.stub!(:class => SurveyParser::SurveySection)
+    section = mock("SurveyParser::Section", :id => 2, :parser => mock("SurveyParser::Parser", :new_question_id => 1))
+    section.stub!(:class => SurveyParser::Section)
     args = {:help_text => "Please give a rough estimate", :reference_identifier => "B3"}
     options = {}
     @ques = SurveyParser::Question.new(section, ["In the past 12 months how many times have you been to a doctor?", args], options)
@@ -13,7 +13,7 @@ describe SurveyParser::Question, " when first created" do
   it "should set initialization parameters properly" do
     @ques.id.should == 1
     @ques.reference_identifier.should == "B3"
-    @ques.survey_section_id.should == 2
+    @ques.section_id.should == 2
     @ques.help_text.should == "Please give a rough estimate"
     
     #Checking the defaults
@@ -41,7 +41,7 @@ end
 
 describe SurveyParser::Question, "when it contains data" do
   before(:each) do
-    section = mock("SurveyParser::SurveySection", :id => 2, :parser => mock("SurveyParser::Parser", :new_question_id => 1))
+    section = mock("SurveyParser::Section", :id => 2, :parser => mock("SurveyParser::Parser", :new_question_id => 1))
     args = {:help_text => "Please give a rough estimate", :reference_identifier => "B3"}
     options = {}
     @ques = SurveyParser::Question.new(section, ["In the past 12 months how many times have you been to a doctor?", args], options)

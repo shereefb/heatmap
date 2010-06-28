@@ -5,7 +5,7 @@
 %h2= @page_title
 
 .form
-  - form_for @survey_section, :url => survey_survey_sections_path(@survey) do |f|
+  - form_for @section, :url => survey_sections_path(@survey) do |f|
     = render :partial => 'form', :locals => {:f => f}
     .submit
       = submit_tag 'Create Section', :disable_with => 'Creating Section...'
