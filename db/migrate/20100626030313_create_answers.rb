@@ -1,6 +1,5 @@
 class CreateAnswers < ActiveRecord::Migration
   def self.up
-    drop_table :answers
     create_table :answers do |t|
       # Context
       t.integer :question_id
