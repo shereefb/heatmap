@@ -84,6 +84,11 @@ class ApplicationController < ActionController::Base
     @survey = Survey.find(params[:survey_id] || params[:id])
   end
   
+  def find_section
+    section_id = params[:section_id] || params[:id]
+    @section = Section.find(section_id)
+  end
+  
   def find_question
     question_id = params[:question_id] || params[:id]
     question_scope = @survey.try(:questions) || Question
@@ -91,6 +96,10 @@ class ApplicationController < ActionController::Base
   end
   
   def authorize_survey
+      access_denied! unless current_user && current_user.can_edit_survey?(@survey)
+  end
+  
+  def authorize_section
       access_denied! unless current_user && current_user.can_edit_survey?(@survey)
   end
   

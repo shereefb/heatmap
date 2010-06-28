@@ -16,33 +16,28 @@ class SurveysController < ApplicationController
     @survey.user = current_user
     
     if @survey.save
+      flash[:success] = 'Survey created'
       redirect_to @survey
     else
       render :new
     end
   end
-  # 
-  # def edit
-  # end
-  # 
-  # def update
-  #   if @survey.update_attributes(params[:survey])
-  #     redirect_to @survey
-  #   else
-  #     render :edit
-  #   end
-  # end
+  
+  def edit
+  end
+  
+  def update
+    if @survey.update_attributes(params[:survey])
+      redirect_to @survey
+    else
+      render :edit
+    end
+  end
   # 
   # def show
   #   @participating_users = @survey.participants
   #   @questions = @survey.questions
   # end
   # 
-  
-  # private
-  # 
-  # def find_survey
-  #   @survey = Survey.find(params[:id])
-  # end
   
 end

@@ -15,36 +15,30 @@ class SectionsController < ApplicationController
     
     logger.info("what what")
     if @section.save
+      flash[:success] = 'Section added'
       redirect_to survey_url(@survey)
     else
       logger.info("failed")
       render :new
     end
   end
-  #   
-  # def show
-  #   @answer = Answer.new
-  #   @answers = @question.answers
-  #   
-  #   if participant?
-  #     @user_answer = current_user.answers.find_or_initialize_by_question_id(@question)
-  #     @total_answered = current_user.total_answered(@survey)
-  #     @total_questions = @survey.questions.count
-  #     @participation = current_user.find_participation(@survey)
-  #   elsif suggester?
-  #     @suggested_questions = current_user.suggested_questions_for_survey(@survey)
-  #   end
-  # end
-  # 
-  # def edit
-  # end
-  # 
-  # def update
-  #   if @question.update_attributes(params[:question])
-  #     redirect_to survey_question_url(@survey, @question)
-  #   else
-  #     render :edit
-  #   end
-  # end
-  # 
+    
+  def show
+    logger.info("section #{@section}")
+    @question = Question.new
+    @questions = @section.questions
+  end
+  
+  def edit
+  end
+  
+  def update
+    if @section.update_attributes(params[:section])
+      flash[:success] = 'Section updated'
+      redirect_to survey_section_url(@survey, @section)
+    else
+      render :edit
+    end
+  end
+  
 end

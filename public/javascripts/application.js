@@ -108,7 +108,7 @@ jQuery(function($) {
   );
   
   question_box.click(function() {
-    question_url = question_box.parent().
+    question_url = $(this).parent().
                                 prev().
                                 children('.show_id').
                                 find('a').attr('href');

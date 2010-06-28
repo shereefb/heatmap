@@ -1,75 +1,74 @@
-!gray_bg = #f5f5f5
-!green = #5BC236
-!red = #c00
-!dark_blue = #00609d
+$gray_bg: #f5f5f5
+$green: #5bc236
+$red: #cc0000
+$dark_blue: #00609d
 
 body
-  :margin 0
-  :padding 0
-  :font 12px/18px arial, tahoma, verdana, sans-serif
-  :color #222
-  
+  margin: 0
+  padding: 0
+  font: 12px / 18px arial, tahoma, verdana, sans-serif
+  color: #222222
+
 textarea
-  :font-family arial, tahoma, verdana, sans-serif
-  :font-size 12px
-  :padding 4px
-  :height 80px
-  
+  font-family: arial, tahoma, verdana, sans-serif
+  font-size: 12px
+  padding: 4px
+  height: 80px
+
 a
-  :color #4085cc
-  :text-decoration none
+  color: #4085cc
+  text-decoration: none
   &:hover
-    :text-decoration underline
+    text-decoration: underline
   &.edit,
   &.delete,
   &.cancel
-    :color = !red
+    color: $red
 
 label
-  :display block
-  :font-weight bold
-  :margin-bottom 1px
+  display: block
+  font-weight: bold
+  margin-bottom: 1px
 
 table
-  :border-collapse collapse
+  border-collapse: collapse
 
 .right
-  :float right
+  float: right
 
 .warning
-  :color = !red
-  
+  color: $red
+
 .hint
-  :color #888
+  color: #888888
 
 .inline
-  :display inline
-  
+  display: inline
+
 .light
-  :color #888
+  color: #888888
 
 a#logo
   img
-    :border 0
-  
+    border: 0
+
 #header
-  :width 960px
-  :padding 10px 0
-  :margin 0 auto
-  
+  width: 960px
+  padding: 10px 0
+  margin: 0 auto
   #nav
-    :float right
-    :margin-top 25px
+    float: right
+    margin-top: 25px
     ul
       li
-        :float left
-        :padding 0
-        :margin 0 0 0 20px
-        :list-style-type none
+        float: left
+        padding: 0
+        margin: 0 0 0 20px
+        list-style-type: none
         a
-          :display block
-          :font-size 16px
-          
+          display: block
+          font-size: 16px
+
 body#users.edit #nav a.account,
 body#users.update #nav a.account,
 body#users #nav a.signup,
@@ -79,426 +78,428 @@ body#questions #nav a.surveys,
 body#categories #nav a.surveys,
 body#tags #nav a.surveys,
 body#dashboards #nav a.dashboard
-  :font-weight bold
-          
+  font-weight: bold
+
 hr#split
-  :margin 0
-  :padding 0
-  :border none
-  :border-bottom 1px dotted #ccc
+  margin: 0
+  padding: 0
+  border: none
+  border-bottom: 1px dotted #cccccc
 
 .flash
-  :padding 10px 12px
-  :color #fff
-  :margin-bottom 20px
-  :background = !gray_bg
-  :font-weight bold
-  :font-size 14px
+  padding: 10px 12px
+  color: white
+  margin-bottom: 20px
+  background: $gray_bg
+  font-weight: bold
+  font-size: 14px
   &#success
-    :color #60BB22
+    color: #60bb22
   &#failure
-    :color #B80028
+    color: #b80028
 
 #content
-  :width 960px
-  :margin 20px auto
-  
+  width: 960px
+  margin: 20px auto
   #left
-    :float left
-    :width 620px
+    float: left
+    width: 620px
     h2
-      :font-size 22px
-      :margin-top 0
+      font-size: 22px
+      margin-top: 5px
     #mid_nav
-      :float right
-      :font-size 14px
+      float: right
+      font-size: 14px
       &.correct,
       &.incorrect
-        :color #fff
-        :margin-top 5px
-        :padding 2px 5px
-        :font-size 12px
+        color: white
+        margin-top: 5px
+        padding: 2px 5px
+        font-size: 12px
       &.correct
-        :background = !green
+        background: $green
       &.incorrect
-        :background = !red
-          
+        background: $red
   #right
-    :float right
-    :width 340px
+    float: right
+    width: 340px
     h3
-      :margin-top 0
-      :margin-left 40px
+      margin-top: 0
+      margin-left: 40px
       &.top
-        :margin-top 20px
+        margin-top: 20px
     ul
-      :margin-left 40px
+      margin-left: 40px
     .no_items, .box
-      :float right
-      :margin-left 40px
-      :width 300px
+      float: right
+      margin-left: 40px
+      width: 300px
     .no_items
-      :font-size 12px
-      :padding 20px 0
+      font-size: 12px
+      padding: 20px 0
     .info
-      :padding 10px
-      :margin-top 20px
+      padding: 10px
+      margin-top: 20px
       .button
-        :margin-top 15px
+        margin-top: 15px
       &.yellow
-        :background #ffd
-        :border-right 1px solid #efe9ba
-        :border-bottom 1px solid #efe9ba
+        background: #ffffdd
+        border-right: 1px solid #efe9ba
+        border-bottom: 1px solid #efe9ba
     .show_table
-      :margin-left 40px
-      
+      margin-left: 40px
 
 #footer
-  :width 960px
-  :margin 40px auto 20px
-  :border-top 1px dotted #ccc
-  :padding 10px 0
-  :color #aaa
+  width: 960px
+  margin: 40px auto 20px
+  border-top: 1px dotted #cccccc
+  padding: 10px 0
+  color: #aaaaaa
 
 .submit
-  :float left
+  float: left
   span
-    :color #888
- 
+    color: #888888
+
 .heading
-  :background #e5f2ff
-  :float left
-  :width 100%
-  :font-size 12px
+  background: #e5f2ff
+  float: left
+  width: 100%
+  font-size: 12px
   h3
-    :margin 5px 0 5px 8px
-    :float left
+    margin: 5px 0 5px 8px
+    float: left
   a.add
-    :float right
-    :padding 5px 8px
-    :background = !green
-    :color #fff
-    :text-shadow 1px 1px 0 #238400
+    float: right
+    padding: 5px 8px
+    background: $green
+    color: white
+    text-shadow: 1px 1px 0 #238400
     &:hover
-      :text-decoration none
-      :color #ddffd1
+      text-decoration: none
+      color: #ddffd1
 
 .form
-  :background = !gray_bg
-  :float left
-  :width 100%
+  background: $gray_bg
+  float: left
+  width: 100%
   form
-    :margin 15px
+    margin: 15px
     textarea,
     input.text
-      :width 530px
+      width: 530px
     input.big
-      :font-size 14px
-      :padding 2px
+      font-size: 14px
+      padding: 2px
     .formatting
-      :float right
-      :margin-right 50px
+      float: right
+      margin-right: 50px
     .submit
-      :margin-bottom 15px
+      margin-bottom: 15px
     .field
-      :margin-bottom 15px
+      margin-bottom: 15px
       .hint
-        :margin-top 2px
+        margin-top: 2px
 
-.new_ajax_form  
-  :background = !gray_bg
-  :float left
-  :width 100%
-  :margin-bottom 10px
-  :display none
+.new_ajax_form
+  background: $gray_bg
+  float: left
+  width: 100%
+  margin-bottom: 10px
+  display: none
   h4
-    :color #2eae00
-    :margin 8px 10px 5px
+    color: #2eae00
+    margin: 8px 10px 5px
   form
-    :margin 0 10px 10px
+    margin: 0 10px 10px
     textarea
-      :margin-bottom 8px
-      :width 90%
+      margin-bottom: 8px
+      width: 90%
   .submit
-    :margin-top 8px
-    :margin-bottom 10px
-    
+    margin-top: 8px
+    margin-bottom: 10px
+
 .inline_edit_form
-  :margin 10px
-  :float left
-  :width 85%
+  margin: 10px
+  float: left
+  width: 85%
   form
     textarea
-      :width 95%
-      :margin-bottom 8px
+      width: 95%
+      margin-bottom: 8px
     .submit
-      :margin-top 8px
+      margin-top: 8px
 
 .errors
-  :color = !red
-  
+  color: $red
+
 .button
   a
-    :background = !dark_blue
-    :color white
-    :padding 4px 7px
-    :text-shadow 1px 1px 0 #002841
+    background: $dark_blue
+    color: white
+    padding: 4px 7px
+    text-shadow: 1px 1px 0 #002841
     &:hover
-      :color #ccebff
-      :text-decoration none
+      color: #ccebff
+      text-decoration: none
 
 .checkbox
   input
-    :margin-left 0
+    margin-left: 0
   label
-    :display inline
-    :font-weight normal
+    display: inline
+    font-weight: normal
 
 #surveys_box
-  :background = !dark_blue
-  :float left
-  :width 100%
+  background: $dark_blue
+  float: left
+  width: 100%
   .box
-    :width 310px
-    :float left
+    width: 310px
+    float: left
     &.end
       ul, h3
-        :margin-left 9px
+        margin-left: 9px
     h3
-      :margin-left 15px
-      :color white
-      :text-shadow 1px 1px 0 #002841
+      margin-left: 15px
+      color: white
+      text-shadow: 1px 1px 0 #002841
     ul
-      :margin 0 0 15px 15px
-      :width 285px
-      :padding 0
-      :border-top 1px solid #0080d2
-      :background #0071b9
+      margin: 0 0 15px 15px
+      width: 285px
+      padding: 0
+      border-top: 1px solid #0080d2
+      background: #0071b9
       li
-        :list-style-type none
-        :margin 0
-        :padding 3px 0
-        :border-bottom 1px solid #0080d2
+        list-style-type: none
+        margin: 0
+        padding: 3px 0
+        border-bottom: 1px solid #0080d2
         a
-          :color #cfecff
-          :margin 0 8px
+          color: #cfecff
+          margin: 0 8px
           &:hover
-            :text-decoration none
-            :color white
+            text-decoration: none
+            color: white
 
 #categories_box
-  :float left
-  :width 100%
-  :background #222
-  :margin-top 20px
+  float: left
+  width: 100%
+  background: #222222
+  margin-top: 20px
   h3
-    :color white
-    :margin-left 15px
+    color: white
+    margin-left: 15px
   .list
-    :background #333
-    :float left
-    :width 590px
-    :margin 0 15px 15px
+    background: #333333
+    float: left
+    width: 590px
+    margin: 0 15px 15px
     ul
-      :float left
-      :margin 10px 20px 12px 15px
-      :padding 0
+      float: left
+      margin: 10px 20px 12px 15px
+      padding: 0
       li
-        :list-style-type none
-        :margin 0
-        :padding 2px 0
-        :color #666
+        list-style-type: none
+        margin: 0
+        padding: 2px 0
+        color: #666666
         a
-          :color #bbb
+          color: #bbbbbb
           &:hover
-            :color white
-            :text-decoration none
+            color: white
+            text-decoration: none
 
 #questions_list
-  :float left
-  :width 100%
-  :margin-top 15px
+  float: left
+  width: 100%
+  margin-top: 15px
   table
-    :width 100%
-    :padding 0
-    :margin 0
+    width: 100%
+    padding: 0
+    margin: 0
     tbody
       td
-        :padding 0
-        :border-top 1px solid #eee
-        :vertical-align top
+        padding: 0
+        border-top: 1px solid #eeeeee
+        vertical-align: top
         &.id
-          :width 80px
+          width: 80px
           .show_id
-            :margin 0 0 15px 8px
+            margin: 0 0 15px 8px
             a
-              :color #222
+              color: #222222
               &:hover
-                :text-decoration none
-                :color #aaa
+                text-decoration: none
+                color: #aaaaaa
         &.body
           .box
-            :float left
-            :width 100%
-            :margin-bottom 15px
-            :padding 0
-            :background = !gray_bg
+            float: left
+            width: 100%
+            margin-bottom: 15px
+            padding: 0
+            background: $gray_bg
             &.over
-              :background #ffd
-              :cursor pointer
+              background: #ffffdd
+              cursor: pointer
             .show_body
-              :margin 0 12px 12px
-              :float left
+              margin: 0 12px 12px
+              float: left
 
- 
 ul#answers_list
-  :clear both
-  :padding 0
-  :float left
-  :width 100%
+  clear: both
+  padding: 0
+  float: left
+  width: 100%
   li
-    :float left
-    :width 100%
-    :list-style-type none
-    :background = !gray_bg
-    :margin-bottom 10px
+    float: left
+    width: 100%
+    list-style-type: none
+    background: $gray_bg
+    margin-bottom: 10px
     .show_body
-      :border-left-width 5px
-      :border-left-style solid
-      :border-left-color = !gray_bg
-      :width 90%
-      :padding-left 10px
-      :float left
+      border-left-width: 5px
+      border-left-style: solid
+      border-left-color: $gray_bg
+      width: 90%
+      padding-left: 10px
+      float: left
     &.correct .show_body
-      :border-left-color = !green
+      border-left-color: $green
     &.incorrect .show_body
-      :border-left-color = !red
+      border-left-color: $red
     .edit_link,
     .delete_link
-      :float right
-      :margin 10px
+      float: right
+      margin: 10px
     .edit_link
-      :display none
+      display: none
     &:hover
       .edit_link
-        :display block
+        display: block
   &.participating
     .show_body
-      :padding-left 7px
+      padding-left: 7px
       .radio_button
-        :float left
-        :padding-right 12px
+        float: left
+        padding-right: 12px
 
 .users_list
-  :margin-left 40px
+  margin-left: 40px
   table
-    :width 100%
-    :border-top 1px solid #eee
+    width: 100%
+    border-top: 1px solid #eeeeee
     tr
       td
-        :padding 5px 0
-        :border-bottom 1px solid #eee
+        padding: 5px 0
+        border-bottom: 1px solid #eeeeee
         span
-          :color #888
+          color: #888888
 
 .meta
-  :color #888
+  color: #888888
   &.bottom
-    :margin-bottom 7px
+    margin-bottom: 7px
 
 .no_items
-  :background = !gray_bg
-  :float left
-  :width 100%
-  :padding 30px 0
-  :margin-bottom 15px
-  :font-size 14px
-  :color #888
-  :text-align center
-  
+  background: $gray_bg
+  float: left
+  width: 100%
+  padding: 30px 0
+  margin-bottom: 15px
+  font-size: 14px
+  color: #888888
+  text-align: center
+
 #show_question
-  :margin-bottom 20px
-  :float left
-  
+  margin-bottom: 20px
+  float: left
+
+#show_section
+  margin-bottom: 20px
+  float: left
+
 .next_and_previous
-  :color #aaa
-  :margin-left 40px
+  color: #aaaaaa
+  margin-left: 40px
   .prev
-    :float left
+    float: left
   .next
-    :float right
+    float: right
 
 .answered_count,
 .correct_incorrect
-  :float left
-  :border-top 1px solid #ddd
-  :width 300px
-  :padding-top 10px
-  :margin-top 20px
-  :margin-left 40px
+  float: left
+  border-top: 1px solid #dddddd
+  width: 300px
+  padding-top: 10px
+  margin-top: 20px
+  margin-left: 40px
+
 .answered_count
-  :font-size 16px
-  :color #aaa
+  font-size: 16px
+  color: #aaaaaa
   strong
-    :color #222
+    color: #222222
+
 .correct_incorrect
-  :font-size 14px
-  :color #ccc
+  font-size: 14px
+  color: #cccccc
   &:hover
-    :color #aaa
+    color: #aaaaaa
     .correct
-      :color = !green
+      color: $green
     .incorrect
-      :color = !red
-    
+      color: $red
+
 .try_again
-  :float left
-  :color #666
+  float: left
+  color: #666666
   a
-    :font-weight bold
+    font-weight: bold
 
 .show_table
   table
-    :width 100%
-    :border 1px solid #eee
+    width: 100%
+    border: 1px solid #eeeeee
     th, td
-      :padding 5px 8px
-      :text-align left
+      padding: 5px 8px
+      text-align: left
       &.center
-        :text-align center
+        text-align: center
     thead
       tr
         th
-          :color #888
-          :border-bottom 1px solid #eee
+          color: #888888
+          border-bottom: 1px solid #eeeeee
     tbody
       tr
         &.even
           td
-            :background = !gray_bg
+            background: $gray_bg
 
 a.close_account
-  :float left
-  :display block
-  :margin-top 20px
-  :background #ffeeee
-  :padding 6px 12px
+  float: left
+  display: block
+  margin-top: 20px
+  background: #ffeeee
+  padding: 6px 12px
 
-#content #left  
+#content #left
   .errorExplanation
-    :border-style solid
-    :border-width 2px
-    :border-color = !red
-    :background #fff
-    :margin-bottom 15px
+    border-style: solid
+    border-width: 2px
+    border-color: $red
+    background: white
+    margin-bottom: 15px
     h2
-      :background = !red
-      :color #fff
-      :padding 7px 12px 10px
-      :font-size 14px
+      background: $red
+      color: white
+      padding: 7px 12px 10px
+      font-size: 14px
     p
-      :display none
+      display: none
   .formError
-    :color = !red
-    :font-weight bold
-    :margin-top 3px
+    color: $red
+    font-weight: bold
+    margin-top: 3px

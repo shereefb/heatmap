@@ -4,7 +4,7 @@
       - questions.each do |question|
         %tr
           %td.id
-            .show_id= show_number(question)
+            .show_id= show_question_number(question)
           %td.body
             .box
-              .show_body= truncate_html(question.body.to_html, 120)
+              .show_body= truncate_html(question.text, 120)

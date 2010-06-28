@@ -5,9 +5,9 @@
 %h2= @page_title
 
 .form
-  - form_for @question, :url => survey_questions_path(@survey) do |f|
+  - form_for @question, :url => survey_section_questions_path(@survey,@section) do |f|
     = render :partial => 'form', :locals => {:f => f}
     .submit
       = submit_tag 'Create Question', :disable_with => 'Creating Question...'
       %span or
-      = link_to 'Cancel', survey_path(@survey), :class => 'cancel'
+      = link_to 'Cancel', survey_section_path(@survey,@section), :class => 'cancel'

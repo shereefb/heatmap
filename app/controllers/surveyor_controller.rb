@@ -4,7 +4,7 @@
 class SurveyorController < ApplicationController
 
   # Layout
-  # layout Surveyor::Config['default.layout'] || 'surveyor_default'
+  layout 'surveyor_default'
 
   # # RESTful authentication
   # if Surveyor::Config['use_restful_authentication']

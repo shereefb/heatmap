@@ -97,7 +97,7 @@ hr#split {
     width: 620px; }
     #content #left h2 {
       font-size: 22px;
-      margin-top: 0; }
+      margin-top: 5px; }
     #content #left #mid_nav {
       float: right;
       font-size: 14px; }
@@ -393,6 +393,10 @@ ul#answers_list {
   text-align: center; }
 
 #show_question {
+  margin-bottom: 20px;
+  float: left; }
+
+#show_section {
   margin-bottom: 20px;
   float: left; }
 

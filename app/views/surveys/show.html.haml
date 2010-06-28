@@ -6,6 +6,8 @@
     - if owner?
       = link_to 'Edit Survey', edit_survey_path(@survey), :class => 'edit'
 
+= survey_link
+
 %h2= @page_title
 
 - unless @survey.description.blank?

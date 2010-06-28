@@ -4,15 +4,7 @@
       - sections.each do |section|
         %tr
           %td.id
-            .show_id= show_number(section)
+            .show_id= show_section_number(section)
           %td.body
             .box
-              - if section.description.nil?
-                .show_body= section.title 
-              - else
-                .show_body
-                  %strong= section.title
-                  \:
-                  = section.description
-                
-                  
+              .show_body= section.title 

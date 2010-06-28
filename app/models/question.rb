@@ -10,7 +10,7 @@ class Question < ActiveRecord::Base
   default_scope :order => "display_order ASC"
   
   # Validations
-  validates_presence_of :text, :section_id, :display_order
+  validates_presence_of :text, :section_id #, :display_order
   validates_inclusion_of :is_mandatory, :in => [true, false]
   
   # Instance Methods

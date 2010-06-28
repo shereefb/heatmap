@@ -37,4 +37,27 @@ module ApplicationHelper
   def ajax_dom_id(record)
     '#' + dom_id(record)
   end  
+  
+  def survey_link(bottom = false)
+    css_class = 'meta'
+    css_class << ' bottom' if bottom
+    
+    str = ""
+    str << link_to("My Surveys", dashboard_path)
+    str << " &#187; "
+    str << link_to(@survey.title, survey_path(@survey))
+    
+    if @section && @section.id
+      str << " &#187; "
+      str << link_to(@section.title, survey_section_path(@survey,@section))
+    end
+    
+    if @question && @question.id
+      str << " &#187; "
+      str << link_to("Question ##{@question.id}", survey_section_question_path(@survey,@section,@question))
+    end
+
+    content_tag(:div, str, :class => css_class)
+  end
+  
 end

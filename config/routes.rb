@@ -40,10 +40,11 @@ ActionController::Routing::Routes.draw do |map|
   map.resource :dashboard, :only => :show
   
   map.resources :surveys, :member => { :participate => :post } do |survey|
-    survey.resources :sections
-    survey.resources :questions, :new => { :suggest => :get } do |question|
-      question.resources :answers
-      question.resources :user_answers, :only => :create
+    survey.resources :sections do |section|
+      section.resources :questions, :new => { :suggest => :get } do |question|
+        question.resources :answers
+        question.resources :user_answers, :only => :create
+      end
     end
   end
   
@@ -73,11 +74,11 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => 'dashboards', :action => 'show'
 
   map.with_options :controller => 'surveyor' do |s|
-    s.available_surveys "surveys",                                        :conditions => {:method => :get}, :action => "new"                      # GET survey list
-    s.take_survey       "surveys:survey_code",                            :conditions => {:method => :post}, :action => "create"                  # Only POST of survey to create
-    s.view_my_survey    "surveys:survey_code/:response_set_code.:format", :conditions => {:method => :get}, :action => "show", :format => "html"  # GET viewable/printable? survey
-    s.edit_my_survey    "surveys:survey_code/:response_set_code/take",    :conditions => {:method => :get}, :action => "edit"                     # GET editable survey 
-    s.update_my_survey  "surveys:survey_code/:response_set_code",         :conditions => {:method => :put}, :action => "update"                   # PUT edited survey 
+    s.available_surveys "s",                                        :conditions => {:method => :get}, :action => "new"                      # GET survey list
+    s.take_survey       "s:survey_code",                            :conditions => {:method => :post}, :action => "create"                  # Only POST of survey to create
+    s.view_my_survey    "s:survey_code/:response_set_code.:format", :conditions => {:method => :get}, :action => "show", :format => "html"  # GET viewable/printable? survey
+    s.edit_my_survey    "s:survey_code/:response_set_code/take",    :conditions => {:method => :get}, :action => "edit"                     # GET editable survey 
+    s.update_my_survey  "s:survey_code/:response_set_code",         :conditions => {:method => :put}, :action => "update"                   # PUT edited survey 
   end   
   
   map.username ':username', :controller => 'users',
