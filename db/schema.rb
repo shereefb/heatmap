@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100628053731) do
+ActiveRecord::Schema.define(:version => 20100626040515) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -31,15 +31,6 @@ ActiveRecord::Schema.define(:version => 20100628053731) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.integer  "quizzes_count", :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "categories", ["name"], :name => "index_categories_on_name"
 
   create_table "dependencies", :force => true do |t|
     t.integer  "question_id"
@@ -68,14 +59,14 @@ ActiveRecord::Schema.define(:version => 20100628053731) do
 
   create_table "participations", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "quiz_id"
+    t.integer  "survey_id"
     t.integer  "correct_count",   :default => 0
     t.integer  "incorrect_count", :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "participations", ["user_id", "quiz_id"], :name => "index_participations_on_user_id_and_quiz_id"
+  add_index "participations", ["user_id", "survey_id"], :name => "index_participations_on_user_id_and_survey_id"
 
   create_table "question_groups", :force => true do |t|
     t.text     "text"
@@ -113,26 +104,6 @@ ActiveRecord::Schema.define(:version => 20100628053731) do
     t.integer  "correct_answer_id"
   end
 
-  create_table "quizzes", :force => true do |t|
-    t.integer  "category_id"
-    t.integer  "user_id"
-    t.string   "title"
-    t.text     "description"
-    t.integer  "questions_count",      :default => 0
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "permalink"
-    t.integer  "participations_count", :default => 0
-    t.datetime "questions_updated_at"
-    t.datetime "last_viewed"
-  end
-
-  add_index "quizzes", ["category_id"], :name => "index_quizzes_on_category_id"
-  add_index "quizzes", ["last_viewed"], :name => "index_quizzes_on_last_viewed"
-  add_index "quizzes", ["permalink"], :name => "index_quizzes_on_permalink"
-  add_index "quizzes", ["questions_updated_at"], :name => "index_quizzes_on_questions_updated_at"
-  add_index "quizzes", ["user_id"], :name => "index_quizzes_on_user_id"
-
   create_table "response_sets", :force => true do |t|
     t.integer  "user_id"
     t.integer  "survey_id"
@@ -161,7 +132,7 @@ ActiveRecord::Schema.define(:version => 20100628053731) do
     t.datetime "updated_at"
   end
 
-  create_table "survey_sections", :force => true do |t|
+  create_table "sections", :force => true do |t|
     t.integer  "survey_id"
     t.string   "title"
     t.text     "description"

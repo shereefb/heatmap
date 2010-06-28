@@ -1,5 +1,4 @@
 class Section < ActiveRecord::Base
-  set_table_name "survey_sections"
   # Associations
   has_many :questions, :order => "display_order ASC"
   belongs_to :survey

@@ -243,3 +243,17 @@ describe ResponseSet, "exporting csv" do
     csv.should match /pecan pie/    
   end
 end
+# == Schema Information
+#
+# Table name: response_sets
+#
+#  id           :integer         not null, primary key
+#  user_id      :integer
+#  survey_id    :integer
+#  access_code  :string(255)
+#  started_at   :datetime
+#  completed_at :datetime
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

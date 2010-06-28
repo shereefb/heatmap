@@ -41,13 +41,14 @@ describe Participation do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: participations
 #
 #  id              :integer         not null, primary key
 #  user_id         :integer
-#  quiz_id         :integer
+#  survey_id       :integer
 #  correct_count   :integer         default(0)
 #  incorrect_count :integer         default(0)
 #  created_at      :datetime

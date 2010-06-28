@@ -90,12 +90,13 @@ describe Question do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: questions
 #
 #  id                     :integer         not null, primary key
-#  survey_section_id      :integer
+#  section_id             :integer
 #  question_group_id      :integer
 #  text                   :text
 #  short_text             :text
