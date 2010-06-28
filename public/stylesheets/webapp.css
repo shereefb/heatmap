@@ -19,7 +19,6 @@ a {
     color: #cc0000; }
 
 label {
-  display: block;
   font-weight: bold;
   margin-bottom: 1px; }
 
@@ -95,8 +94,7 @@ hr#split {
     #main-inner #left #mid_nav.incorrect {
       background: #cc0000; }
   #main-inner #right h3 {
-    margin-top: 0;
-    margin-left: 40px; }
+    margin-top: 0; }
     #main-inner #right h3.top {
       margin-top: 20px; }
   #main-inner #right ul {

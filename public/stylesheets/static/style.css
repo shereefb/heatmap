@@ -949,15 +949,14 @@ Sign Up Page
 ************************************************************************/
 
 
-div#main-inner form#sign-up-top {
+form#new_user {
 	background: #f4f4f4 url(/images/static/white-space.gif) repeat-x top left;
 	border: 1px solid #ccc;
 	overflow: hidden;
 	width: 500px;
 	padding: 30px 50px;
-	margin-top: 113px;
 }
-div#main-inner form#sign-up-top input[type="text"] {
+form#new_user input[type="text"] {
 	-moz-border-radius:4px 4px 4px 4px;
 	-webkit-border-radius:4px;
 	float:right;
@@ -966,11 +965,11 @@ div#main-inner form#sign-up-top input[type="text"] {
 	width:362px;
 	background: url(/images/static/text-form-bg.jpg) repeat-x
 }
-div#main-inner form#sign-up-top label {
+form#new_user label {
 	line-height:62px;
 	margin: 0 10px
 }
-div#main-inner form#sign-up-top h3 {
+form#new_user h3 {
 	background: url(/images/static/1.png) no-repeat 0 0;
 	padding-left: 60px;
 	height: 43px;
@@ -1078,7 +1077,7 @@ div#widget-4 img {
 	padding:10px;
 	outline:1px solid #ccc
 }
-div#main-inner form#sign-up-top input[type="text"] {
+form#new_user input[type="text"] {
 	-moz-border-radius:4px 4px 4px 4px;
 	-webkit-border-radius:4px;
 	float:right;
@@ -1567,16 +1566,16 @@ Browser Specific Fixes
 .ie7 div#main-inner form#contact-form input#contact-submit[type="submit"]:hover {
 	background-position:0 -40px
 }
-.ie7 div#main-inner form#sign-up-top input[type="text"] {
+.ie7 form#new_user input[type="text"] {
 	margin-top:-50px
 }
-.ie7 div#main-inner form#sign-up-bottom input[type="text"] {
+.ie7 form#sign-up-bottom input[type="text"] {
 	margin-top:-50px
 }
-.ie7 div#main-inner form#sign-up-bottom input[type="password"] {
+.ie7 form#sign-up-bottom input[type="password"] {
 	margin-top:-50px
 }
-.ie7 div#main-inner form#sign-up-top {
+.ie7 form#new_user {
 	margin-top:0
 }
 .ie7 div#main-inner input#create[type="submit"] {
