@@ -23,9 +23,7 @@ class CreateModels < ActiveRecord::Migration
     add_index :users, :email
     add_index :users, :persistence_token
     add_index :users, :last_request_at
-    
-    add_index :categories, :name
-    
+        
     create_table :participations do |t|
       t.integer :user_id, :survey_id
       t.integer :correct_count, :incorrect_count, :default => 0
