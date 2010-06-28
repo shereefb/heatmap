@@ -1,0 +1,33 @@
+    <div class="span-12 last" id="header">
+      <div class="span-2" id="logo"><a href="/index.html" title="Meedoo">Meedo</a></div>
+      <!-- end logo -->
+      <div class="span-10 last">
+<!-- begin nav -->
+        <ul class="sf-menu" id="topnav">
+          <li <%= "class='active'" if page == "home" %>> <a href="/index.html"><span>Home</span></a> </li>
+          <li <%= "class='active'" if page == "about" %>> <a href="/about.html"><span>About Us +</span></a>
+            <ul>
+              <li> <a href="/about.html">Overview</a> </li>
+              <li> <a href="/blog.html">Blog</a> </li>
+              <li> <a href="/hq.html">Meet our HQ's</a>
+              </li>
+              <li> <a href="/elements.html">Elements</a>
+              </li>
+            </ul>
+          </li>
+          <li <%= "class='active'" if page == "services" %>> <a href="/services.html"><span>Services +</span></a>
+            <ul>
+              <li> <a href="/pricing.html">Pricings</a> </li>
+              <li> <a href="/products.html">Products</a> </li>
+              <li> <a href="/apps.html">Applications</a> </li>
+              <li> <a href="/webdesign.html">Web Development</a> </li>
+            </ul>
+          </li>
+          <li <%= "class='active'" if page == "tour" %>> <a href="/tour.html"><span>Tour</span></a> </li>
+          <li <%= "class='active'" if page == "contact" %>> <a href="/contact.html"><span>Contact +</span></a>
+          <li class="sign-up"><a class="sign-up" href="/signup.html"><span class="sign-up">Sign Up</span></a><b></b></li>
+        </ul>
+      </div>
+      <!-- end nav -->
+    </div>
+    <!-- end header -->

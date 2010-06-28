@@ -79,11 +79,15 @@ ActionController::Routing::Routes.draw do |map|
     s.view_my_survey    "s:survey_code/:response_set_code.:format", :conditions => {:method => :get}, :action => "show", :format => "html"  # GET viewable/printable? survey
     s.edit_my_survey    "s:survey_code/:response_set_code/take",    :conditions => {:method => :get}, :action => "edit"                     # GET editable survey 
     s.update_my_survey  "s:survey_code/:response_set_code",         :conditions => {:method => :put}, :action => "update"                   # PUT edited survey 
-  end   
+  end  
+  
+  map.root :controller => 'home'
+  map.home ':page', :controller => 'home', :action => 'show', :page => /index.html|about.html|contact.html|blog.html|hq.html|pricing.html|signup.html|apps.html|products.html|services.html|single.html|tour.html|webdesign.html|index.htm|elements.html/                          
+  
   
   map.username ':username', :controller => 'users',
                             :action => 'show'
-                            
+  
 
   
   # Install the default routes as the lowest priority.

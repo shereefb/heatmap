@@ -43,7 +43,7 @@ module ApplicationHelper
     css_class << ' bottom' if bottom
     
     str = ""
-    str << link_to("My Surveys", dashboard_path)
+    str << link_to("My surveys", dashboard_path)
     str << " &#187; "
     str << link_to(@survey.title, survey_path(@survey))
     

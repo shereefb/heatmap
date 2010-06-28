@@ -52,22 +52,6 @@ a#logo
   img
     border: 0
 
-#header
-  width: 960px
-  padding: 10px 0
-  margin: 0 auto
-  #nav
-    float: right
-    margin-top: 25px
-    ul
-      li
-        float: left
-        padding: 0
-        margin: 0 0 0 20px
-        list-style-type: none
-        a
-          display: block
-          font-size: 16px
 
 body#users.edit #nav a.account,
 body#users.update #nav a.account,
@@ -98,15 +82,16 @@ hr#split
   &#failure
     color: #b80028
 
-#content
+#main-inner
+  font-family: arial, tahoma, verdana, sans-serif
   width: 960px
-  margin: 20px auto
   #left
-    float: left
-    width: 620px
     h2
+      padding-top: 18px
+      color: #44a1dc
       font-size: 22px
       margin-top: 5px
+      max-width: 400px
     #mid_nav
       float: right
       font-size: 14px
@@ -121,8 +106,6 @@ hr#split
       &.incorrect
         background: $red
   #right
-    float: right
-    width: 340px
     h3
       margin-top: 0
       margin-left: 40px
@@ -148,13 +131,6 @@ hr#split
         border-bottom: 1px solid #efe9ba
     .show_table
       margin-left: 40px
-
-#footer
-  width: 960px
-  margin: 40px auto 20px
-  border-top: 1px dotted #cccccc
-  padding: 10px 0
-  color: #aaaaaa
 
 .submit
   float: left

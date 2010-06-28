@@ -74,11 +74,14 @@ hr#split {
     color: #b80028; }
 
 #main-inner {
+  font-family: arial, tahoma, verdana, sans-serif;
   width: 960px; }
   #main-inner #left h2 {
+    padding-top: 18px;
+    color: #44a1dc;
     font-size: 22px;
     margin-top: 5px;
- 	max-width: 400px;}
+    max-width: 400px; }
   #main-inner #left #mid_nav {
     float: right;
     font-size: 14px; }
