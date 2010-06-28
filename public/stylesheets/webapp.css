@@ -19,6 +19,7 @@ a {
     color: #cc0000; }
 
 label {
+  display: block;
   font-weight: bold;
   margin-bottom: 1px; }
 
@@ -94,7 +95,8 @@ hr#split {
     #main-inner #left #mid_nav.incorrect {
       background: #cc0000; }
   #main-inner #right h3 {
-    margin-top: 0; }
+    margin-top: 0;
+    margin-left: 40px; }
     #main-inner #right h3.top {
       margin-top: 20px; }
   #main-inner #right ul {
@@ -141,27 +143,34 @@ hr#split {
       text-decoration: none;
       color: #ddffd1; }
 
-.form {
-  background: #f5f5f5;
+form {
+  background: #f4f4f4 url(/images/static/white-space.gif) repeat-x top left;
+  border: 1px solid #cccccc;
+  overflow: hidden;
+  padding: 30px;
   float: left;
-  width: 100%; }
-  .form form {
-    margin: 15px; }
-    .form form textarea,
-    .form form input.text {
-      width: 530px; }
-    .form form input.big {
-      font-size: 14px;
-      padding: 2px; }
-    .form form .formatting {
-      float: right;
-      margin-right: 50px; }
-    .form form .submit {
-      margin-bottom: 15px; }
-    .form form .field {
-      margin-bottom: 15px; }
-      .form form .field .hint {
-        margin-top: 2px; }
+  margin: 15px; }
+  form textarea,
+  form input[type="text"],
+  form input[type="password"] {
+    moz-border-radius: 4px 4px 4px 4px;
+    webkit-border-radius: 4px;
+    margin: 1.5em 0;
+    padding: 10px 11px;
+    background: white url(/images/static/text-form-bg.jpg) repeat-x;
+    width: 530px; }
+  form input.big {
+    font-size: 14px;
+    padding: 2px; }
+  form .formatting {
+    float: right;
+    margin-right: 50px; }
+  form .submit {
+    margin-bottom: 15px; }
+  form .field {
+    margin-bottom: 15px; }
+    form .field .hint {
+      margin-top: 2px; }
 
 .new_ajax_form {
   background: #f5f5f5;

@@ -4,30 +4,29 @@
 
 #sign-up-top
   - form_for @user do |f|
-    %h3 Fill your personal information
     = render :partial => 'form', :locals => {:f => f}
     .field
       = recaptcha_tags
       - if @user.errors['base']
         .formError= @user.errors['base']
-  .submit= submit_tag 'Signup', :disable_with => 'Creating Account...', :id => 'create'
+    .submit= submit_tag 'Signup', :disable_with => 'Creating Account...', :id => 'create'
 
 - content_for :right do  
   #thanks
     <img src="/images/static/thanks.png" alt="" />
     <hr />
-  #trial
-    %h3 
-      30-day Free Trial
-      %p We need your billing information to reduce fraud and verify you have a valid credit card should you keep your account open
-    <hr />
-  #text-widget
-    .cloud
-      %h3 
-        Meedo are simply the best
-        %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-        %p.client
-          %strong Collis Taeed
-    <hr />
-  #widget-4
-    %h3 Who use PsychSurveys?
+  / #trial
+  /   %h3 
+  /     30-day Free Trial
+  /     %p We need your billing information to reduce fraud and verify you have a valid credit card should you keep your account open
+  /   <hr />
+  / #text-widget
+  /   .cloud
+  /     %h3 
+  /       Meedo are simply the best
+  /       %p Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+  /       %p.client
+  /         %strong Collis Taeed
+  /   <hr />
+  / #widget-4
+  /   %h3 Who use PsychSurveys?

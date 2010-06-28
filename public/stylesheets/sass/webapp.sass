@@ -26,6 +26,7 @@ a
     color: $red
 
 label
+  display: block
   font-weight: bold
   margin-bottom: 1px
 
@@ -107,6 +108,7 @@ hr#split
   #right
     h3
       margin-top: 0
+      margin-left: 40px
       &.top
         margin-top: 20px
     ul
@@ -153,27 +155,34 @@ hr#split
       text-decoration: none
       color: #ddffd1
 
-.form
-  background: $gray_bg
+form
+  background: #f4f4f4 url(/images/static/white-space.gif) repeat-x top left
+  border: 1px solid #ccc
+  overflow: hidden
+  padding: 30px
   float: left
-  width: 100%
-  form
-    margin: 15px
-    textarea,
-    input.text
-      width: 530px
-    input.big
-      font-size: 14px
-      padding: 2px
-    .formatting
-      float: right
-      margin-right: 50px
-    .submit
-      margin-bottom: 15px
-    .field
-      margin-bottom: 15px
-      .hint
-        margin-top: 2px
+  margin: 15px
+  textarea,
+  input[type="text"],
+  input[type="password"]
+    moz-border-radius: 4px 4px 4px 4px
+    webkit-border-radius: 4px
+    margin: 1.5em 0
+    padding: 10px 11px
+    background: #fff url(/images/static/text-form-bg.jpg) repeat-x
+    width: 530px
+  input.big
+    font-size: 14px
+    padding: 2px
+  .formatting
+    float: right
+    margin-right: 50px
+  .submit
+    margin-bottom: 15px
+  .field
+    margin-bottom: 15px
+    .hint
+      margin-top: 2px
 
 .new_ajax_form
   background: $gray_bg
