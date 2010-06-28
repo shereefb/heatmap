@@ -1,0 +1,123 @@
+- @page_title = "Section ##{@section.id}: #{@section.title}"
+
+- if current_user
+  - if owner? or suggester?
+    #mid_nav= link_to 'Edit Section', edit_survey_section_path(@survey, @section), :class => 'edit'
+
+= survey_link
+
+%h2= @page_title
+
+#show_section= @section.description
+
+.heading
+  %h3= 'Questions (' + @questions.count.to_s + ')'
+  = link_to 'Add Question', new_survey_section_question_path(@survey,@section), :class => 'add'
+
+.content
+  = render :partial => 'questions/list', :locals => {:questions => @questions}
+
+/ .heading
+/   %h3
+/     Answers
+/     - if (owner? || suggester?) and @answers.any? and not @question.has_correct_answer?
+/       %span.warning &ndash; This question lacks a correct answer
+/   = link_to 'Add Answer', '#', :class => 'add ajax' if owner? or suggester?
+/ 
+/ 
+/ - if current_user
+/ 
+/   - if owner? or suggester?
+/     .new_ajax_form
+/       %h4 Add Answer
+/       - form_for @answer, :url => survey_question_answers_path(@survey, @question) do |f|
+/         = f.text_area :body
+/         .checkbox
+/           = f.check_box :correct
+/           = f.label :correct, 'Is this the correct answer?'
+/         .submit
+/           = submit_tag 'Add Answer', :disable_with => 'Adding Answer...'
+/           %span or
+/           = link_to 'Cancel', '#', :class => 'cancel'
+/ 
+/     - if @answers.any?
+/       %ul#answers_list= render :partial => 'answers/answer', :collection => @answers
+/     - else
+/       = no_items('No answers have been added yet.')
+/       
+/   - else
+/   
+/     - if current_user.participating?(@survey)
+/       - if @answers.any? and @answers.any?(&:correct?)
+/         - form_for @user_answer, :url => survey_question_user_answers_path(@survey, @question) do |f|
+/           %ul#answers_list.participating
+/             - @answers.each do |answer|
+/               %li{:class => user_answer_li_class(answer)}
+/                 .show_body
+/                   .radio_button
+/                     %p= f.radio_button :answer_id, answer.id, :disabled => !@user_answer.new_record?
+/                   = answer.body.to_html
+/           
+/           - if @user_answer.new_record?
+/             .submit= submit_tag 'Submit Answer', :disable_with => 'Submitting Answer...'
+/           - else
+/             .try_again
+/               - if @user_answer.correct?
+/                 Congratulations! You answered this question correctly.
+/               - elsif all_questions_answered?
+/                 = link_to 'Try Again', user_answer_path(@user_answer), :method => :delete
+/               - else
+/                 You must
+/                 %strong answer all
+/                 the questions in this survey before you can try again.
+/           
+/       - else
+/         = no_items('No answers have been added yet.')
+/         
+/     - else
+/       = no_items("You must #{link_to 'participate', participate_survey_path(@survey), :method => :post} in this survey to answer questions.")
+/     
+/ - else
+/   = no_items("You must #{link_to 'login', login_path} or #{link_to 'signup', signup_path} to view answers.")
+/   
+/ 
+/ - content_for :right do
+/   - if suggester?
+/     %h3 Your Suggested Questions
+/     - if @suggested_questions.any?
+/       .show_table
+/         %table
+/           %thead
+/             %tr
+/               %th Number
+/           %tbody
+/             - @suggested_questions.each do |question|
+/               %tr{:class => cycle('even', ['even', 'odd'])}
+/                 %td= show_number(question)
+/     - else
+/       = no_items('No suggested questions found')
+/   - else
+/     .next_and_previous
+/       .prev= prev_question
+/       .next= next_question
+/       
+/     - if owner? and @question.suggester? and not @question.approved?
+/       .box
+/         .info.yellow
+/           This question was suggested by
+/           = user_link(@question.suggester)
+/           on
+/           = @question.created_at.to_s(:detailed)
+/           .button= link_to 'Approve It', approve_question_path(@question), :method => :put
+/   
+/   
+/   - if participant?
+/     .answered_count
+/       = total_answered
+/       answered out of
+/       %strong= number_with_delimiter(@total_questions)
+/     .correct_incorrect
+/       %strong.correct= number_with_delimiter(@participation.try(:correct_count) || 0)
+/       correct,
+/       %strong.incorrect= number_with_delimiter(@participation.try(:incorrect_count) || 0)
+/       incorrect for this survey

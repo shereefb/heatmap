@@ -1,0 +1,13 @@
+- @page_title = "Edit Section ##{@section.id} - #{@section.title}"
+
+= survey_link(true)
+
+%h2= @page_title
+
+.form
+  - form_for @section, :url => survey_section_path(@survey, @section) do |f|
+    = render :partial => 'form', :locals => {:f => f}
+    .submit
+      = submit_tag 'Update Section', :disable_with => 'Updating Section...'
+      %span or
+      = link_to 'Cancel', survey_section_path(@survey, @section), :class => 'cancel'
