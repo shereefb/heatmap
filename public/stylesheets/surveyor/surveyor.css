@@ -126,8 +126,7 @@ body {
     #surveyor .question .help {
       font-size: 0.8em;
       font-style: italic;
-      color: black;
-      display: none; }
+      color: black;}
   #surveyor ol.answers {
     list-style-type: none;
     padding: 0.2em;

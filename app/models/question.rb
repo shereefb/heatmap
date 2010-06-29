@@ -55,11 +55,14 @@ class Question < ActiveRecord::Base
   def self.create_with_default_values(variation,params)
     case variation
       when 'pickoneradio':
-        qdesc = "What is your favorite color bitch?"
+        qdesc = "What is your favorite color?"
         adesc = "Red\nBlue\nGreen\nYellow"
         new_params = {:pick => 'one'}
       when 'pickonedropdown':
       when 'pickany':
+        qdesc = "Pick as many flowers as you want?"
+        adesc = "Rose\nTulip\nDaisy\nSun Flower"
+        new_params = {:pick => 'any'}
       when 'string':
       when 'stringmultiple':
       when 'label':
@@ -73,7 +76,7 @@ class Question < ActiveRecord::Base
       when 'rank':
       when 'repeater':
     end
-    @question = Question.new({:qdesc => qdesc, :adesc => adesc}.merge(params).merge(new_params))
+    @question = Question.new({:qdesc => qdesc, :adesc => adesc}.merge(params).merge(new_params).merge({:variation => variation}))
     # @question = Question.new({:text => "What's your favorite color?", :pick => :one}.merge(params))
     @question.save
     

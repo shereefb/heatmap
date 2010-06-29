@@ -82,8 +82,6 @@ jQuery(function($) {
     };
   };
     
-  console.log("version of jquery" + $().jquery);
-
   autogrow();
   
   $('.heading a.add.ajax').click(function() {

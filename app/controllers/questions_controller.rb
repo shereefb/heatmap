@@ -21,17 +21,17 @@ class QuestionsController < ApplicationController
     
   end
 
-  def create
-    @question = @section.questions.build(params[:question])
-    
-    if @question.save
-      flash[:success] = 'Question added'
-      redirect_to survey_section_url(@survey, @section)
-    else
-      render :new
-    end
-  end
-    
+  # def create
+  #   @question = @section.questions.build(params[:question])
+  #   
+  #   if @question.save
+  #     flash[:success] = 'Question added'
+  #     redirect_to survey_section_url(@survey, @section)
+  #   else
+  #     render :new
+  #   end
+  # end
+  #   
   def show
   end
   
@@ -47,6 +47,7 @@ class QuestionsController < ApplicationController
         format.js do
           render :update do |page|
             @response_set = ResponseSet.dummy
+            @question.reload
             page.replace_html "question_preview", :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
             page.visual_effect :highlight, "question_preview", :duration => 3
           end

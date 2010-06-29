@@ -46,9 +46,9 @@ module ApplicationHelper
     link_to(name, "#", :onclick => onclick)
   end
 
-  def fancybox_link(name, id,cssclass)
-    logger.info("css class #{cssclass}")
-    onclick = "$.fancybox($('#" + id + "').html(), {'width': '90%','height' : '95%'}); "
+  def fancybox_link(name, id, title, cssclass)
+    onclick = "$('##{id}').show();"
+    onclick << "$.fancybox({'autoDimensions':true, 'width': '90%','height' : '95%','title' : '#{title}','content': $('##{id}')}); "
     onclick << "return false;"
     link_to(name, "#", :onclick => onclick, :class => cssclass)
   end

@@ -1,7 +1,10 @@
 --- 
 javascripts: 
 - base: 
+  - jquery-ui
   - jquery.form
   - jquery.autogrow
+  - application
   - static/superfish
   - static/hoverIntent
+  - static/execute
