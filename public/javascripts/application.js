@@ -82,7 +82,8 @@ jQuery(function($) {
     };
   };
     
-  
+  console.log("version of jquery" + $().jquery);
+
   autogrow();
   
   $('.heading a.add.ajax').click(function() {
@@ -121,6 +122,8 @@ jQuery(function($) {
   $('form#new_user_session').find('input#user_session_username').focus();
   $('form#new_password_reset').find('input#email').focus();
 });
+
+
 
 function autogrow() {
   $('textarea').autogrow();

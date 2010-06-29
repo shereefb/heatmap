@@ -49,7 +49,6 @@ class QuestionsController < ApplicationController
             @response_set = ResponseSet.dummy
             page.replace_html "question_preview", :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
             page.visual_effect :highlight, "question_preview", :duration => 3
-        
           end
         end
         format.html {redirect_to edit_survey_section_question_url(@survey, @section, @question)}

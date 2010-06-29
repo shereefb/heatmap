@@ -3,6 +3,5 @@ javascripts:
 - base: 
   - jquery.form
   - jquery.autogrow
-  - application
   - static/superfish
   - static/hoverIntent
