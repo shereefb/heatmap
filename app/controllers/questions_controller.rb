@@ -4,13 +4,21 @@ class QuestionsController < ApplicationController
   before_filter :find_section
   before_filter :find_question, :except => [:new, :create]
   before_filter :authorize_survey, :except => [:show]
-  # 
-  # def suggest
-  #   @question = Question.new :suggester_id => current_user.id
-  # end
-  # 
+
   def new
-    @question = Question.new
+    @question = Question.create_with_default_values params[:variation], {:section_id => @section.id}
+    # @question.section = @section
+    # @question.variation = 
+    # @question.create_with_default_values 
+
+    if @question
+      flash[:success] = 'Question added'
+      redirect_to edit_survey_section_question_url(@survey, @section, @question)
+    else
+      flash[:success] = 'Failed to create question'
+      render :new
+    end
+    
   end
 
   def create
@@ -28,12 +36,24 @@ class QuestionsController < ApplicationController
   end
   
   def edit
+    @response_set = ResponseSet.dummy
   end
   
   def update
+    @question.default_args
     if @question.update_attributes(params[:question])
       flash[:success] = 'Question updated'
-      redirect_to survey_section_url(@survey, @section)
+      respond_to do |format|
+        format.js do
+          render :update do |page|
+            @response_set = ResponseSet.dummy
+            page.replace_html "question_preview", :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
+            page.visual_effect :highlight, "question_preview", :duration => 3
+        
+          end
+        end
+        format.html {redirect_to edit_survey_section_question_url(@survey, @section, @question)}
+      end
     else
       render :edit
     end

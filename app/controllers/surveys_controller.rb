@@ -5,6 +5,7 @@ class SurveysController < ApplicationController
   
   def index
     @surveys = Survey.all
+    @question = Question.new
   end
   
   def new

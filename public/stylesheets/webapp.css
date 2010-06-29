@@ -80,8 +80,7 @@ hr#split {
     padding-top: 18px;
     color: #44a1dc;
     font-size: 22px;
-    margin-top: 5px;
-    max-width: 400px; }
+    margin-top: 5px; }
   #main-inner #left #mid_nav {
     float: right;
     font-size: 14px; }
@@ -101,7 +100,7 @@ hr#split {
       margin-top: 20px; }
   #main-inner #right ul {
     margin-left: 40px; }
-  #main-inner #right .no_items, #main-inner #right .box {
+  #main-inner #right .no_items, #main-inner #right .boxxx {
     float: right;
     margin-left: 40px;
     width: 300px; }
@@ -132,7 +131,8 @@ hr#split {
   font-size: 12px; }
   .heading h3 {
     margin: 5px 0 5px 8px;
-    float: left; }
+    float: left;
+    font-size: 1.6em; }
   .heading a.add {
     float: right;
     padding: 5px 8px;
@@ -142,6 +142,9 @@ hr#split {
     .heading a.add:hover {
       text-decoration: none;
       color: #ddffd1; }
+
+.hidden {
+  display: none; }
 
 form {
   background: #f4f4f4 url(/images/static/white-space.gif) repeat-x top left;
@@ -222,30 +225,30 @@ form {
   background: #00609d;
   float: left;
   width: 100%; }
-  #surveys_box .box {
+  #surveys_box .boxxx {
     width: 310px;
     float: left; }
-    #surveys_box .box.end ul, #surveys_box .box.end h3 {
+    #surveys_box .boxxx.end ul, #surveys_box .boxxx.end h3 {
       margin-left: 9px; }
-    #surveys_box .box h3 {
+    #surveys_box .boxxx h3 {
       margin-left: 15px;
       color: white;
       text-shadow: 1px 1px 0 #002841; }
-    #surveys_box .box ul {
+    #surveys_box .boxxx ul {
       margin: 0 0 15px 15px;
       width: 285px;
       padding: 0;
       border-top: 1px solid #0080d2;
       background: #0071b9; }
-      #surveys_box .box ul li {
+      #surveys_box .boxxx ul li {
         list-style-type: none;
         margin: 0;
         padding: 3px 0;
         border-bottom: 1px solid #0080d2; }
-        #surveys_box .box ul li a {
+        #surveys_box .boxxx ul li a {
           color: #cfecff;
           margin: 0 8px; }
-          #surveys_box .box ul li a:hover {
+          #surveys_box .boxxx ul li a:hover {
             text-decoration: none;
             color: white; }
 
@@ -298,16 +301,16 @@ form {
             #questions_list table tbody td.id .show_id a:hover {
               text-decoration: none;
               color: #aaaaaa; }
-      #questions_list table tbody td.body .box {
+      #questions_list table tbody td.body .boxxx {
         float: left;
         width: 100%;
         margin-bottom: 15px;
         padding: 0;
         background: #f5f5f5; }
-        #questions_list table tbody td.body .box.over {
+        #questions_list table tbody td.body .boxxx.over {
           background: #ffffdd;
           cursor: pointer; }
-        #questions_list table tbody td.body .box .show_body {
+        #questions_list table tbody td.body .boxxx .show_body {
           margin: 0 12px 12px;
           float: left; }
 
@@ -361,7 +364,8 @@ ul#answers_list {
 .meta {
   color: #888888; }
   .meta.bottom {
-    margin-bottom: 7px; }
+    margin-bottom: 7px;
+    width: 100%; }
 
 .no_items {
   background: #f5f5f5;
@@ -458,3 +462,8 @@ a.close_account {
   color: #cc0000;
   font-weight: bold;
   margin-top: 3px; }
+
+#question_preview .question div.number {
+  float: left; }
+#question_preview .answer label {
+  display: inline; }

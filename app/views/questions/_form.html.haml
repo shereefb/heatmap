@@ -1,4 +1,9 @@
 .field
-  = f.text_area :text
+  = f.label "Question Description"
+  = f.text_area :qdesc
+  = f.error_message_on :text, :prepend_text => 'Question '
+.field
+  = f.label "Answer Description"
+  = f.text_area :adesc
   = f.error_message_on :text, :prepend_text => 'Question '
 = markdown

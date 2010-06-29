@@ -12,10 +12,10 @@
 
 .heading
   %h3= 'Questions (' + @questions.count.to_s + ')'
-  = link_to 'Add Question', new_survey_section_question_path(@survey,@section), :class => 'add'
-
+  = fancybox_link 'Add Question', 'new_question_selector', 'add'
 .content
   = render :partial => 'questions/list', :locals => {:questions => @questions}
+  = render :partial => 'questions/new_question_selector', :locals => {:section => @section} 
 
 / .heading
 /   %h3

@@ -96,7 +96,7 @@ jQuery(function($) {
     return false;
   });
   
-  var question_box = $('#questions_list').find('.box');
+  var question_box = $('#questions_list').find('.boxxx');
   
   question_box.hover(
     function() {

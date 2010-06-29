@@ -1,13 +1,22 @@
-- @page_title = "Edit Question ##{@question.id}"
+= javascript_include_tag :defaults
+
+- @page_title = "Question ##{@question.id}"
 
 = survey_link(true)
-
+%br
 %h2= @page_title
 
 .form
-  - form_for @question, :url => survey_section_question_path(@survey, @section, @question) do |f|
+  - remote_form_for @question, :url => survey_section_question_path(@survey, @section, @question) do |f|
     = render :partial => 'form', :locals => {:f => f}
     .submit
       = submit_tag 'Update Question', :disable_with => 'Updating Question...'
       %span or
-      = link_to 'Cancel', survey_section_question_path(@survey, @section, @question), :class => 'cancel'
+      = link_to 'Close', survey_section_path(@survey, @section), :class => 'cancel'
+- content_for :right do
+  %br
+  %br
+  %br
+  %br
+  %h4 Preview Question
+  #question_preview= render :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}

@@ -15,8 +15,8 @@ class SectionsController < ApplicationController
     
     logger.info("what what")
     if @section.save
-      flash[:success] = 'Section added'
-      redirect_to survey_url(@survey)
+      flash[:success] = 'Section added successfully. Start populating it with questions...'
+      redirect_to survey_section_url(@survey, @section)
     else
       logger.info("failed")
       render :new
@@ -24,8 +24,6 @@ class SectionsController < ApplicationController
   end
     
   def show
-    logger.info("section #{@section}")
-    @question = Question.new
     @questions = @section.questions
   end
   

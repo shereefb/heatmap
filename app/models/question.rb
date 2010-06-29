@@ -15,6 +15,7 @@ class Question < ActiveRecord::Base
   
   # Instance Methods
   def initialize(*args)
+    logger.info("creating question with #{args.inspect}")
     super(*args)
     default_args
   end
@@ -23,6 +24,9 @@ class Question < ActiveRecord::Base
     self.is_mandatory ||= true
     self.display_type ||= "default"
     self.pick ||= "none"
+    self.text ||= self.qdesc
+    self.short_text ||= self.text
+    self.data_export_identifier ||= Surveyor.to_normalized_string(self.text) unless self.text.nil?
   end
   
   def mandatory?
@@ -48,6 +52,95 @@ class Question < ActiveRecord::Base
     r.blank? ? :default : r.to_sym
   end
   
+  def self.create_with_default_values(variation,params)
+    case variation
+      when 'pickoneradio':
+        qdesc = "What is your favorite color bitch?"
+        adesc = "Red\nBlue\nGreen\nYellow"
+        new_params = {:pick => 'one'}
+      when 'pickonedropdown':
+      when 'pickany':
+      when 'string':
+      when 'stringmultiple':
+      when 'label':
+      when 'textarea':
+      when 'number':
+      when 'float':
+      when 'datetime':
+      when 'time':
+      when 'slider':
+      when 'grid':
+      when 'rank':
+      when 'repeater':
+    end
+    @question = Question.new({:qdesc => qdesc, :adesc => adesc}.merge(params).merge(new_params))
+    # @question = Question.new({:text => "What's your favorite color?", :pick => :one}.merge(params))
+    @question.save
+    
+    @question
+  end
+  
+  def is_complex?
+    case self.variation
+      when 'pickoneradio':
+        return false;
+      when 'pickonedropdown':
+        return false;
+      when 'pickany':
+        return false;
+      when 'string':
+        return false;
+      when 'stringmultiple':
+        return false;
+      when 'label':
+        return false;
+      when 'textarea':
+        return false;
+      when 'number':
+        return false;
+      when 'float':
+        return false;
+      when 'datetime':
+        return false;
+      when 'time':
+        return false;
+      when 'slider':
+        return false;
+      when 'grid':
+        return true;
+      when 'rank':
+        return true;
+      when 'repeater':
+        return true;
+    end
+    return false;
+  end
+  
+  def find_answer_by_reference(ref_id)
+    self.answers.detect{|a| a.reference_identifier == ref_id}
+  end
+  
+  def before_update
+    return if self.id.nil?
+    self.text = self.qdesc
+    self.short_text = self.qdesc
+    generate_answers(self.adesc, :true) if self.adesc_changed?
+  end
+  
+  def after_create
+    generate_answers(self.adesc, :false)
+  end
+  
+  
+  def generate_answers(adesc, delete_old_answers_first)
+    self.answers.each do |a| a.destroy end if delete_old_answers_first
+      
+    return if adesc.nil? || self.id.nil?
+    
+    adesc.split("\n").each do |answer_text|
+      Answer.create :question_id => self.id, :text => answer_text
+    end
+  end
 end
 
 # # == Schema Information

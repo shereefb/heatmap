@@ -38,6 +38,23 @@ module ApplicationHelper
     '#' + dom_id(record)
   end  
   
+  def toggle_link(name, id, options={})
+    onclick = "$('##{id}').toggle(); "
+    onclick << "$('##{options[:second_toggle]}').toggle(); " if options[:second_toggle]
+    onclick << (options[:focus] ? "$('##{options[:focus]}').focus(); " : "this.blur(); ")
+    onclick << "return false;"
+    link_to(name, "#", :onclick => onclick)
+  end
+
+  def fancybox_link(name, id,cssclass)
+    logger.info("css class #{cssclass}")
+    onclick = "$.fancybox($('#" + id + "').html(), {'width': '90%','height' : '95%'}); "
+    onclick << "return false;"
+    link_to(name, "#", :onclick => onclick, :class => cssclass)
+  end
+
+  
+  
   def survey_link(bottom = false)
     css_class = 'meta'
     css_class << ' bottom' if bottom

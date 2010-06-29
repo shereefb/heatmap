@@ -10,6 +10,21 @@ class Answer < ActiveRecord::Base
   # Validations
   validates_presence_of :text
   validates_numericality_of :question_id, :allow_nil => false, :only_integer => true
+
+  # Instance Methods
+  def initialize(*args)
+    super(*args)
+    default_args
+  end
+  
+  def default_args
+    self.is_exclusive ||= false
+    self.response_class ||= "answer"
+    self.text ||= "Answer"
+    self.short_text ||= self.text
+    self.data_export_identifier ||= Surveyor.to_normalized_string(self.text)
+    self.display_order ||= question.answers.size + 1
+  end
   
   # Methods
   def renderer(q = question)  

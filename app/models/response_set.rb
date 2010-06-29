@@ -1,4 +1,6 @@
 class ResponseSet < ActiveRecord::Base
+  
+  DUMMY_CODE = :dummy_access
 
   # Associations
   belongs_to :survey
@@ -25,7 +27,15 @@ class ResponseSet < ActiveRecord::Base
   
   def default_args
     self.started_at ||= Time.now
-    self.access_code = Surveyor.make_tiny_code
+    self.access_code ||= Surveyor.make_tiny_code
+  end
+  
+  def self.dummy
+    dummy_set = ResponseSet.first(:conditions => {:access_code => DUMMY_CODE})
+    if !dummy_set
+      dummy_set = ResponseSet.create :access_code => ResponseSet::DUMMY_CODE, :user_id => :null, :survey_id => -1
+    end
+    dummy_set
   end
   
   def access_code=(val)

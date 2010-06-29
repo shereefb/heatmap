@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100626040515) do
+ActiveRecord::Schema.define(:version => 20100629052855) do
 
   create_table "answers", :force => true do |t|
     t.integer  "question_id"
@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(:version => 20100626040515) do
     t.string   "custom_renderer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "qdesc"
+    t.text     "adesc"
   end
 
   create_table "questions", :force => true do |t|
@@ -102,6 +104,9 @@ ActiveRecord::Schema.define(:version => 20100626040515) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "correct_answer_id"
+    t.string   "variation"
+    t.text     "qdesc"
+    t.text     "adesc"
   end
 
   create_table "response_sets", :force => true do |t|

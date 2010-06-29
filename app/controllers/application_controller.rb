@@ -91,8 +91,7 @@ class ApplicationController < ActionController::Base
   
   def find_question
     question_id = params[:question_id] || params[:id]
-    question_scope = @survey.try(:questions) || Question
-    @question = question_scope.find(question_id)
+    @question = Question.find(question_id)
   end
   
   def authorize_survey

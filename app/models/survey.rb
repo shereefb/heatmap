@@ -5,7 +5,7 @@ class Survey < ActiveRecord::Base
   belongs_to :user
   has_many :sections, :order => 'display_order'
   has_many :sections_with_questions, :include => :questions, :order => 'display_order'
-  has_many :questions, :through => :sections_with_questions
+  has_many :questions, :through => :sections
   has_many :response_sets
   
   # Scopes

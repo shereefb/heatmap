@@ -91,7 +91,6 @@ hr#split
       color: #44a1dc
       font-size: 22px
       margin-top: 5px
-      max-width: 400px
     #mid_nav
       float: right
       font-size: 14px
@@ -113,7 +112,7 @@ hr#split
         margin-top: 20px
     ul
       margin-left: 40px
-    .no_items, .box
+    .no_items, .boxxx
       float: right
       margin-left: 40px
       width: 300px
@@ -145,6 +144,7 @@ hr#split
   h3
     margin: 5px 0 5px 8px
     float: left
+    font-size: 1.6em
   a.add
     float: right
     padding: 5px 8px
@@ -154,6 +154,9 @@ hr#split
     &:hover
       text-decoration: none
       color: #ddffd1
+
+.hidden
+  display: none
 
 form
   background: #f4f4f4 url(/images/static/white-space.gif) repeat-x top left
@@ -237,7 +240,7 @@ form
   background: $dark_blue
   float: left
   width: 100%
-  .box
+  .boxxx
     width: 310px
     float: left
     &.end
@@ -316,7 +319,7 @@ form
                 text-decoration: none
                 color: #aaaaaa
         &.body
-          .box
+          .boxxx
             float: left
             width: 100%
             margin-bottom: 15px
@@ -383,6 +386,7 @@ ul#answers_list
   color: #888888
   &.bottom
     margin-bottom: 7px
+    width: 100%
 
 .no_items
   background: $gray_bg
@@ -486,3 +490,13 @@ a.close_account
     color: $red
     font-weight: bold
     margin-top: 3px
+
+  
+#question_preview
+  .question
+    div.number
+      float: left
+
+  .answer
+    label
+      display: inline

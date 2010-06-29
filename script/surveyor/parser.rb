@@ -69,6 +69,7 @@ module SurveyParser
       when "question", "q", "label", "image"
         drop_the &block
         self.current_question = Question.new(self.current_section, args, opts.merge(:question_group_id => current_question_group ? current_question_group.id : nil))
+        puts ("\n\nnew question: Args #{args.inspect}\n\n options: #{opts.merge(:question_group_id => current_question_group ? current_question_group.id : nil).inspect}\n\n")
         add_grid_answers if in_a_grid?
       
       when "dependency", "d"
