@@ -1,3 +1,4 @@
+
 // On document ready!
 jQuery(function($) {
   
@@ -81,6 +82,7 @@ jQuery(function($) {
       submit_btn.blur();
     };
   };
+
     
   autogrow();
   
@@ -121,6 +123,10 @@ jQuery(function($) {
   $('form#new_password_reset').find('input#email').focus();
 });
 
+
+function growl(message){
+	$.jGrowl(message);
+}
 
 
 function autogrow() {

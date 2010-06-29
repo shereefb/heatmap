@@ -21,12 +21,13 @@ class Question < ActiveRecord::Base
   end
   
   def default_args
-    self.is_mandatory ||= true
+    self.is_mandatory ||= false
     self.display_type ||= "default"
     self.pick ||= "none"
     self.text ||= self.qdesc
     self.short_text ||= self.text
     self.data_export_identifier ||= Surveyor.to_normalized_string(self.text) unless self.text.nil?
+    self.display_order ||= section.questions.size + 1
   end
   
   def mandatory?

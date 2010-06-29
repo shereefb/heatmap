@@ -11,6 +11,7 @@
     = javascript_include_merged :base
     = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
     = javascript_include_tag 'fancybox/jquery.fancybox-1.3.0.pack.js'
+    = include_growlr
     
   %body{:id => params[:controller], :class => params[:action]}
     #inner-page
@@ -18,8 +19,8 @@
         = render :partial => 'home/header', :locals => {:page => 'about'}
         #main-inner.span-12.last.clear
         
-          = content_tag(:div, flash[:success], :id => 'success', :class => 'flash') if flash[:success]
-          = content_tag(:div, flash[:failure], :id => 'failure', :class => 'flash') if flash[:failure]
+          / = content_tag(:div, flash[:success], :id => 'success', :class => 'flash') if flash[:success]
+          / = content_tag(:div, flash[:failure], :id => 'failure', :class => 'flash') if flash[:failure]
         
           #left.span-9= yield
         

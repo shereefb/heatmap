@@ -1,10 +1,14 @@
 - @page_title = "Section ##{@section.id}: #{@section.title}"
 
-- if current_user
-  - if owner? or suggester?
-    #mid_nav= link_to 'Edit Section', edit_survey_section_path(@survey, @section), :class => 'edit'
-
 = survey_link
+
+#mid_nav
+  = link_to 'Back to survey', survey_path(@survey), :class => 'edit'
+  |
+  = link_to 'Edit section', edit_survey_section_path(@survey, @section), :class => 'edit'
+  |
+  = link_to 'Add another section', new_survey_section_path(@survey), :class => 'edit'
+
 
 %h2= @page_title
 

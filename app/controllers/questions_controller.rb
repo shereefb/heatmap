@@ -42,7 +42,6 @@ class QuestionsController < ApplicationController
   def update
     @question.default_args
     if @question.update_attributes(params[:question])
-      flash[:success] = 'Question updated'
       respond_to do |format|
         format.js do
           render :update do |page|
@@ -50,9 +49,13 @@ class QuestionsController < ApplicationController
             @question.reload
             page.replace_html "question_preview", :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
             page.visual_effect :highlight, "question_preview", :duration => 3
+            page.call "growl", "Question updated successfully"
           end
         end
-        format.html {redirect_to edit_survey_section_question_url(@survey, @section, @question)}
+        format.html do
+          flash[:success] = 'Question updated'
+          redirect_to edit_survey_section_question_url(@survey, @section, @question)
+        end
       end
     else
       render :edit

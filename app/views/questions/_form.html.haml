@@ -1,3 +1,4 @@
+%h4= t("d_#{@question.variation}")
 .field
   = f.label "Question Description"
   .hint= t("q_#{@question.variation}")
@@ -13,4 +14,8 @@
   .hint= "Optional: Use this to provide more information/helps/hints about the question"
   = f.text_field :help_text
   = f.error_message_on :text, :prepend_text => 'Help Text '
+.field
+  = f.label "Required"
+  .hint= "If checked, participant will not be able to move to the next session without answering this question"
+  = f.check_box :is_mandatory
 = markdown
