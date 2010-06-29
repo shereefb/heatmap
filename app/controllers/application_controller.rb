@@ -4,7 +4,7 @@
 class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   
-  THE_DOMAIN = 'http://surveydoo.com'
+  THE_DOMAIN = 'http://PsychSurveys.com'
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details

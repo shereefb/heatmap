@@ -68,7 +68,7 @@ Spec::Runner.configure do |config|
 end
 
 def login(user = :justin)
-  @request.host = 'surveydoo.dev'
+  @request.host = 'PsychSurveys.dev'
   activate_authlogic
   UserSession.create(users(user))
 end
