@@ -4,5 +4,5 @@ delayed_job
 haml 
 acts_as_markup
 will_paginate
-recaptcharight_aws
+recaptcha
 right_aws
