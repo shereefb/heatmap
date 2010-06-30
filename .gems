@@ -5,3 +5,4 @@ haml
 acts_as_markup
 will_paginate
 recaptcharight_aws
+right_aws
