@@ -1,0 +1,19 @@
+user can select language
+participants add demographic data
+ask participants if they're ok w/ their results being published in aggregate to the world
+ask researchers the same (optional non-checked checkbox on a per-survey level)
+  - needs description of how confidentiality and anonymity will be upheld
+marketplace for people who will help with surveys
+videos for help
+ajaxify the building process
+auto-gift certificate management
+
+
+----
+
+required fields should show an asterix
+sorting
+ajaxify forms
+question and section numbers
+deal with return characters in question description
+slider preview broken

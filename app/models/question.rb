@@ -60,22 +60,41 @@ class Question < ActiveRecord::Base
         adesc = "Red\nBlue\nGreen\nYellow"
         new_params = {:pick => 'one'}
       when 'pickonedropdown':
+        qdesc = "What is your favorite color?"
+        adesc = "Red\nBlue\nGreen\nYellow"
+        new_params = {:pick => 'one', :display_type => 'dropdown'}
       when 'pickany':
         qdesc = "Pick as many flowers as you want?"
         adesc = "Rose\nTulip\nDaisy\nSun Flower"
         new_params = {:pick => 'any'}
       when 'string':
+        qdesc = "What is your first name?"
+        adesc = "String"
+        new_params = {:pick => 'none'}
       when 'stringmultiple':
+        qdesc = "What is your name?"
+        adesc = "First\nMiddle\nLast"
+        new_params = {:pick => 'none'}
       when 'label':
+        qdesc = "This is just a label\nNothing needed from you."
+        # adesc = "First\nMiddle\nLast"
+        new_params = {:pick => 'none', :display_type => 'label'}
       when 'textarea':
-      when 'number':
-      when 'float':
-      when 'datetime':
-      when 'time':
+        qdesc = "Write an essay about essays"
+        adesc = "Text"
+        new_params = {:pick => 'none'}
+      # when 'number':
+      # when 'float':
+      # when 'datetime':
+      # when 'date':
+      # when 'time':
       when 'slider':
-      when 'grid':
-      when 'rank':
-      when 'repeater':
+        qdesc = "What is your pain threshold?"
+        adesc = "1 (low)\n2\n3\n4\n5 (high)"
+        new_params = {:pick => 'one', :display_type => 'slider'}
+      # when 'grid':
+      # when 'rank':
+      # when 'repeater':
     end
     @question = Question.new({:qdesc => qdesc, :adesc => adesc}.merge(params).merge(new_params).merge({:variation => variation}))
     # @question = Question.new({:text => "What's your favorite color?", :pick => :one}.merge(params))
@@ -106,6 +125,8 @@ class Question < ActiveRecord::Base
         return false;
       when 'datetime':
         return false;
+      when 'date':
+        return false;
       when 'time':
         return false;
       when 'slider':
@@ -119,6 +140,46 @@ class Question < ActiveRecord::Base
     end
     return false;
   end
+  
+  
+  def has_predefined_answers?
+    case self.variation
+      when 'pickoneradio':
+        return true;
+      when 'pickonedropdown':
+        return true;
+      when 'pickany':
+        return true;
+      when 'string':
+        return false;
+      when 'stringmultiple':
+        return true;
+      when 'label':
+        return false;
+      when 'textarea':
+        return false;
+      when 'number':
+        return false;
+      when 'float':
+        return false;
+      when 'datetime':
+        return false;
+      when 'date':
+        return false;
+      when 'time':
+        return false;
+      when 'slider':
+        return true;
+      when 'grid':
+        return true;
+      when 'rank':
+        return true;
+      when 'repeater':
+        return true;
+    end
+    return false;
+  end
+  
   
   def find_answer_by_reference(ref_id)
     self.answers.detect{|a| a.reference_identifier == ref_id}
@@ -142,7 +203,36 @@ class Question < ActiveRecord::Base
     return if adesc.nil? || self.id.nil?
     
     adesc.split("\n").each do |answer_text|
-      Answer.create :question_id => self.id, :text => answer_text
+      case self.variation
+        when 'pickoneradio':
+          Answer.create :question_id => self.id, :text => answer_text
+        when 'pickonedropdown':
+          Answer.create :question_id => self.id, :text => answer_text
+        when 'pickany':
+          Answer.create :question_id => self.id, :text => answer_text
+        when 'string':
+          Answer.create :question_id => self.id, :text => answer_text, :hide_label => true, :response_class => 'string'
+        when 'stringmultiple':
+          Answer.create :question_id => self.id, :text => answer_text, :response_class => 'string'
+        when 'label':
+        when 'textarea':
+          Answer.create :question_id => self.id, :text => answer_text, :response_class => 'text', :hide_label => true
+        when 'number':
+          Answer.create :question_id => self.id, :text => answer_text, :hide_label => true
+        when 'float':
+          Answer.create :question_id => self.id, :text => answer_text, :hide_label => true
+        when 'datetime':
+          Answer.create :question_id => self.id, :text => answer_text, :response_class => 'datetime', :hide_label => true
+        when 'date':
+          Answer.create :question_id => self.id, :text => answer_text, :response_class => 'date', :hide_label => true
+        when 'time':
+          Answer.create :question_id => self.id, :text => answer_text, :response_class => 'time', :hide_label => true
+        when 'slider':
+          Answer.create :question_id => self.id, :text => answer_text, :hide_label => true
+        when 'grid':
+        when 'rank':
+        when 'repeater':
+      end
     end
   end
 end

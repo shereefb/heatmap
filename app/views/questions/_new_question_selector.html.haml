@@ -2,6 +2,7 @@
   select a new question baby
   %ul
     %li= link_to 'Pick one (radio buttons)', new_survey_section_question_path(@survey,@section, :variation => :pickoneradio)
+    %li= link_to 'Pick one (drop down)', new_survey_section_question_path(@survey,@section, :variation => :pickonedropdown)
     %li= link_to 'Pick any', new_survey_section_question_path(@survey,@section, :variation => :pickany)
     %li= link_to 'Simple one-line string', new_survey_section_question_path(@survey,@section, :variation => :string)
     %li= link_to 'Multiple one-line strings', new_survey_section_question_path(@survey,@section, :variation => :stringmultiple)
@@ -10,6 +11,7 @@
     %li= link_to 'Number: Integer', new_survey_section_question_path(@survey,@section, :variation => :number)
     %li= link_to 'Number: Decimal', new_survey_section_question_path(@survey,@section, :variation => :float)
     %li= link_to 'Date & Time', new_survey_section_question_path(@survey,@section, :variation => :datetime)
+    %li= link_to 'Date', new_survey_section_question_path(@survey,@section, :variation => :date)
     %li= link_to 'Time', new_survey_section_question_path(@survey,@section, :variation => :time)
     %li= link_to 'Slider', new_survey_section_question_path(@survey,@section, :variation => :slider)
     %li= link_to 'Grid', new_survey_section_question_path(@survey,@section, :variation => :grid)

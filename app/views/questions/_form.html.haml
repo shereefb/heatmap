@@ -4,18 +4,19 @@
   .hint= t("q_#{@question.variation}")
   = f.text_area :qdesc
   = f.error_message_on :text, :prepend_text => 'Question Description '
-.field
-  = f.label "Answer Description"
-  .hint= t("a_#{@question.variation}")
-  = f.text_area :adesc
-  = f.error_message_on :text, :prepend_text => 'Answer Description '
+- if @question.has_predefined_answers?
+  .field
+    = f.label "Answer Description"
+    .hint= t("a_#{@question.variation}")
+    = f.text_area :adesc
+    = f.error_message_on :text, :prepend_text => 'Answer Description '
 .field
   = f.label "Help text"
   .hint= "Optional: Use this to provide more information/helps/hints about the question"
   = f.text_field :help_text
   = f.error_message_on :text, :prepend_text => 'Help Text '
 .field
+  = f.check_box :is_mandatory
   = f.label "Required"
   .hint= "If checked, participant will not be able to move to the next session without answering this question"
-  = f.check_box :is_mandatory
 = markdown

@@ -1,6 +1,7 @@
 --- 
 javascripts: 
 - base: 
+  - jquery
   - jquery-ui
   - jquery.form
   - jquery.autogrow
