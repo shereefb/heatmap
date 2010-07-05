@@ -59,6 +59,14 @@ List of universities that are using it
 -----
 content stuff:
 
+front page:
+  - testimonial column
+  - help links
+  - front page images
+  
 privacy.html
 testimonials.html
 help.html
+footer links
+header links
+library
