@@ -71,7 +71,7 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.signup 'signup', :controller => 'users', :action => 'new'
   
-  map.root :controller => 'dashboards', :action => 'show'
+  # map.root :controller => 'dashboards', :action => 'show'
 
   map.with_options :controller => 'surveyor' do |s|
     s.available_surveys "s",                                        :conditions => {:method => :get}, :action => "new"                      # GET survey list
@@ -82,7 +82,7 @@ ActionController::Routing::Routes.draw do |map|
   end  
   
   map.root :controller => 'home'
-  map.home ':page', :controller => 'home', :action => 'show', :page => /index.html|about.html|contact.html|blog.html|hq.html|pricing.html|signup.html|apps.html|products.html|services.html|single.html|tour.html|webdesign.html|index.htm|elements.html/                          
+  map.home ':page', :controller => 'home', :action => 'show', :page => /index.html|about.html|contact.html|blog.html|hq.html|pricing.html|signup.html|apps.html|products.html|services.html|single.html|tour.html|webdesign.html|index.htm|elements.html|privacy.html|library.html|features.html|testimonials.html|irb.html/                          
   
   
   map.username ':username', :controller => 'users',

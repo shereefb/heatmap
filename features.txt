@@ -40,6 +40,7 @@ help text for questions
 fix menu
 custom logo
 custom css
+ssl
 
 ----
 
@@ -54,7 +55,7 @@ Things from steve:
 
 Testimonials
 List of universities that are using it
-
+Resources
 
 -----
 content stuff:
@@ -64,9 +65,11 @@ front page:
   - help links
   - front page images
   
-privacy.html
+DONE privacy.html
 testimonials.html
 help.html
-footer links
-header links
-library
+DONE footer links
+DONE header links
+library.html
+resources.html
+compare.html (show comparison with survey monkey, psych data...etc.)
