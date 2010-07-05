@@ -6,8 +6,8 @@ ask researchers the same (optional non-checked checkbox on a per-survey level)
 marketplace for people who will help with surveys
 videos for help
 ajaxify the building process
-auto-gift certificate management
-
+auto-gift certificate management: http://g-ecx.images-amazon.com/images/G/01/gift-certificates/corporate/AmazonGC_OnDemand_Overview._V262105688_.pdf
+security (removing scripts from answers)
 
 ----
 
@@ -17,3 +17,34 @@ ajaxify forms
 question and section numbers
 deal with return characters in question description
 slider preview broken
+DONE date question type doesn't render right
+image question types
+complex question
+research more question types (e.g. image options, gradients...etc.)
+adding question twice doesn't work
+close image on fancybox is broken
+autofocus on form fields that need to be filled
+survey lock-in: once it's started, it can't be edited before the result set is saved/stored
+split page here feature
+add question here feature
+move question feature
+DONE remove captcha
+redirect to the right page from  home
+remove repeater type
+add rank type
+add grid type for select any
+help text for questions
+
+----
+
+BUGS:
+slider and grid not working in add question type
+help text and required shouldn't show for label question
+
+
+----
+
+Things from steve:
+
+Testimonials
+List of universities that are using it

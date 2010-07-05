@@ -1,13 +1,20 @@
-%h4= t("d_#{@question.variation}")
+- @variation = @question.part_of_group? ? @question.question_group.variation : @question.variation
+%h4= t("d_#{@variation}")
+- if @question.part_of_group?
+  .field
+    = f.label "#{@variation} Description"
+    .hint= t("b_#{@variation}")
+    = f.text_area :bdesc
+    = f.error_message_on :text, :prepend_text => 'Question List '
 .field
   = f.label "Question Description"
-  .hint= t("q_#{@question.variation}")
+  .hint= t("q_#{@variation}")
   = f.text_area :qdesc
   = f.error_message_on :text, :prepend_text => 'Question Description '
 - if @question.has_predefined_answers?
   .field
     = f.label "Answer Description"
-    .hint= t("a_#{@question.variation}")
+    .hint= t("a_#{@variation}")
     = f.text_area :adesc
     = f.error_message_on :text, :prepend_text => 'Answer Description '
 .field

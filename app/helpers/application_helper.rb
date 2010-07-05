@@ -47,8 +47,9 @@ module ApplicationHelper
   end
 
   def fancybox_link(name, id, title, cssclass)
-    onclick = "$('##{id}').show();"
-    onclick << "$.fancybox({'autoDimensions':true, 'width': '90%','height' : '95%','title' : '#{title}','content': $('##{id}')}); "
+    onclick = "$('body').append('<span id=\"fancy_container\">' + $('##{id}').html() + '</span>');"
+    # onclick = "$('##{id}').show();"
+    onclick << "$.fancybox({'autoDimensions':true, 'width': '90%','height' : '95%','title' : '#{title}','content': $('#fancy_container')}); "
     onclick << "return false;"
     link_to(name, "#", :onclick => onclick, :class => cssclass)
   end

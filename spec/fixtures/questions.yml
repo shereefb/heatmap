@@ -10,6 +10,7 @@ ruby:
   approved: true
 
 
+
 # == Schema Information
 #
 # Table name: questions
@@ -34,5 +35,8 @@ ruby:
 #  created_at             :datetime
 #  updated_at             :datetime
 #  correct_answer_id      :integer
+#  variation              :string(255)
+#  qdesc                  :text
+#  adesc                  :text
 #
 

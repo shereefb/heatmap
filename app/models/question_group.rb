@@ -12,6 +12,8 @@ class QuestionGroup < ActiveRecord::Base
   
   def default_args
     self.display_type ||= "inline"
+    self.is_mandatory ||= false
+    self.text ||= self.bdesc
   end
 
   def renderer
@@ -28,7 +30,27 @@ class QuestionGroup < ActiveRecord::Base
     [(dependent? ? "dependent" : nil), (triggered?(response_set) ? nil : "hidden"), custom_class].compact.join(" ")
   end
   
+  def after_create
+    generate_questions
+  end
+  
+  def before_update
+    return if self.id.nil?
+    self.text = self.bdesc
+    if self.adesc_changed? || self.qdesc_changed?  
+      self.questions.each do |q| q.destroy end
+      generate_questions
+    end
+  end
+  
+  def generate_questions
+    self.qdesc.split("\n").each do |question_text|
+      Question.create :qdesc => question_text, :adesc => self.adesc, :pick => 'one', :variation => 'pickoneradio', :is_mandatory => self.is_mandatory, :section_id => self.section_id, :question_group_id => self.id
+    end
+  end
+  
 end
+
 
 # == Schema Information
 #
@@ -46,5 +68,8 @@ end
 #  custom_renderer        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  qdesc                  :text
+#  adesc                  :text
+#  section_id             :integer
 #
 

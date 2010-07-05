@@ -1,19 +1,19 @@
 #new_question_selector.hidden
   select a new question baby
   %ul
-    %li= link_to 'Pick one (radio buttons)', new_survey_section_question_path(@survey,@section, :variation => :pickoneradio)
-    %li= link_to 'Pick one (drop down)', new_survey_section_question_path(@survey,@section, :variation => :pickonedropdown)
-    %li= link_to 'Pick any', new_survey_section_question_path(@survey,@section, :variation => :pickany)
-    %li= link_to 'Simple one-line string', new_survey_section_question_path(@survey,@section, :variation => :string)
-    %li= link_to 'Multiple one-line strings', new_survey_section_question_path(@survey,@section, :variation => :stringmultiple)
-    %li= link_to 'Free form text area', new_survey_section_question_path(@survey,@section, :variation => :textarea)
-    %li= link_to 'Label', new_survey_section_question_path(@survey,@section, :variation => :label)
-    %li= link_to 'Number: Integer', new_survey_section_question_path(@survey,@section, :variation => :number)
-    %li= link_to 'Number: Decimal', new_survey_section_question_path(@survey,@section, :variation => :float)
-    %li= link_to 'Date & Time', new_survey_section_question_path(@survey,@section, :variation => :datetime)
-    %li= link_to 'Date', new_survey_section_question_path(@survey,@section, :variation => :date)
-    %li= link_to 'Time', new_survey_section_question_path(@survey,@section, :variation => :time)
-    %li= link_to 'Slider', new_survey_section_question_path(@survey,@section, :variation => :slider)
-    %li= link_to 'Grid', new_survey_section_question_path(@survey,@section, :variation => :grid)
-    %li= link_to 'Rank', new_survey_section_question_path(@survey,@section, :variation => :rank)
-    %li= link_to 'Repeater', new_survey_section_question_path(@survey,@section, :variation => :repeater)
+    %li= link_to_remote 'Pick one (radio buttons)', :url => new_survey_section_question_path(@survey,@section, :variation => :pickoneradio), :method => :get
+    %li= link_to_remote 'Pick one (drop down)', :url => new_survey_section_question_path(@survey,@section, :variation => :pickonedropdown), :method => :get
+    %li= link_to_remote 'Pick any', :url => new_survey_section_question_path(@survey,@section, :variation => :pickany), :method => :get
+    %li= link_to_remote 'Simple one-line string', :url => new_survey_section_question_path(@survey,@section, :variation => :string), :method => :get
+    %li= link_to_remote 'Multiple one-line strings', :url => new_survey_section_question_path(@survey,@section, :variation => :stringmultiple), :method => :get
+    %li= link_to_remote 'Free form text area', :url => new_survey_section_question_path(@survey,@section, :variation => :textarea), :method => :get
+    %li= link_to_remote 'Label', :url => new_survey_section_question_path(@survey,@section, :variation => :label), :method => :get
+    %li= link_to_remote 'Number: Integer', :url => new_survey_section_question_path(@survey,@section, :variation => :number), :method => :get
+    %li= link_to_remote 'Number: Decimal', :url => new_survey_section_question_path(@survey,@section, :variation => :float), :method => :get
+    %li= link_to_remote 'Date & Time', :url => new_survey_section_question_path(@survey,@section, :variation => :datetime), :method => :get
+    %li= link_to_remote 'Date', :url => new_survey_section_question_path(@survey,@section, :variation => :date), :method => :get
+    %li= link_to_remote 'Time', :url => new_survey_section_question_path(@survey,@section, :variation => :time), :method => :get
+    %li= link_to_remote 'Slider', :url => new_survey_section_question_path(@survey,@section, :variation => :slider), :method => :get
+    %li= link_to_remote 'Grid', :url => new_survey_section_question_path(@survey,@section, :variation => :grid), :method => :get
+    %li= link_to_remote 'Rank', :url => new_survey_section_question_path(@survey,@section, :variation => :rank), :method => :get
+    %li= link_to_remote 'Repeater', :url => new_survey_section_question_path(@survey,@section, :variation => :repeater), :method => :get

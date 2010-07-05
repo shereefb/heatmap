@@ -34,6 +34,7 @@ describe QuestionGroup do
   end
 end
 
+
 # == Schema Information
 #
 # Table name: question_groups
@@ -50,5 +51,8 @@ end
 #  custom_renderer        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  qdesc                  :text
+#  adesc                  :text
+#  section_id             :integer
 #
 

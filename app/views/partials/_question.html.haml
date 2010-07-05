@@ -29,7 +29,7 @@
       = hidden_field_tag("responses[#{question.id}][question_id]", question.id)
     - question.answers.each do |answer|
       %td{:class => "#{cycle("column_highlight", "", :name => "col")}"}
-        .answer{:class => answer.custom_class}= render(:partial => answer.custom_renderer || "/partials/answer", :locals => {:answer => answer, :question => question, :response_obj => @response_set.response_for(question.id, answer.id), :hide_label => true})
+        .answer{:class => answer.custom_class}= render(:partial => answer.custom_renderer || "/partials/answer", :locals => {:answer => answer, :question => question, :response_obj => response_set.response_for(question.id, answer.id), :hide_label => true})
     %th.question_postfix
       %span.text= split_text(question.text)[:postfix]
 - when :repeater_default, :repeater_dropdown
@@ -44,7 +44,7 @@
       - if renderer == :repeater_default  
         - question.answers.each do |answer|
           - content_tag_for :li, answer, :class => answer.custom_class do
-            = render(:partial => answer.custom_renderer || "/partials/answer", :locals => {:answer => answer, :question => question, :response_obj => @response_set.response_for(question.id, answer.id, response_group), :response_group => response_group, :hide_label => true, :disabled => disabled})
+            = render(:partial => answer.custom_renderer || "/partials/answer", :locals => {:answer => answer, :question => question, :response_obj => response_set.response_for(question.id, answer.id, response_group), :response_group => response_group, :hide_label => true, :disabled => disabled})
       - else
         %li.answer
           - options = question.answers.collect{|a| "<option #{ (response_set.response_for(question.id, a.id, response_group).selected?)? "selected='selected'" : nil } value ='#{a.id}'>#{a.text}</option>" }
@@ -54,7 +54,7 @@
     = hidden_field_tag("responses[#{question.id}][question_id]", question.id)
     - if renderer == :inline_default
       - question.answers.each do |answer|
-        .answer{:class => answer.custom_class}= render(:partial => answer.custom_renderer || "/partials/answer", :locals => {:answer => answer, :question => question, :response_obj => @response_set.response_for(question.id, answer.id), :hide_label => answer.hide_label})
+        .answer{:class => answer.custom_class}= render(:partial => answer.custom_renderer || "/partials/answer", :locals => {:answer => answer, :question => question, :response_obj => response_set.response_for(question.id, answer.id), :hide_label => answer.hide_label})
     - else
       - options = question.answers.collect{|a| "<option #{ (response_set.response_for(question.id, a.id).selected?)? "selected='selected'" : nil } value ='#{a.id}'>#{a.text}</option>" }
       = select_tag("responses[#{question.id}][answer_id]", ["<option value=''>Select one...</option>"].concat(options))
@@ -69,4 +69,4 @@
       %ol.answers{:class => renderer == :inline ? "inline" : nil}
         - question.answers.each do |answer|
           - content_tag_for :li, answer, :class => answer.custom_class do
-            = render(:partial => answer.custom_renderer || "/partials/answer", :locals => {:answer => answer, :question => question, :response_obj => @response_set.response_for(question.id, answer.id), :hide_label => answer.hide_label})
+            = render(:partial => answer.custom_renderer || "/partials/answer", :locals => {:answer => answer, :question => question, :response_obj => response_set.response_for(question.id, answer.id), :hide_label => answer.hide_label})

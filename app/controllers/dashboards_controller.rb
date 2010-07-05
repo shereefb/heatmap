@@ -9,7 +9,8 @@ class DashboardsController < ApplicationController
   
   def render_home_page
     unless current_user
-      render :template => 'pages/home' and return
+      # render home_path('about')
+       render :template => 'pages/home' and return
     end
   end
 end

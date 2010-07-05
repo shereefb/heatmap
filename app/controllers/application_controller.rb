@@ -91,7 +91,9 @@ class ApplicationController < ActionController::Base
   
   def find_question
     question_id = params[:question_id] || params[:id]
+    logger.info("question id here baby #{question_id}")
     @question = Question.find(question_id)
+    logger.info("question id here baby #{@question.inspect}")
   end
   
   def authorize_survey

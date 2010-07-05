@@ -1,0 +1,22 @@
+!!!
+%html
+  %head
+    %title= page_title
+    = stylesheet_link_tag 'headerandfooter'
+    = stylesheet_link_tag 'static/screen'
+    = stylesheet_link_tag 'static/style'
+    = stylesheet_link_tag 'webapp'
+    = stylesheet_link_tag '/javascripts/fancybox/jquery.fancybox-1.3.0.css'
+    = google_jquery
+    / = javascript_include_tag 'jquery'
+    = javascript_include_merged :base
+    = javascript_tag "var AUTH_TOKEN = #{form_authenticity_token.inspect};" if protect_against_forgery?
+    = javascript_include_tag 'fancybox/jquery.fancybox-1.3.0.pack.js'
+    = include_growlr
+    
+  %body{:id => params[:controller], :class => params[:action]}
+    #inner-page
+      .container
+        #main-inner.span-12.last.clear
+          = yield
+          %div{:style => 'clear: both'}

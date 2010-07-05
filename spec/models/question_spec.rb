@@ -91,6 +91,7 @@ describe Question do
 end
 
 
+
 # == Schema Information
 #
 # Table name: questions
@@ -115,5 +116,8 @@ end
 #  created_at             :datetime
 #  updated_at             :datetime
 #  correct_answer_id      :integer
+#  variation              :string(255)
+#  qdesc                  :text
+#  adesc                  :text
 #
 

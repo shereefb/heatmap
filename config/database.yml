@@ -1,6 +1,6 @@
 development:
   adapter: postgresql
-  database: quizdoo_development_1
+  database: psychsurveys_dev
   user: jko170
 test: &TEST
   adapter: postgresql

@@ -15,7 +15,6 @@ class Question < ActiveRecord::Base
   
   # Instance Methods
   def initialize(*args)
-    logger.info("creating question with #{args.inspect}")
     super(*args)
     default_args
   end
@@ -83,28 +82,49 @@ class Question < ActiveRecord::Base
         qdesc = "Write an essay about essays"
         adesc = "Text"
         new_params = {:pick => 'none'}
-      # when 'number':
-      # when 'float':
-      # when 'datetime':
-      # when 'date':
-      # when 'time':
+      when 'number':
+        qdesc = "How many cars do you own?"
+        adesc = "Integer"
+        new_params = {:pick => 'none'}
+      when 'float':
+        qdesc = "How many cars do you own?"
+        adesc = "Float"
+        new_params = {:pick => 'none'}
+      when 'datetime':
+        qdesc = "Pick a date and a time"
+        adesc = "Datetime"
+        new_params = {:pick => 'none'}
+      when 'date':
+        qdesc = "When were you born?"
+        adesc = "Date"
+        new_params = {:pick => 'none'}
+      when 'time':
+        qdesc = "What time will lunch be?"
+        adesc = "Time"
+        new_params = {:pick => 'none'}
       when 'slider':
         qdesc = "What is your pain threshold?"
         adesc = "1 (low)\n2\n3\n4\n5 (high)"
         new_params = {:pick => 'one', :display_type => 'slider'}
-      # when 'grid':
+      when 'grid':
+        qdesc = "aplha\nbeta\ngamma"
+        adesc = "1 (low)\n2\n3\n4\n5 (high)"
+        new_params = {:bdesc =>  "what do you hate here?"}
       # when 'rank':
       # when 'repeater':
     end
-    @question = Question.new({:qdesc => qdesc, :adesc => adesc}.merge(params).merge(new_params).merge({:variation => variation}))
-    # @question = Question.new({:text => "What's your favorite color?", :pick => :one}.merge(params))
-    @question.save
     
-    @question
+    if Question.is_complex?(variation)
+      @question_group = QuestionGroup.create({:qdesc => qdesc, :adesc => adesc}.merge(params).merge(new_params).merge({:variation => variation, :display_type => variation}))
+      @question = @question_group.questions.first 
+    else
+      @question = Question.create({:qdesc => qdesc, :adesc => adesc}.merge(params).merge(new_params).merge({:variation => variation}))
+      @question
+    end
   end
   
-  def is_complex?
-    case self.variation
+  def self.is_complex?(variation)
+    case variation
       when 'pickoneradio':
         return false;
       when 'pickonedropdown':
@@ -189,20 +209,22 @@ class Question < ActiveRecord::Base
     return if self.id.nil?
     self.text = self.qdesc
     self.short_text = self.qdesc
-    generate_answers(self.adesc, :true) if self.adesc_changed?
+    if self.adesc_changed?
+      self.answers.each do |a| a.destroy end
+      generate_answers
+    end
   end
   
   def after_create
-    generate_answers(self.adesc, :false)
+    generate_answers
   end
   
   
-  def generate_answers(adesc, delete_old_answers_first)
-    self.answers.each do |a| a.destroy end if delete_old_answers_first
+  def generate_answers
       
-    return if adesc.nil? || self.id.nil?
+    return if self.adesc.nil? || self.id.nil?
     
-    adesc.split("\n").each do |answer_text|
+    self.adesc.split("\n").each do |answer_text|
       case self.variation
         when 'pickoneradio':
           Answer.create :question_id => self.id, :text => answer_text
@@ -218,9 +240,9 @@ class Question < ActiveRecord::Base
         when 'textarea':
           Answer.create :question_id => self.id, :text => answer_text, :response_class => 'text', :hide_label => true
         when 'number':
-          Answer.create :question_id => self.id, :text => answer_text, :hide_label => true
+          Answer.create :question_id => self.id, :text => answer_text, :response_class => 'integer', :hide_label => true
         when 'float':
-          Answer.create :question_id => self.id, :text => answer_text, :hide_label => true
+          Answer.create :question_id => self.id, :text => answer_text, :response_class => 'float', :hide_label => true
         when 'datetime':
           Answer.create :question_id => self.id, :text => answer_text, :response_class => 'datetime', :hide_label => true
         when 'date':
@@ -327,6 +349,7 @@ end
 # end
 
 
+
 # == Schema Information
 #
 # Table name: questions
@@ -351,5 +374,8 @@ end
 #  created_at             :datetime
 #  updated_at             :datetime
 #  correct_answer_id      :integer
+#  variation              :string(255)
+#  qdesc                  :text
+#  adesc                  :text
 #
 

@@ -41,7 +41,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :surveys, :member => { :participate => :post } do |survey|
     survey.resources :sections do |section|
-      section.resources :questions, :new => { :suggest => :get } do |question|
+      section.resources :questions, :new => { :select => :get } do |question|
         question.resources :answers
         question.resources :user_answers, :only => :create
       end

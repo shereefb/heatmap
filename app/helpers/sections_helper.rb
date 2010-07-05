@@ -7,6 +7,6 @@ module SectionsHelper
   def show_question_number(question)
     section = @section || question.section
     survey = @survey || section.survey
-    link_to '#' + question.id.to_s, edit_survey_section_question_path(survey, section, question)
+    link_to_remote '#' + question.id.to_s, :url => edit_survey_section_question_path(survey, section, question), :method=>:get
   end
 end

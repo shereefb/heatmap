@@ -1,0 +1,7 @@
+.form
+  - remote_form_for question.part_of_group? ? question.question_group : question, :url => survey_section_question_path(survey, section, question) do |f|
+    = render :partial => 'form', :locals => {:f => f}
+    .submit
+      = submit_tag 'Update Question', :disable_with => 'Updating Question...'
+      %span or
+      = link_to 'Close', survey_section_path(survey, section), :class => 'cancel'

@@ -9,14 +9,7 @@
 %br
 %h2= @page_title
 
-
-.form
-  - remote_form_for @question, :url => survey_section_question_path(@survey, @section, @question) do |f|
-    = render :partial => 'form', :locals => {:f => f}
-    .submit
-      = submit_tag 'Update Question', :disable_with => 'Updating Question...'
-      %span or
-      = link_to 'Close', survey_section_path(@survey, @section), :class => 'cancel'
+= render :partial => 'edit', :locals => {:survey => @survey, :section => @section, :question => @question} 
 = render :partial => 'questions/new_question_selector', :locals => {:section => @section} 
   
 - content_for :right do
@@ -25,4 +18,8 @@
   %br
   %br
   %h4 Preview Question
-  #question_preview= render :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
+  - if @question.part_of_group?
+    #question_preview= render :partial => 'partials/question_group', :locals => {:question_group => @question.question_group, :group_questions => @question.question_group.questions, :response_set => @response_set}
+  - else
+    #question_preview= render :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
+  

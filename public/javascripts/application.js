@@ -85,6 +85,7 @@ jQuery(function($) {
 
     
   autogrow();
+  setup_fancybox_iframes();
   
   $('.heading a.add.ajax').click(function() {
     var form = $('.new_ajax_form');
@@ -132,3 +133,18 @@ function growl(message){
 function autogrow() {
   $('textarea').autogrow();
 };
+
+function close_fancybox() {
+	$.fancybox.close();
+}
+
+function setup_fancybox_iframes(){
+	$(".fancy_iframe").fancybox({
+			'width'				: '75%',
+			'height'			: '75%',
+	        'autoScale'     	: false,
+	        'transitionIn'		: 'none',
+			'transitionOut'		: 'none',
+			'type'				: 'iframe'
+		});
+}

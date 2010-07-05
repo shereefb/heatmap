@@ -27,7 +27,7 @@
       = radio_form.label("answer_id_#{answer.id}", split_text(answer.text)[:postfix]) unless hide_label
   - when :none_date
     = response_form.label(:datetime_value, split_text(answer.text)[:prefix], :class => "#{(disabled)? 'disabled' : 'enabled'}") unless hide_label
-    = response_form.text_field(:datetime_value)
+    = response_form.date_select(:datetime_value, {:include_blank => true})
     = response_form.label(:datetime_value, split_text(answer.text)[:postfix], :class => "#{(disabled)? 'disabled' : 'enabled'}") unless hide_label
   - when :none_datetime
     = response_form.label(:datetime_value, split_text(answer.text)[:prefix], :class => "#{(disabled)? 'disabled' : 'enabled'}") unless hide_label
