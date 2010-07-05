@@ -1,3 +1,5 @@
+BUSINESS FEATURES
+
 user can select language
 participants add demographic data
 ask participants if they're ok w/ their results being published in aggregate to the world
@@ -10,6 +12,7 @@ auto-gift certificate management: http://g-ecx.images-amazon.com/images/G/01/gif
 security (removing scripts from answers)
 
 ----
+FEATURES
 
 required fields should show an asterix
 sorting
@@ -34,6 +37,9 @@ remove repeater type
 add rank type
 add grid type for select any
 help text for questions
+fix menu
+custom logo
+custom css
 
 ----
 
@@ -48,3 +54,11 @@ Things from steve:
 
 Testimonials
 List of universities that are using it
+
+
+-----
+content stuff:
+
+privacy.html
+testimonials.html
+help.html

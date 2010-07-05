@@ -139,7 +139,7 @@ Footer
 ************************************************************************/
 
 #footer {
-	margin-top: 150px;
+	margin-top: 50px;
 	height:433px;
 	background:url(/images/static/footer-bg.jpg) repeat-x
 }
@@ -236,4 +236,14 @@ a:active#toTop {
 }
 ul#topnav.sf-menu li.current ul, ul#topnav.sf-menu li ul {
 	display:block
+}
+
+#top-footer img.verify {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding:4px;
+	background:#f3f3f3;
+	border:1px solid #e3e3e3;
+	margin-bottom:14px
 }
