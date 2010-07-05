@@ -15,6 +15,9 @@
     = include_growlr
     
   %body{:id => params[:controller], :class => params[:action]}
+    #ajax-indicator
+      %span working
+  
     #inner-page
       .container
         = render :partial => 'home/header', :locals => {:page => 'about'}

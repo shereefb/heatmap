@@ -19,13 +19,12 @@ sorting
 ajaxify forms
 question and section numbers
 deal with return characters in question description
-slider preview broken
 DONE date question type doesn't render right
 image question types
-complex question
+DONE complex question
 research more question types (e.g. image options, gradients...etc.)
 adding question twice doesn't work
-close image on fancybox is broken
+DONE close image on fancybox is broken
 autofocus on form fields that need to be filled
 survey lock-in: once it's started, it can't be edited before the result set is saved/stored
 split page here feature
@@ -41,6 +40,11 @@ fix menu
 custom logo
 custom css
 ssl
+conditions
+replace text
+branching
+page randomization
+ajax working image
 
 ----
 
@@ -73,3 +77,4 @@ DONE header links
 library.html
 resources.html
 compare.html (show comparison with survey monkey, psych data...etc.)
+contactus (add wufuu form as well)

@@ -124,6 +124,14 @@ jQuery(function($) {
   $('form#new_password_reset').find('input#email').focus();
 });
 
+$(document).ajaxStart(function() {
+              $('#ajax-indicator').show();
+ });
+$(document).ajaxStop(function() {
+              $('#ajax-indicator').hide();
+});
+
+
 
 function growl(message){
 	$.jGrowl(message);
