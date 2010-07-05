@@ -16,7 +16,7 @@
 
 .heading
   %h3= 'Questions (' + @questions.count.to_s + ')'
-  = fancybox_link 'Add Question', 'new_question_selector', 'Select question type', 'add'
+  / = fancybox_link 'Add Question', 'new_question_selector', 'Select question type', 'add'
 .content
   = render :partial => 'questions/list', :locals => {:questions => @questions}
   = render :partial => 'questions/new_question_selector', :locals => {:section => @section} 

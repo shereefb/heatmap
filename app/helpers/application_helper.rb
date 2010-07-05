@@ -46,8 +46,8 @@ module ApplicationHelper
     link_to(name, "#", :onclick => onclick)
   end
 
-  def fancybox_link(name, id, title, cssclass)
-    onclick = "$('body').append('<span id=\"fancy_container\">' + $('##{id}').html() + '</span>');"
+  def fancybox_link(name, id, title, cssclass, replace_below_id)
+    onclick = "$('body').append('<span id=\"fancy_container\">' + $('##{id}').html().replace(/xxx/g,#{replace_below_id}) + '</span>');"
     # onclick = "$('##{id}').show();"
     onclick << "$.fancybox({'autoDimensions':true, 'width': '90%','height' : '95%','title' : '#{title}','content': $('#fancy_container')}); "
     onclick << "return false;"

@@ -1,0 +1,18 @@
+%tr{:id => ['question_container',question.id]}
+  %td.id
+    .show_id= show_question_number(question)
+    edit | delete | move
+  %td.body
+    .boxxx{:id => ['question_preview_container',question.id]}
+      / .show_body= truncate_html(question.text, 120)
+      - if question.part_of_group?
+        #question_preview= render :partial => 'partials/question_group', :locals => {:question_group => question.question_group, :group_questions => question.question_group.questions, :response_set => ResponseSet.dummy}
+      - else
+        #question_preview= render :partial => 'partials/question', :locals => {:question => question, :response_set => ResponseSet.dummy}
+- if add_edit_container
+  %tr{:id => ['question_edit_container',question.id]}
+%tr{:id => ['question_links_container_below',question.id]}
+  %td.link{:colspan => 2}
+    = fancybox_link 'Add question here', 'new_question_selector', 'Select question type', 'addbelow', question.id
+    | split section here
+      

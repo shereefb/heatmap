@@ -15,14 +15,16 @@ class QuestionsController < ApplicationController
         wants.js do
           flash[:success] = 'Question added'
           render :update do |page|
-            if @question.part_of_group?
-              page.replace_html "question_edit", :partial => 'edit', :locals => {:survey => @survey, :section => @section, :question => @question} 
-              page.replace_html "question_preview", :partial => 'partials/question_group', :locals => {:question_group => @question_group, :group_questions => @question_group.questions, :response_set => @response_set}
-            else
-              page.replace_html "question_preview", :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
-              page.replace_html "question_edit_container_#{@question.id}", :partial => 'edit', :locals => {:survey => @survey, :section => @section, :question => @question} 
-            end
-              page.call "close_fancybox"
+            page.insert_html :after, "question_container_#{params[:insert_below_id]}", :partial => 'questions/single_question_list', :locals => {:question => @question, :response_set => ResponseSet.dummy, :add_edit_container => true}
+            page.replace_html "question_edit_container_#{@question.id}", :partial => 'edit', :locals => {:survey => @survey, :section => @section, :question => @question} 
+            # if @question.part_of_group?
+            #   page.replace_html "question_preview", :partial => 'partials/question_group', :locals => {:question_group => @question_group, :group_questions => @question_group.questions, :response_set => @response_set}
+            #   page.replace_html "question_edit", :partial => 'edit', :locals => {:survey => @survey, :section => @section, :question => @question} 
+            # else
+            #   page.replace_html "question_preview", :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
+            #   page.replace_html "question_edit_container_#{@question.id}", :partial => 'edit', :locals => {:survey => @survey, :section => @section, :question => @question} 
+            # end
+            page.call "close_fancybox"
           end
         end
       end
@@ -58,13 +60,14 @@ class QuestionsController < ApplicationController
       wants.js do
         render :update do |page|
           page.replace_html "question_edit_container_#{@question.id}", :partial => 'edit', :locals => {:survey => @survey, :section => @section, :question => @question} 
+          page.visual_effect :show, "question_edit_container_#{@question.id}"
         end
       end
     end
   end
   
   def update
-    logger.info("question: #{@question.inspect} #{@question.part_of_group?}")
+    original_id = @question.id
     if @question.part_of_group?
       @question_group = @question.question_group
       success = @question_group.update_attributes(params[:question_group])
@@ -77,16 +80,14 @@ class QuestionsController < ApplicationController
       respond_to do |format|
         format.js do
           render :update do |page|
-            @response_set = ResponseSet.dummy
+            # page.visual_effect :BlindUp, "question_edit_container_#{original_id}", :duration => 10
+            page.replace "question_container_#{original_id}", :partial => 'questions/single_question_list', :locals => {:question => @question, :response_set => ResponseSet.dummy, :add_edit_container => false}
+            page.visual_effect :highlight, "question_container_#{original_id}", :duration => 3
+            
             if @question.part_of_group?
-              @question_group.reload
               page.replace_html "question_edit", :partial => 'edit', :locals => {:survey => @survey, :section => @section, :question => @question} 
-              page.replace_html "question_preview", :partial => 'partials/question_group', :locals => {:question_group => @question_group, :group_questions => @question_group.questions, :response_set => @response_set}
-            else
-              @question.reload
-              page.replace_html "question_preview", :partial => 'partials/question', :locals => {:question => @question, :response_set => @response_set}
             end
-            page.visual_effect :highlight, "question_preview", :duration => 3
+            
             page.call "growl", "Question updated successfully"
           end
         end
