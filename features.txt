@@ -51,7 +51,7 @@ ajax working image
 BUGS:
 slider and grid not working in add question type
 help text and required shouldn't show for label question
-
+text is way too small: checkout: http://www.chompstack.com/ for good size on a similar template
 
 ----
 
