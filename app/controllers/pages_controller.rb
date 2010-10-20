@@ -2,7 +2,12 @@ class PagesController < ApplicationController
   before_filter :ensure_valid
   
   def show
-    render :template => current_page
+    logger.info { "params #{params.inspect}" }
+    if params[:page] = "test.html"
+      render :template => "test.html"
+    else
+      render :template => current_page
+    end
   end
 
   protected
@@ -16,6 +21,7 @@ class PagesController < ApplicationController
   def current_page
     "pages/#{params[:id].to_s.downcase}"
   end
+
 
   def template_exists?(path)
     view_paths.find_template(path, response.template.template_format)

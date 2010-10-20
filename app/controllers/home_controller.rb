@@ -8,7 +8,14 @@ class HomeController < ApplicationController
   end
 
   def show
-    render :action => params[:page]
+    logger.info { "params #{params.inspect}" }
+    if params[:page] = "test.html"
+      render :action => params[:page], :layout => "test"
+    else
+      render :action => params[:page]
+    end
+    
+    
   end
 end
 

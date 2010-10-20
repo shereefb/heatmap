@@ -54,7 +54,7 @@ ActionController::Routing::Routes.draw do |map|
   
   
   map.root :controller => 'home'
-  map.home ':page', :controller => 'home', :action => 'show', :page => /index.html|about.html|contact.html|blog.html|hq.html|pricing.html|signup.html|apps.html|products.html|services.html|single.html|tour.html|webdesign.html|index.htm|elements.html|privacy.html|library.html|features.html|testimonials.html|irb.html/                          
+  map.home ':page', :controller => 'home', :action => 'show', :page => /index.html|about.html|contact.html|test.html|blog.html|hq.html|pricing.html|signup.html|apps.html|products.html|services.html|single.html|tour.html|webdesign.html|index.htm|elements.html|privacy.html|library.html|features.html|testimonials.html|irb.html/                          
   
   
   map.username ':username', :controller => 'users',
