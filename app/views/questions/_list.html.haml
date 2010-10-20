@@ -1,8 +1,0 @@
-#questions_list
-  %table
-    %tbody
-      %tr{:id => ['question_container',0]}
-        %td.link{:colspan => 2}= fancybox_link 'Add question here', 'new_question_selector', 'Select question type', 'addbelow', 0
-        
-      - questions.each do |question|
-        = render :partial => 'questions/single_question_list', :locals => {:question => question, :response_set => ResponseSet.dummy, :inserted_below_id => 0, :add_edit_container => true}

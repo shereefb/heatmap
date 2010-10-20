@@ -1,3 +1,0 @@
-%li{:id => dom_id(answer), :class => ('correct' if answer.correct?)}
-  .show_body= answer.body.to_html
-  .edit_link= link_to 'Edit', edit_answer_path(answer), :class => 'ajax get right edit', :ajaxtarget => ajax_dom_id(answer)

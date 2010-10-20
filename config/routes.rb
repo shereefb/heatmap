@@ -37,27 +37,6 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :pages, :only => :show
   
-  map.resource :dashboard, :only => :show
-  
-  map.resources :surveys, :member => { :participate => :post } do |survey|
-    survey.resources :sections do |section|
-      section.resources :questions, :new => { :select => :get } do |question|
-        question.resources :answers
-        question.resources :user_answers, :only => :create
-      end
-    end
-  end
-  
-  map.resources :questions, :only => :none, :member => {:approve => :put}
-  
-  # map.resources :participations, :only => :destroy
-  
-  map.resources :answers, :except => [:index, :new, :create]
-  
-  # map.resources :user_answers, :only => :destroy
-  
-  map.resources :categories, :only => :show
-  
   map.resources :users, :only => [:new, :create]
   
   map.resource :user, :only => [:edit, :update, :destroy]
@@ -71,15 +50,6 @@ ActionController::Routing::Routes.draw do |map|
   map.logout 'logout', :controller => 'user_sessions', :action => 'destroy'
   map.signup 'signup', :controller => 'users', :action => 'new'
   
-  # map.root :controller => 'dashboards', :action => 'show'
-
-  map.with_options :controller => 'surveyor' do |s|
-    s.available_surveys "s",                                        :conditions => {:method => :get}, :action => "new"                      # GET survey list
-    s.take_survey       "s:survey_code",                            :conditions => {:method => :post}, :action => "create"                  # Only POST of survey to create
-    s.view_my_survey    "s:survey_code/:response_set_code.:format", :conditions => {:method => :get}, :action => "show", :format => "html"  # GET viewable/printable? survey
-    s.edit_my_survey    "s:survey_code/:response_set_code/take",    :conditions => {:method => :get}, :action => "edit"                     # GET editable survey 
-    s.update_my_survey  "s:survey_code/:response_set_code",         :conditions => {:method => :put}, :action => "update"                   # PUT edited survey 
-  end  
   
   map.root :controller => 'home'
   map.home ':page', :controller => 'home', :action => 'show', :page => /index.html|about.html|contact.html|blog.html|hq.html|pricing.html|signup.html|apps.html|products.html|services.html|single.html|tour.html|webdesign.html|index.htm|elements.html|privacy.html|library.html|features.html|testimonials.html|irb.html/                          

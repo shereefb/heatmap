@@ -1,11 +1,14 @@
 development:
   adapter: postgresql
-  database: psychsurveys_dev
-  user: jko170
+  database: hm_dev
+  host: localhost
+  username: postgres
+  password: tree
 test: &TEST
   adapter: postgresql
-  database: quizdoo_test<%= ENV['TEST_ENV_NUMBER'] %>
-  user: jko170
+  database: hm_text
+  username: postgres
+  password: tree
 
 # SQLite version 3.x
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)

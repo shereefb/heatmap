@@ -1,8 +1,0 @@
-rails_question:
-  taggable: rails (Question)
-  context: tags
-  tag: rails
-ruby_question:
-  taggable: ruby (Question)
-  context: tags
-  tag: ruby

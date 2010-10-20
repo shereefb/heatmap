@@ -9,8 +9,6 @@ require 'rake/rdoctask'
 
 require 'tasks/rails'
 
-require 'tasks/surveyor'
-
 namespace :heroku do
   desc "PostgreSQL database backups from Heroku to Amazon S3"
   task :backup => :environment do
