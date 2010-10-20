@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100310074829) do
+ActiveRecord::Schema.define(:version => 20101020220739) do
+
+  create_table "logs", :force => true do |t|
+    t.string   "ip"
+    t.string   "youtube_id"
+    t.string   "timelog"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "participations", :force => true do |t|
     t.integer  "user_id"
