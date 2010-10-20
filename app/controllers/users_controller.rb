@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   
   def create
     @user = User.new(params[:user])
-    if recaptcha(:model => @user) && @user.save
+    if @user.save
       flash[:success] = 'Welcome to VideoHeatMap!'
       redirect_back_or_default root_url
     else
@@ -47,10 +47,5 @@ class UsersController < ApplicationController
     unless @user
       render :text => 'User not found.', :status => 404
     end
-  end
-  
-  def recaptcha(model)
-    verify_recaptcha(model) if Rails.env.production?
-    true
   end
 end
