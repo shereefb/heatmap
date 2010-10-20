@@ -1,7 +1,7 @@
 bcrypt-ruby
 authlogic
 delayed_job
-haml 
+haml --version '>= 2.2.0'
 acts_as_markup
 will_paginate
 right_aws

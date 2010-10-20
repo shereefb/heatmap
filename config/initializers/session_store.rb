@@ -5,7 +5,7 @@
 # Make sure the secret is at least 30 characters and all random, 
 # no regular words or you'll be exposed to dictionary attacks.
 ActionController::Base.session = {
-  :key         => '_PsychSurveys_session',
+  :key         => '_VideoHeatMap_session',
   :secret      => '5e4d037934ec3886651d9e502e38fa104b1f84ba37c1535e283a83eaac7452265d90d8cc281bead420695bb4b4e8663116062356ad7d395e4ac1f9dc1e89e09f'
 }
 

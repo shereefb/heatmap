@@ -1,7 +1,7 @@
 class Emailer < ActionMailer::Base
   def password_reset_instructions(user)
     setup_email
-    subject '[PsychSurveys] Password Reset Instructions'
+    subject '[VideoHeatMap] Password Reset Instructions'
     recipients user.email
     body :user => user
   end
@@ -9,7 +9,7 @@ class Emailer < ActionMailer::Base
   private
   
   def setup_email
-    from    %("PsychSurveys" <noreply@PsychSurveys.com>)
+    from    %("VideoHeatMap" <noreply@VideoHeatMap.com>)
     sent_on Time.current
   end
 end
