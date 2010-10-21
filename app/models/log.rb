@@ -93,6 +93,11 @@ class Log < ActiveRecord::Base
     gchart
   end
   
+  def percentage_viewed
+    sum = heatmap_array.inject(0) { |s,v| s += v }
+    (sum.to_f / duration * 100).round
+  end
+  
   
   def gchart
     

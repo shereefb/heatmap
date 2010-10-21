@@ -3,49 +3,10 @@ class VideosController < ApplicationController
   
   
   def show
-    @logs = @video.logs
+    # @logs = @video.logs
+    @logs = Log.paginate_by_youtube_id @video.youtube_id, :page => params[:page], :per_page => 10, :order => "created_at DESC"
     
-    @h = HighChart.new('graph') do |f|
-        f.chart({:defaultSeriesType=>"spline" , :renderTo => "myRenderArea" , :zoomType=> 'x'})
-        f.credits({:enabled => true, :href => "http://videoheatmaps.com", :text => "videoheatmaps.com"})
-        f.title({:text => "Viewer Engagement"})
-        f.subtitle({:text => "click and drag in the plot area to zoom in"})
-        f.x_axis(:type=>'datetime', :maxZoom => @video.duration, :title => {:text => "Time"})
-        f.y_axis(:title => {:text => "Engagement"}, :min => 0.6, :startOnTick => false, :showFirstLabel => false)
-        f.legend(:enabled => false)
-        f.plotOptions( :area => {
-                                  :fillColor => {
-                                                 :linearGradient => [0, 0, 0, 300],
-                                                 :stops => [
-                                                    [0, 'rgba(2,0,0,0)'],
-                                                    [1, 'rgba(2,0,0,0)']
-                                                 ]
-                                                 },
-                                  :lineWidth => 1,
-                                  :marker => {
-                                                 :enabled => false,
-                                                 :states => {
-                                                            :hover => {
-                                                                      :enabled => true,
-                                                                      :radius => 2
-                                                                      }
-                                                           }
-                                              },
-                                    :shadow => false,
-                                    :states => {
-                                                 :hover => {
-                                                              :lineWidth => 1                  
-                                                            }
-                                                }
-                                  }
-                      )
-          f.series(:name=>'Viewer Engagement', 
-                    :type=>'area',
-                    :pointInterval=> 1000,
-                    :data=> @video.heatmap_array_as_percentage )
-            
-                      
-      end
+    @h = @video.engagement_graph
       
   end
   

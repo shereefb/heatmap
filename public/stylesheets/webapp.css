@@ -448,6 +448,8 @@ a.close_account {
 	width: 100px;
 	float: left;
 	padding: 5px;
+	color: #555;
+	
 }
 
 .heatmap {
@@ -457,11 +459,17 @@ a.close_account {
 .heatmap-percentage{
 	float: left;
 	vertical-align: middle;
-	font-size: 2em;
-	color: #444;
-	padding: 10px;
+	font-size: 1.8em;
+	color: #777;
+	font-weight: bold;
+	padding-top: 15px;
 }
 
 .clear{
 	clear:both;
+}
+
+.pagination{
+	float:right;
+	padding:30px;
 }

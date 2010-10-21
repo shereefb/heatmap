@@ -7,5 +7,10 @@
 .heading
   %h3
     Individual Heatmaps
+%br
+%br
 - @logs.each do |log|
   = render :partial => "log", :locals => {:log => log}
+
+%div.pagination
+= will_paginate @logs

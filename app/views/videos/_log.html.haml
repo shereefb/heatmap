@@ -1,6 +1,4 @@
 %div.ipaddress
-  = log.ip
-  %br
   = time_ago_in_words(log.created_at) + " ago"
 
 %div.connection
@@ -10,6 +8,6 @@
   = log.gchart.render(log.id)
 
 %div.heatmap-percentage
-  = log.duration.to_s + "%"
+  = log.percentage_viewed.to_s + "%"
   
 %div.clear
