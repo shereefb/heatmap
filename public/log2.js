@@ -119,6 +119,7 @@ function report(sync){
 	var url = "http://localhost:3000/logs/create";
 	var params = "youtube_id=" + _vhmid;
 	params = params + "&timelog=" + D.join("-");
+	params = params + "&duration=" + ytplayer.getDuration();
 	var http = new XMLHttpRequest();
 	http.open("POST", url, sync);
 
