@@ -1,6 +1,11 @@
 class VideosController < ApplicationController
-  before_filter :require_user, :find_video, :check_permissions
+  before_filter :require_user
+  before_filter :find_video, :except => :new
+  before_filter :check_permissions, :only => :show
   
+  def new
+    @video = Video.new
+  end
   
   def show
     # @logs = @video.logs

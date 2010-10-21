@@ -25,7 +25,7 @@ Main Navigation
 ************************************************************************/
 ul#topnav {
 	padding: 0 0;
-	width: 590px;  /*Change this if you want a bigger nav*/
+	width: 490px;  /*Change this if you want a bigger nav*/
 	font-size: 1.2em;
 	text-align:center;
 	margin: 19px 0 19px 220px;
@@ -33,7 +33,7 @@ ul#topnav {
 }
 /*ul#topnav .subnav {display:none}*/
 ul#topnav li {
-	float: left;
+	float: right;
 	display: inline; /*For ignore double margin in IE6*/
 	margin: 0 5px;
 }
@@ -140,11 +140,11 @@ Footer
 
 #footer {
 	margin-top: 50px;
-	height:433px;
+	height:150px;
 	background:url(/images/static/footer-bg.jpg) repeat-x
 }
 #top-footer {
-	height:382px;
+	height:133px;
 	position:relative
 }
 #top-footer h3 {

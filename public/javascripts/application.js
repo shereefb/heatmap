@@ -156,3 +156,26 @@ function setup_fancybox_iframes(){
 			'type'				: 'iframe'
 		});
 }
+
+function generate_code(){
+	text = $('#embed').val();
+	newtext = text.replace(/\?/g,"?enablejsapi=1&");
+	newtext = newtext + "<script type='text/javascript'>";
+	newtext = newtext + "var _vhmid = ['ylLzyHk54Z0'];";
+	newtext = newtext + "var _uid = 1;";
+	newtext = newtext + "setTimeout(function() {";
+	newtext = newtext + "var g=document.createElement('script');";
+	newtext = newtext + "g.src='//localhost:3000/l.js';";
+	newtext = newtext + "g.async =true;";
+	newtext = newtext + "s=document.getElementsByTagName('script')[0];";
+	newtext = newtext + "s.parentNode.insertBefore(g, s);";
+	newtext = newtext + "},0);";
+	newtext = newtext + "</script>";
+	$('#new_embed').val(newtext);
+	$('#new_embed').height(200);
+	$('#new_embed_section').show();
+	$('#submit_button').hide();
+	$('#embed').attr("disabled", "disabled");
+	
+}
+

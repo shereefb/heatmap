@@ -1,4 +1,4 @@
-- @page_title = "Video details : #{@video.youtube_id}"
+- @page_title = "Video details : #{link_to @video.youtube_id, "http://youtube.com/watch?v=" + @video.youtube_id, :target => 'blank'}"
 
 %h2= @page_title
 

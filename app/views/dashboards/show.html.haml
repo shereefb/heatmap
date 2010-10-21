@@ -1,0 +1,9 @@
+%div
+  = link_to "Track video", new_video_path
+
+.heading
+  %h3
+    Your videos
+
+- @videos.each do |video|
+  = link_to video.youtube_id, video_path(video)

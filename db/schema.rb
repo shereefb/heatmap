@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021032754) do
+ActiveRecord::Schema.define(:version => 20101021234309) do
 
   create_table "logs", :force => true do |t|
     t.string   "ip"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(:version => 20101021032754) do
     t.datetime "processed_at"
     t.text     "heatmap"
     t.integer  "duration"
+    t.integer  "user_id"
   end
 
   create_table "participations", :force => true do |t|

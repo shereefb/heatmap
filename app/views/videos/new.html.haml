@@ -1,0 +1,17 @@
+- @page_title = 'Add video for tracking'
+
+%h2= @page_title
+
+#sign-up-top
+  - form_for(@video, :class => 'contact-form') do |f|
+    .field
+      = label "video","Embed Code from Youtube"
+      .hint Generate the embed code from the video's Youtube page, and paste it here, then hit generate
+      = text_area "videos","youtube_embedcode", :id => "embed"
+    .submit= submit_tag 'Generate new embed code', :onclick => "generate_code();return false;", :id => "submit_button"
+    %div#new_embed_section.hidden
+      .field
+        = label "videos", "New Embed Code"
+        .hint Paste this code into your website, and let the tracking begin!
+        = text_area "videos", "new_embedcode", :id => "new_embed", :height => "500px"
+    

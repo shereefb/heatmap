@@ -2,6 +2,7 @@ class DashboardsController < ApplicationController
   before_filter :render_home_page
   
   def show
+    @videos = current_user.videos
   end
   
   private
