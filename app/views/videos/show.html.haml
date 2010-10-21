@@ -1,3 +1,9 @@
 - @page_title = "Video details : #{@video.youtube_id}"
 
 %h2= @page_title
+
+.heading
+  %h3
+    Individual Heatmaps
+- @logs.each do |log|
+  = render :partial => "log", :locals => {:log => log}

@@ -2,7 +2,7 @@ class Video < ActiveRecord::Base
   belongs_to :user
   
   def logs
-    Log.find_by_youtube_id(self.youtube_id)
+    Log.find(:all, :conditions => {:youtube_id => self.youtube_id})
   end
   
   #returns the heatmap as an array
