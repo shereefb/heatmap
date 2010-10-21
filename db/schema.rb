@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(:version => 20101021032754) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.datetime "processed_at"
+    t.text     "heatmap"
+    t.integer  "duration"
   end
 
   create_table "participations", :force => true do |t|

@@ -65,48 +65,16 @@ class ApplicationController < ActionController::Base
     session[:return_to] = nil
   end
   
-  def owner?
-    return false unless current_user
-    @survey.user == current_user
+  def render_403
+    render :text => "tsk tsk. not allowed", :status => 403
+    return false
+  end
+    
+  def render_404
+    redirect_to :template => "common/404", :status => 404
+    return false
   end
   
-  def suggester?
-    return false unless current_user
-    @question.try(:suggester) == current_user
-  end
-  
-  def participant?
-    return false unless current_user
-    not owner? and not suggester?
-  end
-  
-  def find_survey
-    @survey = Survey.find(params[:survey_id] || params[:id])
-  end
-  
-  def find_section
-    section_id = params[:section_id] || params[:id]
-    @section = Section.find(section_id)
-  end
-  
-  def find_question
-    question_id = params[:question_id] || params[:id]
-    logger.info("question id here baby #{question_id}")
-    @question = Question.find(question_id)
-    logger.info("question id here baby #{@question.inspect}")
-  end
-  
-  def authorize_survey
-      access_denied! unless current_user && current_user.can_edit_survey?(@survey)
-  end
-  
-  def authorize_section
-      access_denied! unless current_user && current_user.can_edit_survey?(@survey)
-  end
-  
-  def authorize_question
-    access_denied! unless current_user.can_edit_question?(@question)
-  end
   
   def access_denied!(message = 'Access denied')
     raise AccessDenied, message

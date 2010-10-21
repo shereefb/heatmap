@@ -1,8 +1,8 @@
 class AddProcessedDate < ActiveRecord::Migration
   def self.up
     add_column :logs, :processed_at, :datetime, :default => nil
-    add_column :logs, :heatmap, :default => nil
-    add_column :logs, :duration, :default => nil
+    add_column :logs, :heatmap, :text, :default => nil
+    add_column :logs, :duration, :integer, :default => nil
   end
 
   def self.down

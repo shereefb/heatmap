@@ -6,7 +6,9 @@ class LogsController < ApplicationController
     log.ip = request.remote_ip
     log.youtube_id = params["youtube_id"]
     log.timelog = params["timelog"]
+    log.duration = params["duration"]
     log.save
+    log.process
     render :nothing => true
   end
 end
