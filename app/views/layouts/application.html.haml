@@ -2,6 +2,7 @@
 %html
   %head
     %title= page_title
+    %script{ :src => 'http://www.google.com/jsapi', :type => 'text/javascript', :charset => 'utf-8' }
     = stylesheet_link_tag 'headerandfooter'
     = stylesheet_link_tag 'static/screen'
     = stylesheet_link_tag 'static/style'
@@ -29,8 +30,8 @@
         
           / = content_tag(:div, flash[:success], :id => 'success', :class => 'flash') if flash[:success]
           / = content_tag(:div, flash[:failure], :id => 'failure', :class => 'flash') if flash[:failure]
-        
-          #left.span-9= yield
+          = yield
+          #left.span-9= yield(:left)
         
           #right.span-3= yield(:right)
       

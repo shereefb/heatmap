@@ -4,7 +4,6 @@ class VideosController < ApplicationController
   
   def show
     @logs = @video.logs
-        
     
     @h = HighChart.new('graph') do |f|
         f.chart({:defaultSeriesType=>"spline" , :renderTo => "myRenderArea" , :zoomType=> 'x'})

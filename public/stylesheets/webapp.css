@@ -382,52 +382,6 @@ ul#answers_list {
   color: #888888;
   text-align: center; }
 
-#show_question {
-  margin-bottom: 20px;
-  float: left; }
-
-#show_section {
-  margin-bottom: 20px;
-  float: left; }
-
-.next_and_previous {
-  color: #aaaaaa;
-  margin-left: 40px; }
-  .next_and_previous .prev {
-    float: left; }
-  .next_and_previous .next {
-    float: right; }
-
-.answered_count,
-.correct_incorrect {
-  float: left;
-  border-top: 1px solid #dddddd;
-  width: 300px;
-  padding-top: 10px;
-  margin-top: 20px;
-  margin-left: 40px; }
-
-.answered_count {
-  font-size: 16px;
-  color: #aaaaaa; }
-  .answered_count strong {
-    color: #222222; }
-
-.correct_incorrect {
-  font-size: 14px;
-  color: #cccccc; }
-  .correct_incorrect:hover {
-    color: #aaaaaa; }
-    .correct_incorrect:hover .correct {
-      color: #5bc236; }
-    .correct_incorrect:hover .incorrect {
-      color: #cc0000; }
-
-.try_again {
-  float: left;
-  color: #666666; }
-  .try_again a {
-    font-weight: bold; }
 
 .show_table table {
   width: 100%;
@@ -467,19 +421,6 @@ a.close_account {
   color: #cc0000;
   font-weight: bold;
   margin-top: 3px; }
-
-#new_question_selector {
-  width: 600px; }
-
-#question_preview .question div.number {
-  float: left; }
-#question_preview .question .help {
-  display: block;
-  font-size: 0.8em;
-  font-style: italic;
-  color: grey; }
-#question_preview .answer label {
-  display: inline; }
 
 #ajax-indicator {
   display: none;

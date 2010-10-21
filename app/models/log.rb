@@ -1,5 +1,7 @@
 class Log < ActiveRecord::Base
   
+  COLOR_ARRAY = ["#f1fddc", "#c6fc66", "#edfb4c", "#fd9c43", "#ff0b08", "#980402", "#510100", "#140000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000"]
+  
   # Takes the raw data, turns it into an array. Each cell representing a second. Each cell showing the number of times that second was viewed. This data is then added to the array in the video
   def process
     return unless processed_at == nil
@@ -89,6 +91,35 @@ class Log < ActiveRecord::Base
     
     gchart.push Array[last_amount,count + 1]
     gchart
+  end
+  
+  
+  def gchart
+    
+    chart = GoogleVisualr::BarChart.new
+    chart.add_column('string', 'Year')
+    chart.add_rows(1)
+    chart.set_value(0, 0, "")
+    colors = []
+    
+    colcount = 1
+    self.heatmap_array_as_gchart.each do |pair|
+      chart.add_column('number', '')
+      chart.set_value(0, colcount, pair[1]) #color will be pair[0]
+      colcount = colcount + 1
+      colors.push COLOR_ARRAY[pair[0]]
+    end
+    logger.info { "chart #{chart.inspect}" }
+    # chart.hAxis.baseline = 40;
+    
+    #http://code.google.com/apis/visualization/documentation/gallery/barchart.html#Configuration_Options
+    
+    options = { :width => 600, :height => 60, :isStacked => true, :colors => colors, :legend => "none"}
+    options.each_pair do | key, value |
+      chart.send "#{key}=", value
+    end
+    chart
+    
   end
   
   def self.process_all

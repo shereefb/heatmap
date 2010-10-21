@@ -1,4 +1,8 @@
 = log.ip
-= log.timelog
-= log.created_at
-= log.heatmap
+/ = log.timelog
+= time_ago_in_words(log.created_at) + " ago"
+/ = log.heatmap
+
+%div{:id => log.id}
+
+= log.gchart.render(log.id)
