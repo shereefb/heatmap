@@ -1,8 +1,15 @@
-= log.ip
-/ = log.timelog
-= time_ago_in_words(log.created_at) + " ago"
-/ = log.heatmap
+%div.ipaddress
+  = log.ip
+  %br
+  = time_ago_in_words(log.created_at) + " ago"
 
-%div{:id => log.id}
+%div.connection
+  = log.ip
 
-= log.gchart.render(log.id)
+%div{:id => log.id, :class => "heatmap"}
+  = log.gchart.render(log.id)
+
+%div.heatmap-percentage
+  = log.duration.to_s + "%"
+  
+%div.clear

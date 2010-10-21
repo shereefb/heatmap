@@ -442,3 +442,26 @@ a.close_account {
     background-image: url(/images/loading.gif);
     padding-left: 26px;
     vertical-align: bottom; }
+
+/*heatmaps*/
+.ipaddress, .connection {
+	width: 100px;
+	float: left;
+	padding: 5px;
+}
+
+.heatmap {
+	float: left;
+}
+
+.heatmap-percentage{
+	float: left;
+	vertical-align: middle;
+	font-size: 2em;
+	color: #444;
+	padding: 10px;
+}
+
+.clear{
+	clear:both;
+}
