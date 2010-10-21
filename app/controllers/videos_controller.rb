@@ -6,8 +6,9 @@ class VideosController < ApplicationController
     
     @h = HighChart.new('graph') do |f|
         f.chart({:defaultSeriesType=>"spline" , :renderTo => "myRenderArea" , :zoomType=> 'x'})
-        f.title({:text => "Engagement Graph"})
-        f.subtitle({:text => "Click and drag in the plot area to zoom in"})
+        f.credits({:enabled => true, :href => "http://videoheatmaps.com", :text => "videoheatmaps.com"})
+        f.title({:text => "Viewer Engagement"})
+        f.subtitle({:text => "click and drag in the plot area to zoom in"})
         f.x_axis(:type=>'datetime', :maxZoom => @video.duration, :title => {:text => "Time"})
         f.y_axis(:title => {:text => "Engagement"}, :min => 0.6, :startOnTick => false, :showFirstLabel => false)
         f.legend(:enabled => false)
@@ -25,7 +26,7 @@ class VideosController < ApplicationController
                                                  :states => {
                                                             :hover => {
                                                                       :enabled => true,
-                                                                      :radius => 5
+                                                                      :radius => 2
                                                                       }
                                                            }
                                               },
@@ -37,13 +38,33 @@ class VideosController < ApplicationController
                                                 }
                                   }
                       )
-          f.series(:name=>'Engagement', 
+          f.series(:name=>'Viewer Engagement', 
                     :type=>'area',
                     :pointInterval=> 1000,
-                    :data=> @video.heatmap_array )
+                    :data=> @video.heatmap_array_as_percentage )
             
                       
       end
+      
+      @b = HighChart.new('graph') do |f|
+          f.chart({:defaultSeriesType=>"bar" , :renderTo => "myRenderArea2"})
+          f.credits({:enabled => true, :href => "http://videoheatmaps.com", :text => "videoheatmaps.com"})
+          f.title({:text => "Individual Heat Maps"})
+          # f.subtitle({:text => "click and drag in the plot area to zoom in"})
+          f.y_axis(:type=>'datetime', :title => {:text => "Time"}, :min => 0)
+          f.x_axis(:categories => ['Johnmayor', 'Joanna',"hi","adsf","adsf"])
+          f.legend(:enabled => false)
+          f.plotOptions( :series => {:stacking => 'percentage'}                          
+                        )
+          f.series( {
+              :name=>'John', 
+              :data=>[555,4222,333,222,111]
+            })
+          f.series( {
+              :name=>'Jane', 
+              :data=>[500,400,300,200,100]
+            })
+        end
   end
   
   private

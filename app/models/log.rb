@@ -69,6 +69,27 @@ class Log < ActiveRecord::Base
   def heatmap_array
     self.heatmap.split(",").collect(){|i| i.to_i}
   end
+
+  #returns the heatmap as series data for google charts
+  #each element of the return array show the count, and then the duration of that count
+  def heatmap_array_as_gchart
+    ar = self.heatmap_array
+    last_amount = ar[0]
+    count = -1
+    gchart = []
+    
+    ar.each do |i|
+      count = count + 1
+      if i != last_amount
+        gchart.push Array[last_amount,count]
+        count = 0
+        last_amount = i
+      end
+    end
+    
+    gchart.push Array[last_amount,count + 1]
+    gchart
+  end
   
   def self.process_all
     Log.find(:all, :conditions => {:processed_at => nil}).each do |log|
