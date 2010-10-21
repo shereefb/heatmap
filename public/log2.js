@@ -1,5 +1,14 @@
 
 var ytplayer;
+var D=[];
+var last = 0;
+var current = 0;
+var truelast = 0;
+var lognext = false;
+var threshold = 2; //seconds above wich we log
+var reported = true; 
+
+window.onbeforeunload = unload;
 // function importScript(url){
 //     var tag = document.createElement("script");
 //     tag.type="text/javascript";
@@ -26,35 +35,104 @@ function onPlayerError(errorCode) {
 
 // This function is called when the player changes state
 function onPlayerStateChange(newState) {
-  updateHTML("playerState", newState);
-}
+	
+	//todo: checkout buffering (3)
+	
+	lognext = false;
 
-// Display information about the current state of the player
-function updatePlayerInfo() {
-  // Also check that at least one function exists since when IE unloads the
-  // page, it will destroy the SWF before clearing the interval.
-  if(ytplayer && ytplayer.getDuration) {
+	//paused
+	if(newState == 2){
+		truelast = last;
+		if (ytplayer.getDuration() - ytplayer.getCurrentTime() < 2){
+			report(true);
+		}
+		
+	}
+	
+	//started
+	if(newState == 1){
+		lognext = true;
+		reported = false; //now we report
+	}
+	
+	//started
+	if(newState == 0){
+		report(true);
+	}
+	
+	if(ytplayer && ytplayer.getDuration) {
+	updateHTML("playerState", newState);
     updateHTML("videoDuration", ytplayer.getDuration());
     updateHTML("videoCurrentTime", ytplayer.getCurrentTime());
     updateHTML("bytesTotal", ytplayer.getVideoBytesTotal());
     updateHTML("startBytes", ytplayer.getVideoStartBytes());
     updateHTML("bytesLoaded", ytplayer.getVideoBytesLoaded());
   }
+  
+	
+}
+
+// Display information about the current state of the player
+function updatePlayerInfo() {
+	
+	if ((truelast - last) > threshold || (last - truelast) > threshold){
+		console.log("current " + last + "  last " + truelast);
+		D.push([Math.round(truelast),Math.round(last)]);
+	}
+	
+	
+}
+
+function updateLast(){
+	last = ytplayer.getCurrentTime();
+	
+	if (lognext == true){
+		updatePlayerInfo();
+		lognext = false;
+	}	
 }
 
 // This function is automatically called by the player once it loads
 function onYouTubePlayerReady(playerId) {
-	console.log("what is happening?");
-	
-  console.log("player id" + playerId);
-  ytplayer = document.getElementById("ytplayer");
-console.log("player" + ytplayer);
+  ytplayer = document.getElementById("e1");
   // This causes the updatePlayerInfo function to be called every 250ms to
   // get fresh data from the player
-  setInterval(updatePlayerInfo, 250);
+  setInterval(updateLast, 250);
   updatePlayerInfo();
   ytplayer.addEventListener("onStateChange", "onPlayerStateChange");
   ytplayer.addEventListener("onError", "onPlayerError");
+}
+
+function unload(){
+	report(false);
+}
+
+// Sends data to server
+function report(sync){
+	console.log("reporting");
+	if (reported == true){
+		console.log("reported is true, so we're not going to report");
+		return;
+	}
+	reported = true;
+	
+	var url = "http://localhost:3000/logs/create";
+	var params = "youtube_id=" + _vhmid;
+	params = params + "&timelog=" + D.join("-");
+	var http = new XMLHttpRequest();
+	http.open("POST", url, sync);
+
+	//Send the proper header information along with the request
+	http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	http.setRequestHeader("Content-length", params.length);
+	http.setRequestHeader("Connection", "close");
+	// http.onreadystatechange = function() {//Call a function when the state changes.
+	// 	if(http.readyState == 4 && http.status == 200) {
+	// 		alert(http.responseText);
+	// 	}
+	// }
+	http.send(params);
+	
 }
 
 // // The "main method" of this sample. Called when someone clicks "Run".

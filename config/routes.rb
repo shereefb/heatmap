@@ -37,6 +37,8 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :pages, :only => :show
   
+  map.resources :logs, :only => :create
+  
   map.resources :users, :only => [:new, :create]
   
   map.resource :user, :only => [:edit, :update, :destroy]
