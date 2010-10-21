@@ -1,8 +1,10 @@
 class VideosController < ApplicationController
   before_filter :require_user, :find_video, :check_permissions
   
+  
   def show
     @logs = @video.logs
+        
     
     @h = HighChart.new('graph') do |f|
         f.chart({:defaultSeriesType=>"spline" , :renderTo => "myRenderArea" , :zoomType=> 'x'})
@@ -46,25 +48,6 @@ class VideosController < ApplicationController
                       
       end
       
-      @b = HighChart.new('graph') do |f|
-          f.chart({:defaultSeriesType=>"bar" , :renderTo => "myRenderArea2"})
-          f.credits({:enabled => true, :href => "http://videoheatmaps.com", :text => "videoheatmaps.com"})
-          f.title({:text => "Individual Heat Maps"})
-          # f.subtitle({:text => "click and drag in the plot area to zoom in"})
-          f.y_axis(:type=>'datetime', :title => {:text => "Time"}, :min => 0)
-          f.x_axis(:categories => ['Johnmayor', 'Joanna',"hi","adsf","adsf"])
-          f.legend(:enabled => false)
-          f.plotOptions( :series => {:stacking => 'percentage'}                          
-                        )
-          f.series( {
-              :name=>'John', 
-              :data=>[555,4222,333,222,111]
-            })
-          f.series( {
-              :name=>'Jane', 
-              :data=>[500,400,300,200,100]
-            })
-        end
   end
   
   private

@@ -15,6 +15,9 @@ Rails::Initializer.run do |config|
   # Add additional load paths for your own custom dirs
   # config.load_paths += %W( #{RAILS_ROOT}/extras )
 
+  
+  
+
   # Specify gems that this application depends on and have them installed with rake gems:install
   # config.gem "bj"
   # config.gem "hpricot", :version => '0.6', :source => "http://code.whytheluckystiff.net"
@@ -27,6 +30,7 @@ Rails::Initializer.run do |config|
   config.gem 'acts_as_markup'
   config.gem 'will_paginate'
   config.gem 'responds_to_parent'
+  # config.gem 'gchart'
   # config.gem 'recaptcha', :lib => 'recaptcha/rails'
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
@@ -43,7 +47,6 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   # config.time_zone = 'UTC'
   config.active_record.default_timezone = :utc
-  
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
