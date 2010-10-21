@@ -7,8 +7,8 @@
         <ul class="sf-menu" id="topnav">
           <li <%= "class='active'" if page == "dashboard" %>> <a href="/dashboard"><span>Dashboard</span></a>
           </li>
-          <li <%= "class='active'" if page == "account" %>> <a href="/account"><span>Account</span></a>
-          </li>
+          <!-- <li <%#= "class='active'" if page == "account" %>> <a href="/account"><span>Account</span></a>
+          </li> -->
           <li> <a href="/logout"><span>Logout</span></a>
           <li> <a href="/account"><span style="color:#ccc"><%= current_user.name %></span></a></li>
         </ul>
@@ -16,15 +16,15 @@
 <% else %>
         <ul class="sf-menu" id="topnav">
           <li <%= "class='active'" if page == "home" %>> <a href="/index.html"><span>Home</span></a> </li>
-          <li <%= "class='active'" if page == "tour" %>> <a href="/tour.html"><span>Tour</span></a> </li>
-          <li <%= "class='active'" if page == "library" %>> <a href="/library.html"><span>Library +</span></a>
+          <!-- <li <%= "class='active'" if page == "tour" %>> <a href="/tour.html"><span>Tour</span></a> </li> -->
+          <!-- <li <%= "class='active'" if page == "library" %>> <a href="/library.html"><span>Library +</span></a>
             <ul>
               <li> <a href="/library.html">Overview</a> </li>
               <li> <a href="/tutorials.html">Tutorials</a> </li>
               <li> <a href="/reference.html">Reference</a></li>
               </li>
             </ul>
-          </li>
+          </li> -->
           <!-- <li <%#= "class='active'" if page == "services" %>> <a href="/services.html"><span>Services +</span></a>
             <ul>
               <li> <a href="/pricing.html">Pricings</a> </li>
