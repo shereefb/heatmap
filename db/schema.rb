@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101020220739) do
+ActiveRecord::Schema.define(:version => 20101021032754) do
 
   create_table "logs", :force => true do |t|
     t.string   "ip"
@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20101020220739) do
     t.string   "timelog"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "processed_at"
   end
 
   create_table "participations", :force => true do |t|
@@ -67,5 +68,15 @@ ActiveRecord::Schema.define(:version => 20101020220739) do
   add_index "users", ["last_request_at"], :name => "index_users_on_last_request_at"
   add_index "users", ["persistence_token"], :name => "index_users_on_persistence_token"
   add_index "users", ["username"], :name => "index_users_on_username"
+
+  create_table "videos", :force => true do |t|
+    t.string   "youtube_id"
+    t.text     "heatmap"
+    t.integer  "duration"
+    t.integer  "user_id"
+    t.float    "total_views"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
