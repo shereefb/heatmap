@@ -21,7 +21,7 @@ class UsersController < ApplicationController
           @user.save
         else
           name = data[:name] || data[:username]
-          newdata = {:firstname => name, :email => data[:email], :identifier => data[:identifier]}
+          newdata = {:name => name, :email => data[:email], :identifier => data[:identifier]}
           @user = User.new(newdata)
 
           #try and find a good login
