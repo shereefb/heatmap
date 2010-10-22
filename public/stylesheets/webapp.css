@@ -81,17 +81,17 @@ hr#split {
     color: #44a1dc;
     font-size: 22px;
     margin-top: 5px; }
-  #main-inner #left #mid_nav {
+  #main-inner #mid_nav {
     float: right;
     font-size: 14px; }
-    #main-inner #left #mid_nav.correct, #main-inner #left #mid_nav.incorrect {
+    #main-inner #mid_nav.correct, #main-inner #mid_nav.incorrect {
       color: white;
       margin-top: 5px;
       padding: 2px 5px;
       font-size: 12px; }
-    #main-inner #left #mid_nav.correct {
+    #main-inner #mid_nav.correct {
       background: #5bc236; }
-    #main-inner #left #mid_nav.incorrect {
+    #main-inner #mid_nav.incorrect {
       background: #cc0000; }
   #main-inner #right h3 {
     margin-top: 0;
@@ -472,4 +472,9 @@ a.close_account {
 .pagination{
 	float:right;
 	padding:30px;
+}
+
+.notification {
+	padding: 40px;
+	text-align: center;
 }

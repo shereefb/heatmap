@@ -1,9 +1,18 @@
-%div
-  = link_to "Track video", new_video_path
+- @page_title = 'Dashboard'
 
-.heading
-  %h3
-    Your videos
+%h2= @page_title
 
-- @videos.each do |video|
-  = link_to video.youtube_id, video_path(video)
+
+- if @videos && @videos.length > 0
+  #mid_nav= link_to "Add Video", new_video_path
+
+  .heading
+    %h3
+      Videos your are tracking
+  - @videos.each do |video|
+    = link_to video.youtube_id, video_path(video)
+- else
+  %div.notification
+    You are not yet tracking any videos. 
+    %br
+    = link_to "Get started by generating embed code for your video", new_video_path

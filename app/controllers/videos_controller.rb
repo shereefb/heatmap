@@ -9,7 +9,7 @@ class VideosController < ApplicationController
   
   def show
     # @logs = @video.logs
-    @logs = Log.paginate_by_youtube_id @video.youtube_id, :page => params[:page], :per_page => 10, :order => "created_at DESC"
+    @logs = Log.paginate_by_youtube_id @video.youtube_id, :page => params[:page], :conditions => {:user_id => current_user.id}, :per_page => 10, :order => "created_at DESC"
     
     @h = @video.engagement_graph
       
