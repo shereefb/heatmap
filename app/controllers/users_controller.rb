@@ -14,14 +14,14 @@ class UsersController < ApplicationController
     
       @user = User.find_by_identifier(data[:identifier])
       if !@user
-        @user = User.find_by_mail(data[:email])
+        @user = User.find_by_email(data[:email])
 
         if @user
           @user.identifier = data[:identifier]
           @user.save
         else
           name = data[:name] || data[:username]
-          newdata = {:firstname => name, :mail => data[:email], :identifier => data[:identifier]}
+          newdata = {:firstname => name, :email => data[:email], :identifier => data[:identifier]}
           @user = User.new(newdata)
 
           #try and find a good login
