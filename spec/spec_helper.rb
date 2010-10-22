@@ -68,7 +68,7 @@ Spec::Runner.configure do |config|
 end
 
 def login(user = :justin)
-  @request.host = 'VideoHeatMap.dev'
+  @request.host = 'videoheatmaps.dev'
   activate_authlogic
   UserSession.create(users(user))
 end

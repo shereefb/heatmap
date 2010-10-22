@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = 'Welcome to VideoHeatMap!'
+      flash[:success] = "Welcome! Glad you made it"
       redirect_back_or_default root_url
     else
       flash[:error] = 'There was a problem with your form'

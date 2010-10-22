@@ -1,1 +1,1 @@
-BLACKLIST_USERNAMES = %w(surveys questions answers VideoHeatMap categories help show edit update destroy new create www www2 blog weblog support)
+BLACKLIST_USERNAMES = %w(surveys questions answers videoheatmaps categories help show edit update destroy new create www www2 blog weblog support)

@@ -2,7 +2,7 @@
 module ApplicationHelper
   def page_title
     ary = []
-    ary << 'VideoHeatMap'
+    ary << 'videoheatmaps'
     
     if @survey and not
        @survey.new_record? and not
