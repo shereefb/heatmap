@@ -1600,3 +1600,8 @@ Browser Specific Fixes
 
 
 /*Firefox*/
+
+.half-page{
+	width: 50%;
+	float:left;
+}

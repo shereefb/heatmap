@@ -1,21 +1,20 @@
-- @page_title = 'Create your account'
+- @page_title = 'Sign up using an existing account, or create a new one'
 
 %h2= @page_title
 
-
-  
 #sign-up-top
 
-  - form_for @user do |f|
-    %div#failure.flash
+  %div.half-page
+    =RPXNow.embed_code('bettermeans', url_for(:controller=>:users, :action=>:rpx_token, :only_path => false, :protocol => "https"))
+  %div.half-page
+    - form_for @user do |f|
       = error_messages_for :user
-  
-    = render :partial => 'form', :locals => {:f => f}
-    .field
-      / = recaptcha_tags
-      - if @user.errors['base']
-        .formError= @user.errors['base']
-    .submit= submit_tag 'Signup', :disable_with => 'Creating Account...', :id => 'create'
+      = render :partial => 'form', :locals => {:f => f}
+      .field
+        / = recaptcha_tags
+        - if @user.errors['base']
+          .formError= @user.errors['base']
+      .submit= submit_tag 'Signup', :disable_with => 'Creating Account...', :id => 'create'
 
   / #trial
   /   %h3 

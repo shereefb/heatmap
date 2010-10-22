@@ -1,3 +1,4 @@
+
 # Be sure to restart your server when you modify this file
 
 # Bootstrap the Rails environment, frameworks, and default configuration
@@ -30,6 +31,13 @@ Rails::Initializer.run do |config|
   config.gem 'acts_as_markup'
   config.gem 'will_paginate'
   config.gem 'responds_to_parent'
+  
+  config.gem "rpx_now"
+
+  config.after_initialize do # so rake gems:install works
+    RPXNow.api_key = "0200cb61f224c1c0bd0f3e20d910274485253f84"
+  end
+  
   # config.gem 'gchart'
   # config.gem 'recaptcha', :lib => 'recaptcha/rails'
   # Only load the plugins named here, in the order given (default is alphabetical).
