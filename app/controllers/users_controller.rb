@@ -10,7 +10,37 @@ class UsersController < ApplicationController
   # not found: nil (can happen with e.g. invalid tokens)
   def rpx_token
     raise "hackers?" unless data = RPXNow.user_data(params[:token])
-    self.current_user = User.find_by_identifier(data[:identifier]) || User.create!(data)
+     # = User.find_by_identifier(data[:identifier]) || User.create!(data)
+    
+      @user = User.find_by_identifier(data[:identifier])
+      if !@user
+        @user = User.find_by_mail(data[:email])
+
+        if @user
+          @user.identifier = data[:identifier]
+          @user.save
+        else
+          name = data[:name] || data[:username]
+          newdata = {:firstname => name, :mail => data[:email], :identifier => data[:identifier]}
+          @user = User.new(newdata)
+
+          #try and find a good login
+          if !User.find_by_login(data[:username])
+            @user.login = data[:username]
+          elsif !User.find_by_login(name)
+            @user.login = name
+          else
+            @user.login = data[:email]
+          end
+
+          raise "Couldn't create new account" unless @user.save
+        end
+      end
+
+      self.current_user = @user
+      redirect_to dashboard_path
+    end
+    
     redirect_to '/'
   end
 
