@@ -37,10 +37,7 @@ class UsersController < ApplicationController
         end
       end
 
-      self.current_user = @user
-      redirect_to dashboard_path
-    end
-    
+    self.current_user = @user
     redirect_to '/'
   end
 

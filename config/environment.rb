@@ -32,7 +32,7 @@ Rails::Initializer.run do |config|
   config.gem 'will_paginate'
   config.gem 'responds_to_parent'
   
-  config.gem "rpx_now"
+  config.gem 'rpx_now'
 
   config.after_initialize do # so rake gems:install works
     RPXNow.api_key = "0200cb61f224c1c0bd0f3e20d910274485253f84"
