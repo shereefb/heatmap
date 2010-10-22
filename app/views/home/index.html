@@ -18,17 +18,17 @@
         <!-- /Tags -->
         <div class="separator-big clear">s</div>
         <div id="main-tour-content" class="left span-12 clear">
-          <div class="col span-4 first">
+          <!-- <div class="col span-4">
+            <h3>Screenshots</h3>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
+          </div> -->
+          <div class="col span-5 first">
             <div class="signup-header">How does it work?</div>
             <p><strong>First,</strong> get the embed code for your youtube video from youtube </p>
             <p><strong>Second,</strong> run the code through our tool, to get an enhanced code, with heatmap tracking </p>
             <p><strong>Finally,</strong> embed the new enhance code on your website and enjoy the heatmaps!</p>
           </div>
-          <!-- <div class="col span-4">
-            <h3>Screenshots</h3>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-          </div> -->
-          <div class="col span-4">
+          <div class="col span-5">
             <%= RPXNow.embed_code('videoheatmaps', url_for(:controller=>:users, :action=>:rpx_token, :only_path => false, :protocol => "http")) %>
             
           </div>
