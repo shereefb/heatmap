@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   # found: {:name=>'John Doe', :username => 'john', :email=>'john@doe.com', :identifier=>'blug.google.com/openid/dsdfsdfs3f3'}
   # not found: nil (can happen with e.g. invalid tokens)
   def rpx_token
-    raise "hackers?" unless data = RPXNow.user_data(params[:token])
+    # raise "hackers?" unless data = RPXNow.user_data(params[:token])
      # = User.find_by_identifier(data[:identifier]) || User.create!(data)
     
       @user = User.find_by_identifier(data[:identifier])
