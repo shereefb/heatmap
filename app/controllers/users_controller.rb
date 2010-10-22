@@ -24,13 +24,13 @@ class UsersController < ApplicationController
           newdata = {:name => name, :email => data[:email], :identifier => data[:identifier]}
           @user = User.new(newdata)
 
-          #try and find a good login
-          if !User.find_by_login(data[:username])
-            @user.login = data[:username]
-          elsif !User.find_by_login(name)
-            @user.login = name
+          #try and find a good username
+          if !User.find_by_username(data[:username])
+            @user.username = data[:username]
+          elsif !User.find_by_username(name)
+            @user.username = name
           else
-            @user.login = data[:email]
+            @user.username = data[:email]
           end
 
           raise "Couldn't create new account" unless @user.save
