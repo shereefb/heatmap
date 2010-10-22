@@ -3,53 +3,49 @@
     <%= render :partial => 'header', :locals => {:page => 'home'} %>
     <div class="clear span-12 last" id="main-inner">
       <div class="clear span-12">
-        <h2 class="main-title">Track how people watch your YouTube videos</h2>
-        <ul id="tour-menu">
+        <h1 class="main-title">Track how people watch your YouTube videos</h1>
+        <!-- <ul id="tour-menu">
           <li><a class="selected" href="#">General</a></li>
           <li><a href="#">How it works</a></li>
-          <!-- <li><a href="#">How to upload your files</a></li> -->
-        </ul>
+        </ul> -->
         <div class="clear"></div>
-        <div id="video-container" class="span-12 clear">
-          <div id="video"> </div>
-          <object width="777" height="435">
-            <param name="allowfullscreen" value="true" />
-            <param name="allowscriptaccess" value="always" />
-            <param name="movie" VALUE="../../../www.vimeo.com/moogaloop.swf@clip_id=8572290&server=www.vimeo.com&show_title=1&show_byline=1&show_portrait=0&color=&fullscreen=1" />
-            <embed SRC="../../../www.vimeo.com/moogaloop.swf@clip_id=8572290&server=www.vimeo.com&show_title=1&show_byline=1&show_portrait=0&color=&fullscreen=1" type="application/x-shockwave-flash" allowfullscreen="true" allowscriptaccess="always" width="777" height="435"></embed>
-          </object>
-          <p><a HREF="../../../www.vimeo.com/8572290">Paris Vol. 4</a> from <a HREF="../../../www.vimeo.com/se7enth">The Seventh Movement</a> on <a HREF="../../../www.vimeo.com/index.htm">Vimeo</a>.</p>
-        </div>
+          <img src="/images/videoheatmapsmainimage.png" alt="video heatmap" width="940px" height="400px"/>
         <!-- /Video Container -->
         <div id="tags" class="clear span-12">
           <h1 class="tour-title">See exactly which parts of your video are effective</h1>
-          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
+          <!-- <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p> -->
         </div>
         <!-- /Tags -->
         <div class="separator-big clear">s</div>
         <div id="main-tour-content" class="left span-12 clear">
           <div class="col span-4 first">
-            <h3>Not enough?</h3>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
+            <div class="signup-header">How does it work?</div>
+            <p><strong>First,</strong> get the embed code for your youtube video from youtube </p>
+            <p><strong>Second,</strong> run the code through our tool, to get an enhanced code, with heatmap tracking </p>
+            <p><strong>Finally,</strong> embed the new enhance code on your website and enjoy the heatmaps!</p>
           </div>
-          <div class="col span-4">
+          <!-- <div class="col span-4">
             <h3>Screenshots</h3>
             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. </p>
-            <a href=""><img SRC="../../../dummyimage.com/62x62" alt="Dummy Images"  /></a> <a href=""><img SRC="../../../dummyimage.com/62x62" alt="Dummy Images"  /></a> <a href=""><img SRC="../../../dummyimage.com/62x62" alt="Dummy Images"  /></a> </div>
+          </div> -->
+          <div class="col span-4">
+            <%= RPXNow.embed_code('videoheatmaps', url_for(:controller=>:users, :action=>:rpx_token, :only_path => false, :protocol => "http")) %>
+            
+          </div>
           <div id="secondary-text" class="clear">
             <hr />
             <p>VideoHeatmaps is in very early beta. Please don't expect rock solid production code, and <a href="/contact.html">send us all the feedback you've got!</a></p>
           </div>
         </div>
         <!-- / Main Tour Content Left -->
-        <ul id="styled-menu" class="right">
+        <!-- <ul id="styled-menu" class="right">
           <li> <a href="#"><img src="/images/static/icon-1.png" alt="" width="29" height="29" /><span>Rockstar Design</span></a> </li>
           <li> <a href="#"><img src="/images/static/icon-2.png" alt="" width="29" height="29" /><span>Best Perfomance</span></a> </li>
           <li> <a href="#"><img src="/images/static/icon-3.png" alt="" width="29" height="29" /><span>Download the kit</span></a> </li>
           <li> <a href="#"><img src="/images/static/icon-4.png" alt="" width="29" height="29" /><span>Multiuser</span></a> </li>
           <li> <a href="#"><img src="/images/static/icon-5.png" alt="" width="29" height="29" /><span>On Time</span></a> </li>
           <li> <a href="#"><img src="/images/static/icon-6.png" alt="" width="29" height="29" /><span>Happy Clients</span></a> </li>
-        </ul>
+        </ul> -->
       </div>
       <!-- end main-inner -->
     </div>

@@ -511,6 +511,9 @@ div#ads div.ad-boxes {
 /************************************************************************
 Tour Page
 ************************************************************************/
+#main-inner h1.main-title {
+	text-align: center;
+}
 #main-inner h2.main-title {
 	color:#44a1dc;
 	width: 650px;
@@ -568,7 +571,6 @@ Tour Page
 	text-align: center
 }
 #main-tour-content {
-	margin-top: 40px;
 	width:650px;
 	margin-right: 0;
 	width: 700px;
@@ -1604,4 +1606,14 @@ Browser Specific Fixes
 .half-page{
 	width: 50%;
 	float:left;
+}
+
+.signup-header{
+	font-family: 'lucida grande',Verdana,sans-serif;
+	color: #333;
+	font-weight: normal;
+	font-size: 1.4em;
+	padding-top: 7px;
+	text-align: left;
+	width: 100%;
 }

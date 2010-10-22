@@ -7,8 +7,21 @@
 .heading
   %h3
     Individual Heatmaps
+    
 %br
 %br
+%div.clear
+%div.ipaddress
+  %strong
+    Time
+%div.connection
+  %strong
+    IP Address
+%div.heatmap
+  %img{:src => "/images/key.jpg", :alt => "key"}
+%div.heatmap-percentage
+%div.clear
+  
 - @logs.each do |log|
   = render :partial => "log", :locals => {:log => log}
 
