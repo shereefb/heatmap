@@ -9,8 +9,17 @@
   .heading
     %h3
       Videos your are tracking
-  - @videos.each do |video|
-    = link_to video.youtube_id, video_path(video)
+  %div.clear
+  %div
+    %br
+    - @videos.each do |video|
+      = video.id
+      &nbsp;&nbsp;
+      = link_to video.youtube_id, video_path(video)
+      &nbsp;
+      = video.total_views.round
+      views
+      %br
 - else
   %div.notification
     You are not yet tracking any videos. 

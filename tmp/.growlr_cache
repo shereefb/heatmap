@@ -1,0 +1,2 @@
+
+$.jGrowl('Password reset instructions have been emailed to you');
