@@ -158,11 +158,22 @@ function setup_fancybox_iframes(){
 }
 
 function generate_code(){
+	
 	text = $('#embed').val();
-	newtext = text.replace(/\?/g,"?enablejsapi=1&");
+	
+	//getting video id
+	text = $('#embed').val();
+	l = text.search(/youtube/);
+	videoid = text.substring(l + 14, l + 25);
+	
+	//adding player api
+	newtext = text.replace(/\?/g,"?enablejsapi=1&playerapiid=em1&");
+	newtext = newtext.replace("<embed ", "<embed id='vhm' ");
+	
+	//add script
 	newtext = newtext + "<script type='text/javascript'>";
-	newtext = newtext + "var _vhmid = ['ylLzyHk54Z0'];";
-	newtext = newtext + "var _uid = 1;";
+	newtext = newtext + "var _vhmid = ['" + videoid + "'];";
+	newtext = newtext + "var _uid = " + currentUserId + ";";
 	newtext = newtext + "setTimeout(function() {";
 	newtext = newtext + "var g=document.createElement('script');";
 	newtext = newtext + "g.src='//localhost:3000/l.js';";
@@ -171,6 +182,8 @@ function generate_code(){
 	newtext = newtext + "s.parentNode.insertBefore(g, s);";
 	newtext = newtext + "},0);";
 	newtext = newtext + "</script>";
+	
+	//updating ui
 	$('#new_embed').val(newtext);
 	$('#new_embed').height(200);
 	$('#new_embed_section').show();

@@ -14,4 +14,8 @@
         = label "videos", "New Embed Code"
         .hint Paste this code into your website, and let the tracking begin!
         = text_area "videos", "new_embedcode", :id => "new_embed", :height => "500px"
+        
+:javascript
+  var currentUserId = #{current_user.id};
+
     

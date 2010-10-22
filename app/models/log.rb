@@ -5,6 +5,9 @@ class Log < ActiveRecord::Base
   # Takes the raw data, turns it into an array. Each cell representing a second. Each cell showing the number of times that second was viewed. This data is then added to the array in the video
   def process
     return unless processed_at == nil
+    
+    #TODO: check for video, if it doesn't exist create it for this user
+    
     process_log
     process_video_heatmap
     
@@ -49,8 +52,13 @@ class Log < ActiveRecord::Base
   
   #adds the logs heatmap to the video
   def process_video_heatmap
-    vid = Video.find_by_youtube_id(self.youtube_id)
-    return false unless vid
+    vid = Video.find(:first, :conditions => {:youtube_id => self.youtube_id, :user_id => self.user_id})
+    
+    #create the record if we can't find one
+    unless vid
+      vid = Video.create(:user_id => self.user_id, :youtube_id => self.youtube_id, :duration => self.duration, :total_views => 0)
+    end
+    
     large_array = Array.new
     vid_heatmap = vid.heatmap_array
     vid_heatmap = Array.new(self.duration){0} if vid_heatmap.nil?

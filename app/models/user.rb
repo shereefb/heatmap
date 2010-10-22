@@ -29,7 +29,10 @@ class User < ActiveRecord::Base
     config.perishable_token_valid_for = 1.hour
   end
   
+  belongs_to :user
+  
   has_many :videos
+  has_many :logs
     
   validates_presence_of :name,
                         :username
