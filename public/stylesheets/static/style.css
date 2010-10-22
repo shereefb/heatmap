@@ -513,7 +513,7 @@ Tour Page
 ************************************************************************/
 #main-inner h2.main-title {
 	color:#44a1dc;
-	width: 450px;
+	width: 650px;
 	float: left
 }
 #main-inner h1.tour-title {
@@ -521,9 +521,9 @@ Tour Page
 	text-align:center
 }
 #main-inner ul#tour-menu {
-	float:left;
-	width: 400px;
-	margin: 20px 0 0 80px
+	float:right;
+	width: 200px;
+	margin: 20px 0 0 20px
 }
 #main-inner ul#tour-menu li {
 	border-right:1px solid #CCCCCC;

@@ -76,7 +76,7 @@ hr#split {
 #main-inner {
   font-family: arial, tahoma, verdana, sans-serif;
   width: 960px; }
-  #main-inner #left h2 {
+  #main-inner h2 {
     padding-top: 18px;
     color: #44a1dc;
     font-size: 22px;
