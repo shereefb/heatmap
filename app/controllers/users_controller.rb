@@ -24,6 +24,8 @@ class UsersController < ApplicationController
           name = data[:name] || data[:username]
           newdata = {:name => name, :email => data[:email], :identifier => data[:identifier]}
           @user = User.new(newdata)
+          
+          logger.info { "new data #{newdata.inspect}" }
 
           #try and find a good username
           if !User.find_by_username(data[:username])
