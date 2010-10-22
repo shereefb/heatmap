@@ -3,8 +3,10 @@
 %h2= @page_title
 
 %div.half-page
-  =RPXNow.embed_code('bettermeans', url_for(:controller=>:users, :action=>:rpx_token, :only_path => false, :protocol => "https"))
+  =RPXNow.embed_code('videoheatmaps', url_for(:controller=>:users, :action=>:rpx_token, :only_path => false, :protocol => "https"))
 %div.half-page
+  %div.signup-header
+    or login using your videoheatmaps.com account
   .form
     - form_for @user_session, :url => user_session_path do |f|
       .field

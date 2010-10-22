@@ -479,3 +479,14 @@ a.close_account {
 	text-align: center;
 	font-size: 1.4em;
 }
+
+.signup-header{
+	font-family: 'lucida grande',Verdana,sans-serif;
+	color: #333;
+	font-weight: normal;
+	font-size: 1.4em;
+	padding-left: 20px;
+	padding-top: 7px;
+	text-align: left;
+	width: 100%;
+}
