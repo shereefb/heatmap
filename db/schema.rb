@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20101021234309) do
+ActiveRecord::Schema.define(:version => 20101022203506) do
 
   create_table "logs", :force => true do |t|
     t.string   "ip"
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20101021234309) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.string   "identifier"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"
