@@ -9,7 +9,7 @@ class Emailer < ActionMailer::Base
   private
   
   def setup_email
-    from    %("videoheatmaps" <noreply@videoheatmaps.com>)
+    from    %("videoheatmaps" <support@videoheatmaps.com>)
     sent_on Time.current
   end
 end

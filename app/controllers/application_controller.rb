@@ -4,7 +4,11 @@
 class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   
-  THE_DOMAIN = 'http://videoheatmaps.com'
+  if ENV['RAILS_ENV'] == "development"
+    THE_DOMAIN = 'localhost:3000'
+  else
+    THE_DOMAIN = 'http://videoheatmaps.com'
+  end
   
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
