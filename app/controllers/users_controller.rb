@@ -16,6 +16,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Welcome to VideoHeatMap!'
       redirect_back_or_default root_url
     else
+      flash[:error] = 'There was a problem with your form'
       render :new
     end
   end

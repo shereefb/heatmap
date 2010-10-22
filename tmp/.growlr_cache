@@ -1,0 +1,2 @@
+
+$.jGrowl('There was a problem with your form');

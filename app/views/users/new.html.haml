@@ -2,8 +2,14 @@
 
 %h2= @page_title
 
+
+  
 #sign-up-top
+
   - form_for @user do |f|
+    %div#failure.flash
+      = error_messages_for :user
+  
     = render :partial => 'form', :locals => {:f => f}
     .field
       / = recaptcha_tags
@@ -11,10 +17,6 @@
         .formError= @user.errors['base']
     .submit= submit_tag 'Signup', :disable_with => 'Creating Account...', :id => 'create'
 
-- content_for :right do  
-  #thanks
-    <img src="/images/static/thanks.png" alt="" />
-    <hr />
   / #trial
   /   %h3 
   /     30-day Free Trial
