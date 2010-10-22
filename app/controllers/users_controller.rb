@@ -9,8 +9,8 @@ class UsersController < ApplicationController
   # found: {:name=>'John Doe', :username => 'john', :email=>'john@doe.com', :identifier=>'blug.google.com/openid/dsdfsdfs3f3'}
   # not found: nil (can happen with e.g. invalid tokens)
   def rpx_token
-    # raise "hackers?" unless 
-     data = RPXNow.user_data(params[:token])
+     raise "hackers?" unless data = RPXNow.user_data(params[:token])
+     logger.info { "data #{data.inspect}" }
      # = User.find_by_identifier(data[:identifier]) || User.create!(data)
     
       @user = User.find_by_identifier(data[:identifier])
@@ -22,26 +22,31 @@ class UsersController < ApplicationController
           @user.save
         else
           name = data[:name] || data[:username]
-          newdata = {:name => name, :email => data[:email], :identifier => data[:identifier]}
-          @user = User.new(newdata)
-          
-          logger.info { "new data #{newdata.inspect}" }
+          mail = data[:email] || "noemail@noemail.com"
 
           #try and find a good username
           if !User.find_by_username(data[:username])
-            @user.username = data[:username]
+            username = data[:username]
           elsif !User.find_by_username(name)
-            @user.username = name
+            username = name
           else
-            @user.username = data[:email]
+            username = mail
           end
-
+          
+          password = (0...8).map{65.+(rand(25)).chr}.join
+          
+          newdata = {:name => name, :email => mail, :identifier => data[:identifier], :username => username, :password => password, :password_confirmation => password}
+          @user = User.new(newdata)
+          
+          logger.info { "new data #{newdata.inspect}" }
+          
           raise "Couldn't create new account" unless @user.save
         end
       end
+      
+    UserSession.create(@user,true)
 
-    self.current_user = @user
-    redirect_to '/'
+    redirect_to dashboard_path
   end
 
   def show

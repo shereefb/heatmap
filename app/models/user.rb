@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :name, 
                           :username, :case_sensitive => false
   
-  validates_format_of :username, :with => /\A\w+\z/i,
-                                 :message => 'only letters, numbers, and underscores please'
+  # validates_format_of :username, :with => /\A\w+\z/i,
+  #                                :message => 'only letters, numbers, and underscores please'
                                  
   validates_exclusion_of :username, :in => BLACKLIST_USERNAMES,
                                     :message => 'is not allowed'
