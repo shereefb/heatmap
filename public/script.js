@@ -71,7 +71,7 @@ function onPlayerStateChange(newState) {
 // Display information about the current state of the player
 function updatePlayerInfo() {
 	if ((truelast - last) > threshold || (last - truelast) > threshold){
-		console.log("current " + last + "  last " + truelast);
+		//console.log("current " + last + "  last " + truelast);
 		D.push([Math.round(truelast),Math.round(last)]);
 	}
 }
@@ -101,9 +101,9 @@ function unload(){
 
 // Sends data to server
 function report(sync){
-    console.log("reporting");
+    //console.log("reporting");
     if (reported == true){
-        console.log("reported is true, so we're not going to report");
+        //console.log("reported is true, so we're not going to report");
         return;
     }
     reported = true;

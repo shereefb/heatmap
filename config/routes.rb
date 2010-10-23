@@ -35,6 +35,8 @@ ActionController::Routing::Routes.draw do |map|
 
   # See how all your routes lay out with "rake routes"
   
+  map.connect '/l', :controller => "logs", :action => "script"
+  
   map.resources :pages, :only => :show
   
   map.resources :logs, :only => :create

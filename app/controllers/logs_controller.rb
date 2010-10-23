@@ -13,4 +13,8 @@ class LogsController < ApplicationController
     log.process
     render :nothing => true
   end
+  
+  def script
+    render :layout => false
+  end
 end

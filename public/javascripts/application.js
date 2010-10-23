@@ -176,7 +176,7 @@ function generate_code(){
 	newtext = newtext + "var _uid = " + currentUserId + ";";
 	newtext = newtext + "setTimeout(function() {";
 	newtext = newtext + "var g=document.createElement('script');";
-	newtext = newtext + "g.src='//" + domain.replace("http://","") + "/l.js';";
+	newtext = newtext + "g.src='//" + domain.replace("http://","") + "/l';";
 	newtext = newtext + "g.async =true;";
 	newtext = newtext + "s=document.getElementsByTagName('script')[0];";
 	newtext = newtext + "s.parentNode.insertBefore(g, s);";
