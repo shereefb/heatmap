@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   include ExceptionNotifiable
   
   if ENV['RAILS_ENV'] == "development"
-    THE_DOMAIN = 'http://videoheatmaps.com'
+    THE_DOMAIN = 'http://localhost:3000'
   else
     THE_DOMAIN = 'http://videoheatmaps.com'
   end
