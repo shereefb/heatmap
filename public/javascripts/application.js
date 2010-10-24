@@ -171,20 +171,21 @@ function generate_code(){
 	newtext = newtext.replace("<embed ", "<embed id='vhm' ");
 	
 	//add script
-	newtext = newtext + "<script type='text/javascript'>";
-	newtext = newtext + "var _vhmid = ['" + videoid + "'];";
-	newtext = newtext + "var _uid = " + currentUserId + ";";
-	newtext = newtext + "setTimeout(function() {";
-	newtext = newtext + "var g=document.createElement('script');";
-	newtext = newtext + "g.src='//" + domain.replace("http://","") + "/l';";
-	newtext = newtext + "g.async =true;";
-	newtext = newtext + "s=document.getElementsByTagName('script')[0];";
-	newtext = newtext + "s.parentNode.insertBefore(g, s);";
-	newtext = newtext + "},0);";
-	newtext = newtext + "</script>";
+	scriptext = "";
+	scriptext = scriptext + "<script type='text/javascript'>";
+	scriptext = scriptext + "var _vhmid = ['" + videoid + "'];";
+	scriptext = scriptext + "var _uid = " + currentUserId + ";";
+	scriptext = scriptext + "setTimeout(function() {";
+	scriptext = scriptext + "var g=document.createElement('script');";
+	scriptext = scriptext + "g.src='//" + domain.replace("http://","") + "/l';";
+	scriptext = scriptext + "g.async =true;";
+	scriptext = scriptext + "s=document.getElementsByTagName('script')[0];";
+	scriptext = scriptext + "s.parentNode.insertBefore(g, s);";
+	scriptext = scriptext + "},0);";
+	scriptext = scriptext + "</script>";
 	
 	//updating ui
-	$('#new_embed').val(newtext);
+	$('#new_embed').val(scriptext + newtext);
 	$('#new_embed').height(200);
 	$('#new_embed_section').show();
 	$('#submit_button').hide();
@@ -192,3 +193,10 @@ function generate_code(){
 	
 }
 
+function reset_form(){
+	$('#new_embed').val();
+	$('#new_embed').height(200);
+	$('#new_embed_section').hide();
+	$('#submit_button').show();
+	$('#embed').removeAttr("disabled");	
+}

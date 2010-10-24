@@ -8,6 +8,8 @@ var lognext = false;
 var threshold = 2; //seconds above wich we log
 var reported = true; 
 
+var debug = window.location.hostname == "localhost";
+
 window.onbeforeunload = unload;
 
 // Update a particular HTML element with a new value
@@ -71,7 +73,7 @@ function onPlayerStateChange(newState) {
 // Display information about the current state of the player
 function updatePlayerInfo() {
 	if ((truelast - last) > threshold || (last - truelast) > threshold){
-		//console.log("current " + last + "  last " + truelast);
+		if (debug) {console.log("current " + last + "  last " + truelast);}
 		D.push([Math.round(truelast),Math.round(last)]);
 	}
 }

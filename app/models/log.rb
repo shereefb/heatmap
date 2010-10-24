@@ -39,14 +39,14 @@ class Log < ActiveRecord::Base
       large_array.push suba
       
       last_start = starting
-      puts "#{starting} #{ending} #{suba}"
     end
     
     self.processed_at = DateTime.now
     heatmap_arr = large_array.transpose.map {|x| x.sum}
+    heatmap_arr = Array.new(duration){0} if heatmap_arr == []
+    puts "heatmap arr #{heatmap_arr.inspect}"
     self.heatmap = heatmap_arr.join(",")
     self.save!
-    puts "#{heatmap.inspect}"
     return heatmap_arr
   end
   
