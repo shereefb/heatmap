@@ -33,7 +33,7 @@ function onPlayerStateChange(newState, playerid) {
 	if (debug) {console.log("state changed to " + newState + " player: " + playerid);}
 	
 	if (current_playerid(playerid) != playerid){
-		if (debug) {console.log("watching another video in my player: ");}
+		va[playerid]['D'] = [];
 		//watching another video through my player!
 		return;
 	}
@@ -132,7 +132,7 @@ function report(playerid,sync){
 	
     //console.log("reporting");
     if (va[playerid]['reported'] == true){
-        //console.log("reported is true, so we're not going to report");
+		va[playerid]['D'] = [];
         return;
     }
 
