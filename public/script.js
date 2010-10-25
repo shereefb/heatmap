@@ -144,6 +144,7 @@ function report(playerid,sync){
 		//video was paused before page was unloaded, we add a datapoint about that
 		va[playerid]['D'].push([Math.round(va[playerid]['truelast']),duration]);
 	}
+	
     
     var url = "http://videoheatmaps.com/logs/create";
     var params = "youtube_id=" + playerid;
