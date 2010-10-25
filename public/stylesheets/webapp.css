@@ -490,3 +490,24 @@ a.close_account {
 	text-align: left;
 	width: 100%;
 }
+
+.vid{
+	padding: 10px;
+	float: left;
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1.8em;
+	text-align:center;
+}
+
+.third{
+	float:left;
+	width: 30%;
+	padding-top: 50px;
+}
+
+.twothirds{
+	float:left;
+	width:66%;
+	padding-right:20px;
+}

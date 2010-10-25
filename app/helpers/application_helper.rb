@@ -16,6 +16,10 @@ module ApplicationHelper
     ary.reverse.join(' &ndash; ')
   end
   
+  def embed(youtube_id,width,height)
+    "<object width=#{width} height=#{height}><param name='movie' value='http://www.youtube.com/v/#{youtube_id}?fs=1&amp;hl=en_US'></param><param name='allowFullScreen' value='true'></param><param name='allowscriptaccess' value='always'></param><embed src='http://www.youtube.com/v/#{youtube_id}?fs=1&amp;hl=en_US' type='application/x-shockwave-flash' allowscriptaccess='always' allowfullscreen='true' width=#{width} height=#{height}></embed></object>"
+  end
+  
   def markdown
     link = link_to 'Formatting Help',
                     'http://effectif.com/nesta/markdown-cheat-sheet',

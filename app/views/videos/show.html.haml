@@ -1,8 +1,10 @@
 - @page_title = "Video details #{@video.youtube_id}"
 
 %h2= "Video details : #{link_to @video.youtube_id, "http://youtube.com/watch?v=" + @video.youtube_id, :target => 'blank'}"
-
-= high_chart("my_id", @h)
+%div.twothirds
+  = high_chart("my_id", @video.engagement_graph)
+%div.third
+  = embed(@video.youtube_id,300,200)
 
 .heading
   %h3

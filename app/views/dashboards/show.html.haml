@@ -13,13 +13,13 @@
   %div
     %br
     - @videos.each do |video|
-      = video.id
-      &nbsp;&nbsp;
-      = link_to video.youtube_id, video_path(video)
-      &nbsp;
-      = video.total_views.round
-      views
-      %br
+      %div.vid
+        = embed(video.youtube_id,200,120)
+        %br
+        = link_to video.total_views.round.to_s + " views - See tracking details", video_path(video)
+  %div.clear
+  %div.notification
+    = link_to "Add another video", new_video_path
 - else
   %div.notification
     You are not yet tracking any videos. 
