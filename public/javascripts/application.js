@@ -84,8 +84,8 @@ jQuery(function($) {
   };
 
     
-  autogrow();
-  setup_fancybox_iframes();
+  // autogrow();
+  // setup_fancybox_iframes();
   
   $('.heading a.add.ajax').click(function() {
     var form = $('.new_ajax_form');
@@ -177,7 +177,7 @@ function generate_code(){
 	scriptext = scriptext + "var _uid = " + currentUserId + ";";
 	scriptext = scriptext + "setTimeout(function() {";
 	scriptext = scriptext + "var g=document.createElement('script');";
-	scriptext = scriptext + "g.src='//" + domain.replace("http://","") + "/s1.js;";
+	scriptext = scriptext + "g.src='//" + domain.replace("http://","") + "/s1.js';";
 	// scriptext = scriptext + "g.src='//" + domain.replace("http://","") + "/l?v=" + videoid + "';";
 	scriptext = scriptext + "g.async =true;";
 	scriptext = scriptext + "s=document.getElementsByTagName('script')[0];";
