@@ -15,6 +15,7 @@ class LogsController < ApplicationController
   end
   
   def script
-    render :layout => false
+    @v = params[:v].to_s
+    render :file => '/script.js.erb'#, :layout => false
   end
 end

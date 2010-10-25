@@ -3,11 +3,8 @@ var swfobject=function(){var D="undefined",r="object",S="Shockwave Flash",W="Sho
 if(typeof va == "undefined") {
 	var va = new Object; //variable array
 }
-
-if(typeof players == "undefined") {
-	var players = []; //list of player ids
-}
-
+// var _vhmid = '<%=@v%>';
+// console.log("loaded script with " + _vhmid);
 var threshold = 2; //seconds above wich we log
 var reported = true; 
 
@@ -20,31 +17,25 @@ function updateHTML(elmId, value) {
   document.getElementById(elmId).innerHTML = value;
 }
 
-function current_playerid(playerid){
-	vidurl = va[playerid]['ytplayer'].getVideoUrl();
-	start = vidurl.search("watch");
-	return(vidurl.substring(start + 8, start + 19));
-}
-
+// function update_vhmid(){
+// 	vidurl = va[_vhmid]['ytplayer'].getVideoUrl();
+// 	start = vidurl.search("watch");
+// 	_vhmid = vidurl.substring(start + 8, start + 19);
+// }
 
 // This function is called when the player changes state
 function onPlayerStateChange(newState, playerid) {
 	
-	if (debug) {console.log("state changed to " + newState + " player: " + playerid);}
-	
-	if (current_playerid(playerid) != playerid){
-		if (debug) {console.log("watching another video in my player: ");}
-		//watching another video through my player!
-		return;
-	}
-	
-	
+	console.log("state changedplayer: " + playerid);
 	
 	va[playerid]['lognext'] = false;
 	
 	//buffering
 	if(newState == 3){
 		va[playerid]['truelast'] = va[playerid]['last'];
+		// if (va[_vhmid]['ytplayer'].getDuration() - va[_vhmid]['ytplayer'].getva[_vhmid]['current']Time() < 2){
+		// 	report(true);
+		// }
 	}
 	
 
@@ -54,12 +45,13 @@ function onPlayerStateChange(newState, playerid) {
 		if (va[playerid]['ytplayer'].getDuration() - va[playerid]['ytplayer'].getCurrentTime() < 2){
 			report(playerid,true);
 		}
+		
 	}
 	
 	//started
 	if(newState == 1){
 		va[playerid]['lognext'] = true;
-		va[playerid]['reported'] = false; //now we report
+		reported = false; //now we report
 	}
 	
 	//started
@@ -67,12 +59,10 @@ function onPlayerStateChange(newState, playerid) {
 		report(playerid,true);
 	}
 	
-	if (debug) {
 	if(va[playerid]['ytplayer'] && va[playerid]['ytplayer'].getDuration) {
 	updateHTML("playerState", newState);
     updateHTML("videoDuration", va[playerid]['ytplayer'].getDuration());
     updateHTML("videoCurrentTime", va[playerid]['ytplayer'].getCurrentTime());
-	}
   }
   
 	
@@ -96,9 +86,8 @@ function updateLast(playerid){
 
 // This function is automatically called by the player once it loads
 function onYouTubePlayerReady(playerid) {
-	if (debug) {console.log("called ready with playerid " + playerid);}
+	console.log("called ready with playerid " + playerid);
 	playerid = unescape(playerid);
-	players.push(playerid);
 	va[playerid] = new Object; //array holding all variables for this video
 	va[playerid]['ytplayer'];
 	va[playerid]['D']=[];
@@ -107,8 +96,9 @@ function onYouTubePlayerReady(playerid) {
 	va[playerid]['truelast'] = 0;
 	va[playerid]['lognext'] = false;
 	
+	
  	va[playerid]['ytplayer'] = document.getElementById("vhm" + playerid);
-	if (debug) {console.log("got player " + va[playerid]['ytplayer'] + " for player id " + playerid);}
+	console.log("got player " + va[playerid]['ytplayer'] + " for player id " + playerid);
   setInterval("updateLast('" + playerid + "')", 250);
   // setTimeout("updateLast('" + playerid + "')", 250);
   updatePlayerInfo(playerid);
@@ -117,39 +107,24 @@ function onYouTubePlayerReady(playerid) {
 
 function unload(){
 	//looop through all player ids
-	for ( var i=0, len=players.length; i<len; ++i ){
-	  report(players[i],false);
-	}
+	report(false);
 }
 
 // Sends data to server
 function report(playerid,sync){
-	if (debug) {console.log("reporting with playerid" + playerid);}
-	
-	if (current_playerid(playerid) != playerid){
-		return;
-	}
-	
+	console.log("reporting with playerid" + playerid);
     //console.log("reporting");
     if (va[playerid]['reported'] == true){
         //console.log("reported is true, so we're not going to report");
         return;
     }
-
     va[playerid]['reported'] = true;
-
-	duration = Math.round(va[playerid]['ytplayer'].getDuration())
-
-	if (sync == false){
-		//video was paused before page was unloaded, we add a datapoint about that
-		va[playerid]['D'].push([Math.round(va[playerid]['truelast']),duration]);
-	}
     
     var url = "http://localhost:3000/logs/create";
     var params = "youtube_id=" + playerid;
     params = params + "&uid=" + _uid;
     params = params + "&timelog=" + va[playerid]['D'].join("-");
-    params = params + "&duration=" + duration;
+    params = params + "&duration=" + Math.round(va[playerid]['ytplayer'].getDuration());
     var http = new XMLHttpRequest();
     http.open("POST", url, sync);
 

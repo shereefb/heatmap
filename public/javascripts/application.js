@@ -167,17 +167,18 @@ function generate_code(){
 	videoid = text.substring(l + 14, l + 25);
 	
 	//adding player api
-	newtext = text.replace(/\?/g,"?enablejsapi=1&playerapiid=em1&");
-	newtext = newtext.replace("<embed ", "<embed id='vhm' ");
+	newtext = text.replace(/\?/g,"?enablejsapi=1&playerapiid=" + videoid + "&");
+	newtext = newtext.replace("<embed ", "<embed id='vhm" + videoid + "' class='ytplayer'");
 	
 	//add script
 	scriptext = "";
 	scriptext = scriptext + "<script type='text/javascript'>";
-	scriptext = scriptext + "var _vhmid = ['" + videoid + "'];";
+	// scriptext = scriptext + "var _vhmid = ['" + videoid + "'];";
 	scriptext = scriptext + "var _uid = " + currentUserId + ";";
 	scriptext = scriptext + "setTimeout(function() {";
 	scriptext = scriptext + "var g=document.createElement('script');";
-	scriptext = scriptext + "g.src='//" + domain.replace("http://","") + "/l';";
+	scriptext = scriptext + "g.src='//" + domain.replace("http://","") + "/s1.js;";
+	// scriptext = scriptext + "g.src='//" + domain.replace("http://","") + "/l?v=" + videoid + "';";
 	scriptext = scriptext + "g.async =true;";
 	scriptext = scriptext + "s=document.getElementsByTagName('script')[0];";
 	scriptext = scriptext + "s.parentNode.insertBefore(g, s);";

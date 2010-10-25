@@ -33,7 +33,7 @@ class Log < ActiveRecord::Base
         ending = split[1].to_i
       end
       
-      next if last_start == starting #skipping buffering. later we can use this for more reporting
+      # next if last_start == starting #skipping buffering. later we can use this for more reporting
 
       suba = Array.new(duration){|i| ((i < starting) || (i > ending)) ? 0 : 1 }
       large_array.push suba
