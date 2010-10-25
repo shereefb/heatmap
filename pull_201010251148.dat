@@ -1,0 +1,1 @@
+{"session_uri":"/sessions/6700478888","database_url":"postgres://postgres:tree@localhost/hm_dev?encoding=utf8","stream_state":{},"completed_tables":[],"klass":"Taps::Pull","remote_url":"http://heroku:osui59a24am79x@taps3.heroku.com","table_filter":null,"remote_tables_info":{"user_answers":200,"schema_migrations":200,"videos":200,"users":200,"logs":200,"participations":200}}

@@ -42,8 +42,13 @@ class Log < ActiveRecord::Base
     end
     
     self.processed_at = DateTime.now
-    heatmap_arr = large_array.transpose.map {|x| x.sum}
-    heatmap_arr = Array.new(duration){1} if heatmap_arr == []
+    
+    if large_array == []
+      heatmap_arr = Array.new(duration){1} 
+    else
+      heatmap_arr = large_array.transpose.map {|x| x.sum}
+    end
+    
     puts "heatmap arr #{heatmap_arr.inspect}"
     self.heatmap = heatmap_arr.join(",")
     self.save!
