@@ -145,7 +145,7 @@ function report(playerid,sync){
 		va[playerid]['D'].push([Math.round(va[playerid]['truelast']),duration]);
 	}
     
-    var url = "http://localhost:3000/logs/create";
+    var url = "http://videoheatmaps.com/logs/create";
     var params = "youtube_id=" + playerid;
     params = params + "&uid=" + _uid;
     params = params + "&timelog=" + va[playerid]['D'].join("-");
