@@ -5,7 +5,9 @@
   = log.ip
 
 %div{:id => log.id, :class => "heatmap"}
-  = log.gchart.render(log.id)
+  / = log.gchart.render(log.id)
+  = log.simple_gchart
+  
 
 %div.heatmap-percentage
   = log.percentage_viewed.to_s + "%"

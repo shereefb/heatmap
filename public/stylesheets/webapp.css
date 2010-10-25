@@ -454,6 +454,7 @@ a.close_account {
 
 .heatmap {
 	float: left;
+	padding-right:10px;
 }
 
 .heatmap-percentage{

@@ -1,6 +1,6 @@
 class Log < ActiveRecord::Base
   
-  COLOR_ARRAY = ["#f1fddc", "#c6fc66", "#edfb4c", "#fd9c43", "#ff0b08", "#980402", "#510100", "#140000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000", "#000000"]
+  COLOR_ARRAY = ["f1fddc", "c6fc66", "edfb4c", "fd9c43", "ff0b08", "980402", "510100", "140000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000", "000000"]
   
   # Takes the raw data, turns it into an array. Each cell representing a second. Each cell showing the number of times that second was viewed. This data is then added to the array in the video
   def process
@@ -137,7 +137,24 @@ class Log < ActiveRecord::Base
       chart.send "#{key}=", value
     end
     chart
+  end
+  
+  def simple_gchart
     
+    colors = []
+    values = []
+    chds=[]
+    
+    self.heatmap_array_as_gchart.each do |pair|
+      colors.push COLOR_ARRAY[pair[0]]
+      values.push pair[1]
+      chds.push 0
+      chds.push self.duration
+    end
+    
+    chart = "http://chart.apis.google.com/chart?chbh=a&chs=600x30&cht=bhs&chco=#{colors.join(",")}&chds=#{chds.join(",")}&chd=t:#{values.join("|")}"
+    img = '<img src="' + chart + '"  width="600" height="30" alt="" />'
+    # imtg = '<img src="http://chart.apis.google.com/chart?chxr=0,0,160&chxt=x&chbh=a&chs=440x220&cht=bhs&chco=4D89F9,C6D9FD&chds=0,160,0,160&chd=t:10,50,60,80,40,60,30|50,60,100,40,30,40,30&chtt=Horizontal+bar+chart" width="440" height="220" alt="Horizontal bar chart" />'
   end
   
   def self.process_all
